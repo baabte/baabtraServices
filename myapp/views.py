@@ -558,7 +558,7 @@ def CompanyEditView(request):
         data = JSONParser().parse(stream)
         CompanyId=data["_id"]
         data['loggedusercrmid']=ObjectId(data['loggedusercrmid'])
-        companyCollection.update({'_id':ObjectId(CompanyId)},{'$set':{'alternateEmail':data["alternateEmail"],'Phone':data["Phone"],'Mobile':data["Mobile"],'Fax':data["Fax"],'webSite':data["webSite"],'Address':data["Address"],'facebook':data["facebook"],'gplus':data["gplus"],'twitter':data["twitter"],'updatedDate':datetime.now(),'urmId':data["loggedusercrmid"]}})
+        companyCollection.update({'_id':ObjectId(CompanyId)},{'$set':{'companyName':data["companyName"],'alternateEmail':data["alternateEmail"],'Phone':data["Phone"],'Mobile':data["Mobile"],'Fax':data["Fax"],'zipCode':data["zipCode"],'webSite':data["webSite"],'Address':data["Address"],'facebook':data["facebook"],'gplus':data["gplus"],'twitter':data["twitter"],'updatedDate':datetime.now(),'urmId':data["loggedusercrmid"]}})
         return Response("success")
     else:    
         return Response("failure")
@@ -708,3 +708,22 @@ def LinkAccountWithFacebook(request):
         return Response(json.dumps(result, default=json_util.default))            
     else:        
         return Response("failure")        
+
+
+#created by Arun.R.Menon
+#on 13-10-14
+@csrf_exempt
+@api_view(['GET','POST'])
+def SelectedCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        result = dbconn.system_js.fnSelectedCompany(data);
+        return Response(json.dumps(result, default=json_util.default))            
+    else:        
+        return Response("failure")   
