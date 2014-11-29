@@ -49,6 +49,8 @@ urlpatterns = patterns('',
     url(r'^HideJobDetails/$', 'myapp.companyJobView.HideJobDetailsView', name='HideJobDetails'), #Author:Jihin
     url(r'^EmailAlreadyRegisterdorNot/$', 'myapp.views.EmailAlreadyRegisterdorNot', name='EmailAlreadyRegisterdorNot'),
     url(r'^LinkAccountWithFacebook/$', 'myapp.views.LinkAccountWithFacebook', name='LinkAccountWithFacebook'),
-    url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany')
+    url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany'),
+    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany')
+
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
