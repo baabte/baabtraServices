@@ -445,13 +445,12 @@ def ManageRolesOfCompany(request): #this webservice add roles of particular comp
         data = JSONParser().parse(stream)
         roles=data['roles']
         try:
-            dbconn.system_js.fun_add_new_role(roles);
+            dbconn.system_js.fun_add_new_roles(roles);
         except:
             return Response(json.dumps("error", default=json_util.default))
         return Response(json.dumps("success", default=json_util.default))
     else:
         return Response(json.dumps("failed", default=json_util.default))  
-
 #created by MIDHUN SUDHAKAR
 #on 12-10-14
 
@@ -466,17 +465,15 @@ def ManageRolesOfCompanyView(request):  #this service will retrieve all roles of
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        fkUserLoginId=data["fkUserLoginId"]
+        cmpid=data["companyId"]
         try:
-            role=dbconn.system_js.fun_companyid_mappings(fkUserLoginId)
-            cmpid=role.get('fkCompanyId')
-            rolls=dbconn.system_js.fun_retriveCompany_Rolls(cmpid)    
+            rolls=dbconn.system_js.function_retriveCompany_Roles(cmpid)    
         except:
             return Response(json.dumps("error", default=json_util.default))
+        # return Response(json.dumps(rolls, default=json_util.default))
         return Response(json.dumps(rolls, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
-
 #created by MIDHUN SUDHAKAR
 #on 16-10-14
 
@@ -491,11 +488,10 @@ def UpdateCompanyRole(request):  #this service will update all roles of particul
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         RoleId=data["_id"]
-        roleName=data["roleName"]
-        roleDescription=data["roleDescription"]
-        updatedDate=data["updatedDate"]
+        role=data["role"]
+        data=data["data"]
         try:
-            dbconn.system_js.fun_update_company_role(RoleId,roleName,roleDescription,updatedDate)
+            dbconn.system_js.fun_update_company_role(RoleId,role,data)
         except:
             return Response(json.dumps("error", default=json_util.default))
         return Response(json.dumps("success", default=json_util.default))
@@ -536,14 +532,11 @@ def CompanyDeleteView(request):
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
-    companyCollection = dbconn['clnCompany']
 
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        CompanyId=data["_id"]
-        data['loggedusercrmid']=ObjectId(data['loggedusercrmid'])
-        companyCollection.update({'_id':ObjectId(CompanyId)},{'$set':{'activeFlag':0,'urmId':data['loggedusercrmid'],'updatedDate':datetime.now()}})
+        dbconn.system_js.fnDeleteCompany(data);
         return Response("success")
     else:    
         return Response("failure")
@@ -562,9 +555,7 @@ def CompanyEditView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        CompanyId=data["_id"]
-        data['loggedusercrmid']=ObjectId(data['loggedusercrmid'])
-        companyCollection.update({'_id':ObjectId(CompanyId)},{'$set':{'alternateEmail':data["alternateEmail"],'Phone':data["Phone"],'Mobile':data["Mobile"],'Fax':data["Fax"],'webSite':data["webSite"],'Address':data["Address"],'facebook':data["facebook"],'gplus':data["gplus"],'twitter':data["twitter"],'updatedDate':datetime.now(),'urmId':data["loggedusercrmid"]}})
+        dbconn.system_js.fnEditCompany(data);
         return Response("success")
     else:    
         return Response("failure")
@@ -591,26 +582,26 @@ def UserNameValidView(request):
 
 #created by midhun
 #on 22-10-14
-@csrf_exempt
-@api_view(['GET','POST'])
-def show_more_company_role(request):  #this service will change active flag of role of a particular company
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
+# @csrf_exempt
+# @api_view(['GET','POST'])
+# def show_more_company_role(request):  #this service will change active flag of role of a particular company
+#     #connect to our local mongodb
+#     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#     #get a connection to our database
+#     dbconn = db[settings.MONGO_DB]
     
-    if request.method == 'POST':
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream) 
-        showtime=data["showtime"]
-        companyId=data["companyId"]       
-        try:
-            maore_roles=dbconn.system_js.fn_show_more_roles(companyId,showtime)
-        except:
-            return Response("error")
-        return Response(json.dumps(maore_roles, default=json_util.default))
-    else:
-        return Response("failed")
+#     if request.method == 'POST':
+#         stream = StringIO(request.body)
+#         data = JSONParser().parse(stream) 
+#         showtime=data["showtime"]
+#         companyId=data["companyId"]       
+#         try:
+#             maore_roles=dbconn.system_js.fn_show_more_roles(companyId,showtime)
+#         except:
+#             return Response("error")
+#         return Response(json.dumps(maore_roles, default=json_util.default))
+#     else:
+#         return Response("failed")
         
 #---------------------------------------------------------------------
 #created by  : Akshath kumar M.
@@ -659,26 +650,26 @@ def showMoreCompaniesView(request):  #this service will change active flag of ro
 
 #created by midhun
 #on 22-10-14
-@csrf_exempt
-@api_view(['GET','POST'])
-def find_company_id(request):  #this service will find the company id of current session
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
+# @csrf_exempt
+# @api_view(['GET','POST'])
+# def find_company_id(request):  #this service will find the company id of current session
+#     #connect to our local mongodb
+#     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#     #get a connection to our database
+#     dbconn = db[settings.MONGO_DB]
     
-    if request.method == 'POST':
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream) 
-        fkUserLoginId=data["fkUserLoginId"]
-        try:
-            role=dbconn.system_js.fun_companyid_mappings(fkUserLoginId)
-            cmpid=role.get('fkCompanyId')
-        except:
-            return Response("error")
-        return Response(json.dumps(cmpid, default=json_util.default))
-    else:        
-        return Response("failed")
+#     if request.method == 'POST':
+#         stream = StringIO(request.body)
+#         data = JSONParser().parse(stream) 
+#         fkUserLoginId=data["fkUserLoginId"]
+#         try:
+#             role=dbconn.system_js.fun_companyid_mappings(fkUserLoginId)
+#             cmpid=role.get('fkCompanyId')
+#         except:
+#             return Response("error")
+#         return Response(json.dumps(cmpid, default=json_util.default))
+#     else:        
+#         return Response("failed")
 #created by suhail pallimalil
 #on 22-10-14
 @csrf_exempt
@@ -714,3 +705,40 @@ def LinkAccountWithFacebook(request):
         return Response(json.dumps(result, default=json_util.default))            
     else:        
         return Response("failure")        
+
+
+#created by Arun.R.Menon
+#on 13-10-14
+@csrf_exempt
+@api_view(['GET','POST'])
+def SelectedCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        result = dbconn.system_js.fnSelectedCompany(data);
+        return Response(json.dumps(result, default=json_util.default))            
+    else:        
+        return Response("failure")   
+
+#created by Arun.R.Menon
+#on 13-10-14
+@csrf_exempt
+@api_view(['GET','POST'])
+def SearchCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        result = dbconn.system_js.fnSearchCompany(data);
+        return Response(json.dumps(result, default=json_util.default))            
+    else:        
+        return Response("failure")   
