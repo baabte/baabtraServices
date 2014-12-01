@@ -228,20 +228,26 @@ def FnGetCompanyDetailsJiView(request):#for get company details
 @csrf_exempt  
 @api_view(['GET','POST'])
 def SaveNewRoleMenu(request): #for Insert or update menu items for specific user and role
+    def test(menu,sub):
+        if sub == None:
+            sub=0
+        if sub<len(menu):
+            menu[sub]['fkMenuId']=ObjectId(menu[sub]['fkMenuId'])
+            if len(menu[sub]['childMenuStructure'])>0:
+                test(menu[sub]['childMenuStructure'],None)
+                pass
+            sub=sub+1
+            test(menu,sub)
+            pass
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     dbconn = db[settings.MONGO_DB]
     if request.method == 'POST':
         stream = StringIO(request.body)#reads the data passed along with the request
         data = JSONParser().parse(stream)#converts to json
         response=""
-        for menu in data["menus"]:
-            menu['fkMenuId']=ObjectId(menu['fkMenuId'])
-            for sub_menu in menu['childMenuStructure']:
-                sub_menu['fkMenuId']=ObjectId(sub_menu['fkMenuId'])
-                for sub_menu_sub in sub_menu['childMenuStructure']:
-                    response="Not Allowed"
-                    pass
-                pass
+        
+        test(data["menus"],None)
+
         if response=="":
             try:            
                 response=dbconn.system_js.fnSaveUserMenuMapping(data['rm_id'],data['role_id'],data['menus']); 
