@@ -51,7 +51,15 @@ urlpatterns = patterns('',
     url(r'^EmailAlreadyRegisterdorNot/$', 'myapp.views.EmailAlreadyRegisterdorNot', name='EmailAlreadyRegisterdorNot'),
     url(r'^LinkAccountWithFacebook/$', 'myapp.views.LinkAccountWithFacebook', name='LinkAccountWithFacebook'),
     url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany'),
-    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany')
-
+    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany'),
+    url(r'^GetUserPlan/$', 'myapp.views.GetUserPlanView', name='GetUserPlan'),
+    url(r'^GetPlans/$', 'myapp.views.GetPlansView', name='GetPlans'),
+    url(r'^GetFeatures/$', 'myapp.views.GetFeaturesView', name='GetFeatures'),
+    url(r'^ChangeUserPlan/$', 'myapp.views.ChangeUserPlanView', name='ChangeUserPlan'),
+    url(r'^EditPricing/$', 'myapp.views.EditPricingView', name='EditPricing'),
+    url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),
+    url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),
+    url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),
+    url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig')
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
