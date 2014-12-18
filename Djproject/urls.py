@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^LoadMenuItems4AUMMapping/$', 'myapp.views.LoadMenuItems4AUMMapping', name='LoadMenuItems4AUMMapping'),   #url for routing to the LoadMenuItems4AUMMapping() function inside view.py
     url(r'^GetRoleMenus/$', 'myapp.views.GetRoleMenusView', name='GetRoleMenus'),
     url(r'^LoadMenus/$', 'myapp.menuRelatedView.LoadMenuView', name='LoadMenus'),
+    url(r'^AddMenus/$', 'myapp.menuRelatedView.AddMenuView', name='AddMenus'),
 	url(r'^RegisteredCompanies/$', 'myapp.views.RegisteredCompanyView', name='RegisteredCompanies'),
  	url(r'^CompanySector/$', 'myapp.views.CompanySectorView', name='CompanySector'),
  	url(r'^CountryStateDistrict/$', 'myapp.views.CountryStateDistrictView', name='CountryStateDistrict'),
@@ -60,6 +61,8 @@ urlpatterns = patterns('',
     url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),
     url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),
-    url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig')
+    url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig'),
+    url(r'^InsertBranch/$', 'myapp.branchRelatedView.fnInsertBranches', name='InsertBranch'),
+    url(r'^LoadBranches/$', 'myapp.branchRelatedView.fnLoadBranches', name='LoadBranches')
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)

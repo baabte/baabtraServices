@@ -24,7 +24,22 @@ from django.core.mail import EmailMessage
 
 @csrf_exempt  
 @api_view(['GET','POST'])
-def InsertUserMenu(request):                                   #for Inserting menu items for specific user
+def InsertUserMenu(request):
+    def test(menu,sub):
+        if sub == None:
+            sub=0
+        if sub<len(menu):
+            if 'fkMenuId' in menu[sub]:
+                menu[sub]['fkMenuId']=ObjectId(menu[sub]['fkMenuId'])
+                pass
+            if 'childMenuStructure' in menu[sub]:    
+                if len(menu[sub]['childMenuStructure'])>0:
+                    test(menu[sub]['childMenuStructure'],None)
+                    pass
+                pass
+            sub=sub+1
+            test(menu,sub)
+            pass                                   #for Inserting menu items for specific user
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -41,12 +56,7 @@ def InsertUserMenu(request):                                   #for Inserting me
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         #data["fkMenuId"]=ObjectId(data["fkMenuId"])
-        for menu in data["menus"]:
-           menu['fkMenuId']=ObjectId(menu['fkMenuId'])
-           for sub_menu in menu['childMenuStructure']:
-               sub_menu['fkMenuId']=ObjectId(sub_menu['fkMenuId'])
-               pass
-           pass
+        test(data["menus"],None)
         try:
             docs_list  = dbconn.system_js.fnSaveUserMenus(ObjectId(data['fkUrmId']),ObjectId(data["fkUserRoleMappingId"]),ObjectId(data["fkMenuRegionId"]),data["menus"]) 
         except:
@@ -232,9 +242,17 @@ def SaveNewRoleMenu(request): #for Insert or update menu items for specific user
         if sub == None:
             sub=0
         if sub<len(menu):
-            menu[sub]['fkMenuId']=ObjectId(menu[sub]['fkMenuId'])
-            if len(menu[sub]['childMenuStructure'])>0:
-                test(menu[sub]['childMenuStructure'],None)
+            if 'fkMenuId' in menu[sub]:
+                menu[sub]['fkMenuId']=ObjectId(menu[sub]['fkMenuId'])
+                del menu[sub]['actionMaster']
+                if 'actionStatus' in menu[sub]:
+                    del menu[sub]['actionStatus']
+                    pass
+                pass
+            if 'childMenuStructure' in menu[sub]:    
+                if len(menu[sub]['childMenuStructure'])>0:
+                    test(menu[sub]['childMenuStructure'],None)
+                    pass
                 pass
             sub=sub+1
             test(menu,sub)
