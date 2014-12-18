@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^LoadMenuItems4AUMMapping/$', 'myapp.views.LoadMenuItems4AUMMapping', name='LoadMenuItems4AUMMapping'),   #url for routing to the LoadMenuItems4AUMMapping() function inside view.py
     url(r'^GetRoleMenus/$', 'myapp.views.GetRoleMenusView', name='GetRoleMenus'),
     url(r'^LoadMenus/$', 'myapp.menuRelatedView.LoadMenuView', name='LoadMenus'),
+    url(r'^AddMenus/$', 'myapp.menuRelatedView.AddMenuView', name='AddMenus'),
 	url(r'^RegisteredCompanies/$', 'myapp.views.RegisteredCompanyView', name='RegisteredCompanies'),
  	url(r'^CompanySector/$', 'myapp.views.CompanySectorView', name='CompanySector'),
  	url(r'^CountryStateDistrict/$', 'myapp.views.CountryStateDistrictView', name='CountryStateDistrict'),
@@ -51,7 +52,9 @@ urlpatterns = patterns('',
     url(r'^EmailAlreadyRegisterdorNot/$', 'myapp.views.EmailAlreadyRegisterdorNot', name='EmailAlreadyRegisterdorNot'),
     url(r'^LinkAccountWithFacebook/$', 'myapp.views.LinkAccountWithFacebook', name='LinkAccountWithFacebook'),
     url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany'),
-    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany')
+    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany'),
+    url(r'^InsertBranch/$', 'myapp.branchRelatedView.fnInsertBranches', name='InsertBranch'),
+    url(r'^LoadBranches/$', 'myapp.branchRelatedView.fnLoadBranches', name='LoadBranches')
 
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)

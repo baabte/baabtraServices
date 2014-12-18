@@ -18,13 +18,11 @@ from jobRelatedView import FileUploadView
 
 
 
-
-
 #created by jihin
-#For load menus for logined user
+#For Load Branches
 @csrf_exempt
 @api_view(['GET','POST'])
-def LoadMenuView(request):
+def fnLoadBranches(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -33,16 +31,16 @@ def LoadMenuView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnLoadMenus(ObjectId(data['rm_id']));
+        response=dbconn.system_js.fnLoadBranches(ObjectId(data['cmp_id']));
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
 
 #created by jihin
-#For load menus for logined user
+#For Insert Branches
 @csrf_exempt
 @api_view(['GET','POST'])
-def AddMenuView(request):
+def fnInsertBranches(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -51,7 +49,7 @@ def AddMenuView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnInsertMenu(data['menu']);
-        return Response(StringIO(response))
+        response=dbconn.system_js.fnInsertBranches(ObjectId(data['cmp_id']),data['branches']);
+        return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
