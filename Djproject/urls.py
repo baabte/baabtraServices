@@ -37,20 +37,23 @@ urlpatterns = patterns('',
     url(r'^UserNameValid/$', 'myapp.views.UserNameValidView', name='UserNameValid'),
     url(r'^CompanyDelete/$', 'myapp.views.CompanyDeleteView', name='CompanyDelete'),
     url(r'^CompanyEdit/$', 'myapp.views.CompanyEditView', name='CompanyEdit'),
-    url(r'^show_more_company_role/$', 'myapp.views.show_more_company_role', name='show_more_company_role'),#created by midhun
     url(r'^APIgetCompanyJobs/$', 'myapp.companyJobView.APIgetCompanyJobs', name='APIgetCompanyJobs'), #Author:Lijin,Purpose:get list of jobs under a company
     url(r'^postCompanyJobs/$', 'myapp.companyJobView.postCompanyJobs', name='postCompanyJobs'), #Author:Lijin,Purpose:post jobs as company,
     url(r'^APIapplyCompanyJobs/$', FileUploadView.as_view(), name='myapp.FileUploadView.FileUploadView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
     url(r'^getRptUserDetails/$', 'myapp.views.getRptUserDetails', name='getRptUserDetails'), #Author:Akshath kumar,description: Retrving of users details for google chart reporting.
     url(r'^ShowMoreCompanies/$', 'myapp.views.showMoreCompaniesView', name='ShowMoreCompanies'),
-    url(r'^find_company_id/$', 'myapp.views.find_company_id', name='find_company_id'),
     url(r'^getCompanyJobs/$', 'myapp.companyJobView.getCompanyJobs', name='getCompanyJobs'), #Author:Jihin
     url(r'^UpdateJobDetails/$', 'myapp.companyJobView.UpdateJobDetailsView', name='UpdateJobDetails'), #Author:Jihin
     url(r'^HideJobDetails/$', 'myapp.companyJobView.HideJobDetailsView', name='HideJobDetails'), #Author:Jihin
     url(r'^EmailAlreadyRegisterdorNot/$', 'myapp.views.EmailAlreadyRegisterdorNot', name='EmailAlreadyRegisterdorNot'),
     url(r'^LinkAccountWithFacebook/$', 'myapp.views.LinkAccountWithFacebook', name='LinkAccountWithFacebook'),
     url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany'),
-    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany')
-
+    url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany'),
+    url(r'^loadInputTypes/$','myapp.feature_config.loadInputTypes', name='loadInputTypes'),#created by midhun
+    url(r'^newFeatureCreation/$','myapp.feature_config.newFeatureCreation', name='newFeatureCreation'),#created by midhun
+    url(r'^loadFeatures/$','myapp.billing_plans.loadFeatures', name='loadFeatures'),#created by midhun
+    url(r'^addNewBillingPlan/$','myapp.billing_plans.addNewBillingPlan', name='addNewBillingPlan'),#created by midhun
+    url(r'^retriveCurrentPlans/$','myapp.billing_plans.retriveCurrentPlans', name='retriveCurrentPlans'),#created by midhun
+    url(r'^delete_plans/$','myapp.billing_plans.delete_plans', name='delete_plans'),#created by midhun
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
