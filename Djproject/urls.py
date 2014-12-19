@@ -23,6 +23,8 @@ urlpatterns = patterns('',
     url(r'^LoadExMenuItems4AUMMapping/$', 'myapp.views.LoadExMenuItems4AUMMapping', name='LoadExMenuItems4AUMMapping'), #url for routing to the LoadExMenuItems4AUMMapping() function inside view.py
     url(r'^LoadMenuItems4AUMMapping/$', 'myapp.views.LoadMenuItems4AUMMapping', name='LoadMenuItems4AUMMapping'),   #url for routing to the LoadMenuItems4AUMMapping() function inside view.py
     url(r'^GetRoleMenus/$', 'myapp.views.GetRoleMenusView', name='GetRoleMenus'),
+    url(r'^LoadMenus/$', 'myapp.menuRelatedView.LoadMenuView', name='LoadMenus'),
+    url(r'^AddMenus/$', 'myapp.menuRelatedView.AddMenuView', name='AddMenus'),
 	url(r'^RegisteredCompanies/$', 'myapp.views.RegisteredCompanyView', name='RegisteredCompanies'),
  	url(r'^CompanySector/$', 'myapp.views.CompanySectorView', name='CompanySector'),
  	url(r'^CountryStateDistrict/$', 'myapp.views.CountryStateDistrictView', name='CountryStateDistrict'),
@@ -55,5 +57,17 @@ urlpatterns = patterns('',
     url(r'^addNewBillingPlan/$','myapp.billing_plans.addNewBillingPlan', name='addNewBillingPlan'),#created by midhun
     url(r'^retriveCurrentPlans/$','myapp.billing_plans.retriveCurrentPlans', name='retriveCurrentPlans'),#created by midhun
     url(r'^delete_plans/$','myapp.billing_plans.delete_plans', name='delete_plans'),#created by midhun
+    url(r'^GetUserPlan/$', 'myapp.views.GetUserPlanView', name='GetUserPlan'),#arun
+    url(r'^GetPlans/$', 'myapp.views.GetPlansView', name='GetPlans'),#arun
+    url(r'^GetFeatures/$', 'myapp.views.GetFeaturesView', name='GetFeatures'),#arun
+    url(r'^ChangeUserPlan/$', 'myapp.views.ChangeUserPlanView', name='ChangeUserPlan'),#arun
+    url(r'^EditPricing/$', 'myapp.views.EditPricingView', name='EditPricing'),#arun
+    url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#arun
+    url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#arun
+    url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#arun
+    url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig'),#arun
+    url(r'^InsertBranch/$', 'myapp.branchRelatedView.fnInsertBranches', name='InsertBranch'),#jihin
+    url(r'^LoadBranches/$', 'myapp.branchRelatedView.fnLoadBranches', name='LoadBranches')#jihin
+
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
