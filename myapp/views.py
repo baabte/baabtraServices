@@ -931,6 +931,49 @@ def GetFeaturesConfigView(request):
     else:        
         return Response("failure")          
 
+#created by midhun sudhakar
+#on 13-10-14
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadlogUserdata(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        UserDataObjId=data["UserDataObjId"]
+        try:
+           result=dbconn.system_js.fun_load_log_user_data(UserDataObjId)    
+        except:
+           return Response(json.dumps("error", default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def logout(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        UserLogoutObjId=data["UserLogoutObjId"]
+        try:
+           result=dbconn.system_js.fun_logout(UserLogoutObjId)    
+        except:
+           return Response(json.dumps("error", default=json_util.default))
+        return Response(json.dumps("success", default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+         
+
 
 
 #created by Arun.R.Menon
