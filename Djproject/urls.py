@@ -74,5 +74,6 @@ urlpatterns = patterns('',
     url(r'^delete_plans/$','myapp.billing_plans.delete_plans', name='delete_plans'),#created by midhun
     url(r'^loadlogUserdata/$', 'myapp.views.loadlogUserdata', name='loadlogUserdata'),  #URL for the login,added by midhun
     url(r'^logout/$', 'myapp.views.logout', name='logout')  #URL for the login,added by midhun
+    #dgdfgdf
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
