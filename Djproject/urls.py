@@ -67,7 +67,8 @@ urlpatterns = patterns('',
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#arun
     url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig'),#arun
     url(r'^InsertBranch/$', 'myapp.branchRelatedView.fnInsertBranches', name='InsertBranch'),#jihin
-    url(r'^LoadBranches/$', 'myapp.branchRelatedView.fnLoadBranches', name='LoadBranches')#jihin
-
+    url(r'^LoadBranches/$', 'myapp.branchRelatedView.fnLoadBranches', name='LoadBranches'),#jihin
+    url(r'^loadlogUserdata/$', 'myapp.views.loadlogUserdata', name='loadlogUserdata'),  #URL for the login,added by midhun
+    url(r'^logout/$', 'myapp.views.logout', name='logout')  #URL for the login,added by midhun
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
