@@ -73,6 +73,8 @@ urlpatterns = patterns('',
     url(r'^retriveCurrentPlans/$','myapp.billing_plans.retriveCurrentPlans', name='retriveCurrentPlans'),#created by midhun
     url(r'^delete_plans/$','myapp.billing_plans.delete_plans', name='delete_plans'),#created by midhun
     url(r'^loadlogUserdata/$', 'myapp.views.loadlogUserdata', name='loadlogUserdata'),  #URL for the login,added by midhun
-    url(r'^logout/$', 'myapp.views.logout', name='logout')  #URL for the login,added by midhun
+    url(r'^logout/$', 'myapp.views.logout', name='logout'),  #URL for the login,added by midhun
+    url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
+    url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm')  #by Arun
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
