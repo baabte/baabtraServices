@@ -75,5 +75,9 @@ urlpatterns = patterns('',
     url(r'^loadlogUserdata/$', 'myapp.views.loadlogUserdata', name='loadlogUserdata'),  #URL for the login,added by midhun
     url(r'^logout/$', 'myapp.views.logout', name='logout')  #URL for the login,added by midhun
     url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain')  #URL for the insert domain,added by jihin
+    url(r'^logout/$', 'myapp.views.logout', name='logout'),  #URL for the login,added by midhun
+    url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
+    url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
+    url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword')  #URL for the forgot password,added by midhun
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
