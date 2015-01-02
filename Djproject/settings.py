@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 import pymongo
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'myapp/html_templates')]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -72,8 +72,8 @@ ROOT_URLCONF = 'Djproject.urls'
 
 WSGI_APPLICATION = 'Djproject.wsgi.application'
 
-MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
-#MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
+#MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
+MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
 MONGO_PORT = 27017 #Mongodb port
 
 MONGO_DB = 'baabtra_db'  #Database name
@@ -113,7 +113,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'http://localhost:8000/static/'
 
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
