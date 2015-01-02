@@ -20,7 +20,9 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
-
+from django.http import HttpResponse
+from django.template import Context
+from django.template.loader import render_to_string, get_template
 
 @csrf_exempt  
 @api_view(['GET','POST'])
@@ -1015,3 +1017,68 @@ def GetFeaturesConfigValues(request):
         # return Response("success")            
     else:        
         return Response("failure")          
+
+#created by midhun sudhakar
+#on 31-12-2014
+@csrf_exempt
+@api_view(['GET','POST'])
+def forgotPassword(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        user_email=data["user_email"]
+        # email = EmailMessage('Company Registered','Welcome to baabtra.com', to=[email])
+        # email.send()
+        try:
+            userdata=dbconn.system_js.fun_check_user_email_exists(user_email);
+            if userdata["result"]>0:
+                data = {
+                'username': userdata["userdata"]["userName"],
+                'password': userdata["userdata"]["password"]
+                }
+                message = get_template(settings.TEMPLATE_DIRS[0]+'/forgot_password.html').render(Context(data))
+                email = EmailMessage('baabtra.com accont password',message, to=[userdata["userdata"]["userName"]])
+                email.content_subtype = 'html'
+                a=email.send()
+                return Response(json.dumps("success", default=json_util.default))
+            else:
+                return Response(json.dumps("no_username", default=json_util.default))
+        except :
+           return Response(json.dumps("error", default=json_util.default))
+        
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))  
+
+
+
+# @csrf_exempt
+# @api_view(['GET','POST'])
+# def forgotPassword(request):
+#     #connect to our local mongodb
+#     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#     dbconn = db[settings.MONGO_DB]
+    
+#     if request.method == 'POST':      
+#         stream = StringIO(request.body)
+#         data = JSONParser().parse(stream)
+#         user_email=data["user_email"]
+#         # email = EmailMessage('Company Registered','Welcome to baabtra.com', to=[email])
+#         # email.send()
+#         try:
+#             userdata=dbconn.system_js.fun_check_user_email_exists(user_email);
+#             if userdata["result"]>0:
+#                 email = EmailMessage('baabtra.com new password','your new password is :'+userdata["userdata"]["password"], to=[userdata["userdata"]["userName"]])
+#                 email.send()
+#                 return Response(json.dumps("success", default=json_util.default))
+#             else:
+#                 return Response(json.dumps("no_username", default=json_util.default))
+#         except:
+#            return Response(json.dumps("error", default=json_util.default))
+        
+#     else:        
+#         return Response(json.dumps("failed", default=json_util.default))  
+                   
