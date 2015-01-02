@@ -1057,3 +1057,41 @@ def SaveCourseElementFormView(request):
 
 
 
+
+#created by Arun.R.Menon
+@csrf_exempt
+@api_view(['GET','POST'])
+def GetCourseElementsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        result =dbconn.system_js.fnGetCourseElements();
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")  
+
+
+
+
+
+#created by Arun.R.Menon
+@csrf_exempt
+@api_view(['GET','POST'])
+def DeleteCourseElementView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result =dbconn.system_js.fnDeleteCourseElement(data);
+        # return Response(json.dumps(result, default=json_util.default))  
+        return Response("success")            
+    else:        
+        return Response("failure")  

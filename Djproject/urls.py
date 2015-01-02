@@ -75,6 +75,11 @@ urlpatterns = patterns('',
     url(r'^loadlogUserdata/$', 'myapp.views.loadlogUserdata', name='loadlogUserdata'),  #URL for the login,added by midhun
     url(r'^logout/$', 'myapp.views.logout', name='logout'),  #URL for the login,added by midhun
     url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
-    url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm')  #by Arun
+    url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
+    url(r'^GetCourseElements/$', 'myapp.views.GetCourseElementsView', name='GetCourseElements'),  #by Arun
+    url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement')  #by Arun
+
+
+
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
