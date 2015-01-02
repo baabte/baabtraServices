@@ -1018,14 +1018,7 @@ def GetFeaturesConfigValues(request):
     else:        
         return Response("failure")          
 
-#created by midhun sudhakar
-#on 31-12-2014
-@csrf_exempt
-@api_view(['GET','POST'])
-def forgotPassword(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-        return Response("failure")     
+   
 
 
 
