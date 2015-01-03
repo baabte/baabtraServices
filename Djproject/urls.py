@@ -79,7 +79,10 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'),  #URL for the forgot password,added by midhun
     url(r'^GetCourseElements/$', 'myapp.views.GetCourseElementsView', name='GetCourseElements'),  #by Arun
-    url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement')  #by Arun
+    url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement'),  #by Arun
+    url(r'^SaveExitCriteria/$', 'myapp.views.SaveExitCriteriaView', name='SaveExitCriteria'),  #by Arun
+    url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria')  #by Arun
+
 
 
 

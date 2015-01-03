@@ -1134,3 +1134,44 @@ def DeleteCourseElementView(request):
     else:        
         return Response("failure")  
 
+
+
+
+
+#created by Arun.R.Menon
+#on 13-10-14
+@csrf_exempt
+@api_view(['GET','POST'])
+def SaveExitCriteriaView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        result =dbconn.system_js.fnSaveExitCriteria(data);
+        # return Response(json.dumps(result, default=json_util.default))  
+        return Response("success")            
+    else:        
+        return Response("failure")                  
+
+
+#created by Arun.R.Menon
+@csrf_exempt
+@api_view(['GET','POST'])
+def DeleteExitCriteriaView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result =dbconn.system_js.fnDeleteExitCriteria(data);
+        # return Response(json.dumps(result, default=json_util.default))  
+        return Response("success")            
+    else:        
+        return Response("failure")          
