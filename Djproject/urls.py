@@ -73,11 +73,12 @@ urlpatterns = patterns('',
     url(r'^retriveCurrentPlans/$','myapp.billing_plans.retriveCurrentPlans', name='retriveCurrentPlans'),#created by midhun
     url(r'^delete_plans/$','myapp.billing_plans.delete_plans', name='delete_plans'),#created by midhun
     url(r'^loadlogUserdata/$', 'myapp.views.loadlogUserdata', name='loadlogUserdata'),  #URL for the login,added by midhun
-    url(r'^logout/$', 'myapp.views.logout', name='logout')  #URL for the login,added by midhun
-    url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain')  #URL for the insert domain,added by jihin
+    url(r'^logout/$', 'myapp.views.logout', name='logout'),  #URL for the login,added by midhun
+    url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain'),  #URL for the insert domain,added by jihin
+    url(r'^LoadDomain/$', 'myapp.domainRelatedViews.LoadDomainView', name='LoadDomain'),  #URL for the insert domain,added by jihin
     url(r'^logout/$', 'myapp.views.logout', name='logout'),  #URL for the login,added by midhun
     url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
-    url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword')  #URL for the forgot password,added by midhun
-    
+    url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
+    url(r'^LoadGlobalValues/$', 'myapp.commonViews.LoadGlobalValuesView', name='LoadGlobalValues')#added by jihin for get global values
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
