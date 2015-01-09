@@ -72,8 +72,8 @@ ROOT_URLCONF = 'Djproject.urls'
 
 WSGI_APPLICATION = 'Djproject.wsgi.application'
 
-#MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
-MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
+MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
+# MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
 MONGO_PORT = 27017 #Mongodb port
 
 MONGO_DB = 'baabtra_db'  #Database name
