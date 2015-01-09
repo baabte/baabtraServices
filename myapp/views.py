@@ -1104,9 +1104,10 @@ def GetCourseElementsView(request):
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
-    
+    stream = StringIO(request.body)
+    data = JSONParser().parse(stream)
     if request.method == 'POST':      
-        result =dbconn.system_js.fnGetCourseElements();
+        result =dbconn.system_js.fnGetCourseElements(data['courseElementName']);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
