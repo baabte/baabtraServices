@@ -440,14 +440,14 @@ def Login(request):
         db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
         #get a connection to our database
         dbconn = db[settings.MONGO_DB]
-        userLoginCollection = dbconn['clnUserLogin']
         if request.method == 'POST':
             stream =StringIO(request.body)
-            data = JSONParser().parse(stream)            
+            data = JSONParser().parse(stream)   
+            LoginData=data["loginData"]         
             try:
-                log = dbconn.system_js.fnLogin(data);
-            except:
-                return Response("error")
+                log = dbconn.system_js.fnLogin(LoginData);
+            except Exception as e:
+                return Response(e)
             return Response(json.dumps(log, default=json_util.default))
         else:    
             return Response("failure")    
@@ -1018,9 +1018,6 @@ def GetFeaturesConfigValues(request):
     else:        
         return Response("failure")          
 
-   
-
-
 
 #created by Arun.R.Menon
 #on 13-10-14
@@ -1104,16 +1101,14 @@ def GetCourseElementsView(request):
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
-    
+    stream = StringIO(request.body)
+    data = JSONParser().parse(stream)
     if request.method == 'POST':      
-        result =dbconn.system_js.fnGetCourseElements();
+        result =dbconn.system_js.fnGetCourseElements(data['courseElementName']);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
         return Response("failure")  
-
-
-
 
 
 #created by Arun.R.Menon
@@ -1136,8 +1131,6 @@ def DeleteCourseElementView(request):
 
 
 
-
-
 #created by Arun.R.Menon
 #on 13-10-14
 @csrf_exempt
@@ -1155,7 +1148,7 @@ def SaveExitCriteriaView(request):
         # return Response(json.dumps(result, default=json_util.default))  
         return Response("success")            
     else:        
-        return Response("failure")                  
+        return Response("failure")             
 
 
 #created by Arun.R.Menon
