@@ -440,14 +440,14 @@ def Login(request):
         db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
         #get a connection to our database
         dbconn = db[settings.MONGO_DB]
-        userLoginCollection = dbconn['clnUserLogin']
         if request.method == 'POST':
             stream =StringIO(request.body)
-            data = JSONParser().parse(stream)            
+            data = JSONParser().parse(stream)   
+            LoginData=data["loginData"]         
             try:
-                log = dbconn.system_js.fnLogin(data);
-            except:
-                return Response("error")
+                log = dbconn.system_js.fnLogin(LoginData);
+            except Exception as e:
+                return Response(e)
             return Response(json.dumps(log, default=json_util.default))
         else:    
             return Response("failure")    
@@ -1128,3 +1128,25 @@ def DeleteCourseElementView(request):
     else:        
         return Response("failure")  
 
+
+# created by midhun on 3-1-2015
+@csrf_exempt
+@api_view(['GET','POST'])
+def loginThroughSocialSites(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':      
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        socialdata=data["socialdata"]
+        try :
+           result=dbconn.system_js.fun_login_throgh_social_sites(socialdata);    
+        except:
+           return Response(json.dumps("result", default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+         

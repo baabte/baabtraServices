@@ -79,11 +79,7 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'),  #URL for the forgot password,added by midhun
     url(r'^GetCourseElements/$', 'myapp.views.GetCourseElementsView', name='GetCourseElements'),  #by Arun
-    url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement')  #by Arun
-
-
-
-
-    
+    url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement'),  #by Arun
+    url(r'^loginThroughSocialSites/$', 'myapp.views.loginThroughSocialSites', name='loginThroughSocialSites')  #by midhun
     
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
