@@ -1101,9 +1101,10 @@ def GetCourseElementsView(request):
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
-    
+    stream = StringIO(request.body)
+    data = JSONParser().parse(stream)
     if request.method == 'POST':      
-        result =dbconn.system_js.fnGetCourseElements();
+        result =dbconn.system_js.fnGetCourseElements(data['courseElementName']);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
@@ -1129,10 +1130,12 @@ def DeleteCourseElementView(request):
         return Response("failure")  
 
 
-# created by midhun on 3-1-2015
+
+#created by Arun.R.Menon
+#on 13-10-14
 @csrf_exempt
 @api_view(['GET','POST'])
-def loginThroughSocialSites(request):
+def SaveExitCriteriaView(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -1141,12 +1144,27 @@ def loginThroughSocialSites(request):
     if request.method == 'POST':      
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        socialdata=data["socialdata"]
-        try :
-           result=dbconn.system_js.fun_login_throgh_social_sites(socialdata);    
-        except:
-           return Response(json.dumps("result", default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        result =dbconn.system_js.fnSaveExitCriteria(data);
+        # return Response(json.dumps(result, default=json_util.default))  
+        return Response("success")            
     else:        
-        return Response(json.dumps("failed", default=json_util.default))
-         
+        return Response("failure")             
+
+
+#created by Arun.R.Menon
+@csrf_exempt
+@api_view(['GET','POST'])
+def DeleteExitCriteriaView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result =dbconn.system_js.fnDeleteExitCriteria(data);
+        # return Response(json.dumps(result, default=json_util.default))  
+        return Response("success")            
+    else:        
+        return Response("failure")          

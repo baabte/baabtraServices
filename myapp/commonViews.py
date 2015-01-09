@@ -16,15 +16,11 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from jobRelatedView import FileUploadView
 
-
-
-
-
 #created by jihin
-#For insert domain details
+#For global values
 @csrf_exempt
 @api_view(['GET','POST'])
-def InsertDomainView(request):
+def LoadGlobalValuesView(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -33,25 +29,7 @@ def InsertDomainView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnManageDomainDetails(data['domain'],data['curParent'],data['oldParent'],ObjectId(data['rm_id']));
-        return Response(json.dumps(response, default=json_util.default))
-    else:    
-        return Response("failure")
-
-#created by jihin
-#For insert domain details
-@csrf_exempt
-@api_view(['GET','POST'])
-def LoadDomainView(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
-
-    if request.method == 'POST':
-        #stream = StringIO(request.body)
-        #data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnLoadCourseDomain();
+        response=dbconn.system_js.fnGetGlobals(data['key']);
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
