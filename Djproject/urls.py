@@ -89,5 +89,9 @@ urlpatterns = patterns('',
     url(r'^GetCourseElements/$', 'myapp.views.GetCourseElementsView', name='GetCourseElements'),  #by Arun
     url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement'),  #by Arun
     url(r'^SaveExitCriteria/$', 'myapp.views.SaveExitCriteriaView', name='SaveExitCriteria'),  #by Arun
-    url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria')  #by Arun
+    url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria'),  #by Arun
+    url(r'^RegisterUser/$', 'myapp.views.RegisterUserView', name='RegisterUser'),  #by Arun
+    url(r'^FetchUserDetails/$', 'myapp.views.FetchUserDetailsView', name='FetchUserDetails')  #by Arun
+
+
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
