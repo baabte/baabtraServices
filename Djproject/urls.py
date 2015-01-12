@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.views.generic import View, TemplateView
 from rest_framework.views import APIView
 from myapp.jobRelatedView import FileUploadView
+from myapp.paymentRelatedViews import PaymentView
 from myapp.companyRegisterRelatedView import companyRegisterView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -95,6 +96,7 @@ urlpatterns = patterns('',
     url(r'^saveCourseObject/$', 'myapp.course.saveCourseObjectView', name='saveCourseObject'), #for save course details, added by jihin
     url(r'^saveCourseTimelineEelement/$', 'myapp.course.saveCourseTimelineEelementView', name='saveCourseTimelineEelement'), #for save course details, added by jihin
     url(r'^RegisterReseller/$', 'myapp.resellerRelatedViews.registerResellerView', name='RegisterReseller'), #for save reseller details, added by jihin
-    url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
+    #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
+    url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView') #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
