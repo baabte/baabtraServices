@@ -20,13 +20,14 @@ class PaymentView(APIView):
       def post(self, request, format=None):
           db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
           dbconn = db[settings.MONGO_DB]
-          postdata=request.POST
-          stream = StringIO(postdata["_content"])
-          email = EmailMessage('Payment',postdata["_content"], to=["jihin@baabte.com"])
-          email.content_subtype = 'html'
-          a=email.send()
-          response=dbconn.system_js.fnInsertPaymentHistory(str(postdata["_content"]))
-          return Response(json.dumps(response, default=json_util.default))
+          postdata=request.body
+          stream = StringIO(postdata)
+          #data = JSONParser().parse(stream)
+          #email = EmailMessage('Payment',stream, to=["jihin@baabte.com"])
+          #email.content_subtype = 'html'
+          #a=email.send()
+          #response=dbconn.system_js.fnInsertPaymentHistory(str(postdata))
+          return Response(data)#Response(json.dumps(postdata, default=json_util.default))
 
 
 
