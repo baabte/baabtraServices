@@ -23,20 +23,20 @@ def userRegisterationPaymentView(request):
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
 
-    if request.method == 'POST':
-        try:
-            stream = StringIO(request.body)
-            data = JSONParser().parse(stream)
-            email = EmailMessage('Payment',stream, to=["jihin@baabte.com"])
-            email.content_subtype = 'html'
-            a=email.send()
-            response=dbconn.system_js.fnInsertPaymentHistory(data)
-            email = EmailMessage('Payment',StringIO(response), to=["jihin@baabte.com"])
-            email.content_subtype = 'html'
-            a=email.send()
-               
-        except ValueError:
-            return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(response, default=json_util.default))
-    else:        
-        return Response(json.dumps("failed", default=json_util.default))
+    #if request.method == 'POST':
+    try:
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        email = EmailMessage('Payment',stream, to=["jihin@baabte.com"])
+        email.content_subtype = 'html'
+        a=email.send()
+        response=dbconn.system_js.fnInsertPaymentHistory(data)
+        email = EmailMessage('Payment',StringIO(response), to=["jihin@baabte.com"])
+        email.content_subtype = 'html'
+        a=email.send()
+           
+    except ValueError:
+        return Response(json.dumps(ValueError, default=json_util.default))
+    return Response(json.dumps(response, default=json_util.default))
+    #else:        
+       # return Response(json.dumps("failed", default=json_util.default))
