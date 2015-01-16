@@ -14,10 +14,10 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 
-#creater :midhun sudhakar
+#creater :jihin
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadTechnologies(request):  #this service will return all the technologies available
+def saveCourseObjectView(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -25,9 +25,32 @@ def loadTechnologies(request):  #this service will return all the technologies a
 
     if request.method == 'POST':
         try:
-            technologies=dbconn.system_js.function_loadTechnologies()    
-        except:
-            return Response(json.dumps("error", default=json_util.default))
-        return Response(json.dumps(technologies, default=json_util.default))
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            coureDetails=dbconn.system_js.fnAddCourseDetails(data['courseObj'],"")    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(coureDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def saveCourseTimelineEelementView(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            coureDetails=dbconn.system_js.fnAddCourseTimelineElement(ObjectId(data['courseId']),data['courseElement'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(coureDetails, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))

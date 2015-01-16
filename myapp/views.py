@@ -485,9 +485,9 @@ def ManageRolesOfCompanyView(request):  #this service will retrieve all roles of
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        cmpid=data["companyId"]
+        userdata=data["userdata"]
         try:
-            rolls=dbconn.system_js.function_retriveCompany_Roles(cmpid)    
+            rolls=dbconn.system_js.function_retriveCompany_Roles(userdata)    
         except:
             return Response(json.dumps("error", default=json_util.default))
         # return Response(json.dumps(rolls, default=json_util.default))
@@ -1167,4 +1167,43 @@ def DeleteExitCriteriaView(request):
         # return Response(json.dumps(result, default=json_util.default))  
         return Response("success")            
     else:        
-        return Response("failure")          
+        return Response("failure")       
+
+#created by Arun.R.Menon
+@csrf_exempt
+@api_view(['GET','POST'])
+def RegisterUserView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnRegisterUser(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")                 
+
+
+#created by Arun.R.Menon
+@csrf_exempt
+@api_view(['GET','POST'])
+def FetchUserDetailsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnFetchUserDetails(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")     
+
+

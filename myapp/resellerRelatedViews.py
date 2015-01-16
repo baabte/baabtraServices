@@ -2,7 +2,6 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from pymongo import Connection
-#from models import UserMenuMapping
 from serializers import MongoAwareEncoder
 from datetime import datetime
 import json
@@ -14,23 +13,25 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
-from jobRelatedView import FileUploadView
 
-#created by jihin
-#For global values
+#creater :jihin
 @csrf_exempt
 @api_view(['GET','POST'])
-def LoadGlobalValuesView(request):
+def registerResellerView(request):  #this service will add reseller
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
 
     if request.method == 'POST':
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnGetGlobals(data['key']);
-        return Response(json.dumps(response, default=json_util.default))
-    else:    
-        return Response("failure")
-
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            data['rm_id']  = ObjectId(data['rm_id'])
+            data['cmp_id'] = ObjectId(data['cmp_id'])
+            #response=dbconn.system_js.fnRegisterReseller(data['resellerDetails'],  data['rm_id'], data['cmp_id'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps("response", default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
