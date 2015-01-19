@@ -27,7 +27,7 @@ class PaymentView(APIView):
           #email.content_subtype = 'html'
           #a=email.send()
           #response=dbconn.system_js.fnInsertPaymentHistory(str(postdata))
-          return Response(data)#Response(json.dumps(postdata, default=json_util.default))
+          return Response(stream)#Response(json.dumps(postdata, default=json_util.default))
 
 
 
