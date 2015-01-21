@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.views.generic import View, TemplateView
 from rest_framework.views import APIView
 from myapp.jobRelatedView import FileUploadView
+from myapp.fileUploadView import CourseFileUploadView 
 from myapp.paymentRelatedViews import PaymentView
 from myapp.companyRegisterRelatedView import companyRegisterView
 from django.conf import settings
@@ -91,11 +92,12 @@ urlpatterns = patterns('',
     url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement'),  #by Arun
     url(r'^SaveExitCriteria/$', 'myapp.views.SaveExitCriteriaView', name='SaveExitCriteria'),  #by Arun
     url(r'^RegisterUser/$', 'myapp.views.RegisterUserView', name='RegisterUser'),  #by Arun
-     url(r'^FetchUserDetails/$', 'myapp.views.FetchUserDetailsView', name='FetchUserDetails'),  #by Arun
+    url(r'^FetchUserDetails/$', 'myapp.views.FetchUserDetailsView', name='FetchUserDetails'),  #by Arun
     url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria'), #by Arun
     url(r'^saveCourseObject/$', 'myapp.course.saveCourseObjectView', name='saveCourseObject'), #for save course details, added by jihin
     url(r'^saveCourseTimelineEelement/$', 'myapp.course.saveCourseTimelineEelementView', name='saveCourseTimelineEelement'), #for save course details, added by jihin
     url(r'^RegisterReseller/$', 'myapp.resellerRelatedViews.registerResellerView', name='RegisterReseller'), #for save reseller details, added by jihin
+    url(r'^CourseFileUpload/$', CourseFileUploadView.as_view(), name='myapp.CourseFileUploadView.CourseFileUploadView'),# added by jihin, for upload course related files
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView') #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
