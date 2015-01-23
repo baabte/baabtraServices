@@ -68,6 +68,7 @@ CORS_ALLOW_HEADERS = (
 'Access-Control-Allow-Methods'
 )
 
+
 ROOT_URLCONF = 'Djproject.urls'
 
 WSGI_APPLICATION = 'Djproject.wsgi.application'
@@ -125,6 +126,16 @@ REST_FRAMEWORK = {
     
 }
 
+# USE_X_FORWARDED_HOST This should only be enabled if a proxy which sets this header is in useself.
+USE_X_FORWARDED_HOST = True
+# HTTP_X_FORWARDED_FOR = True
+
+# FORWARDED_FOR_FIELDS = (
+# 'HTTP_X_FORWARDED_FOR',
+# 'HTTP_X_FORWARDED_HOST',
+# 'HTTP_X_FORWARDED_SERVER',        
+# )
+
 #LOGGING_CONFIG = None #added by Lijin for server seting up purpose
 #LOGGING = {'django.security.DisallowedHost': {
 #        'handlers': ['mail_admins'],
@@ -134,3 +145,4 @@ REST_FRAMEWORK = {
 
 #import logging.config
 #logging.config.dictConfig(LOGGING)
+ 
