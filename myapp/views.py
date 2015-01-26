@@ -431,26 +431,36 @@ def CountryStateDistrictView(request):
     else:    
         return Response("failure")
 
-#created by Suhail Pallimalil
-#on 13-10-14
-@csrf_exempt  
-@api_view(['GET','POST'])
-def Login(request):
-    #connect to our local mongodb
-        db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-        #get a connection to our database
-        dbconn = db[settings.MONGO_DB]
-        if request.method == 'POST':
-            stream =StringIO(request.body)
-            data = JSONParser().parse(stream)   
-            LoginData=data["loginData"]         
-            try:
-                log = dbconn.system_js.fnLogin(LoginData);
-            except Exception as e:
-                return Response(e)
-            return Response(json.dumps(log, default=json_util.default))
-        else:    
-            return Response("failure")    
+# #created by midhun sudhakar
+# #on 13-10-14
+# @csrf_exempt  
+# @api_view(['GET','POST'])
+# def Login(request):
+#     #connect to our local mongodb
+#         db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#         #get a connection to our database
+#         dbconn = db[settings.MONGO_DB]
+#         if request.method == 'POST':
+#             stream =StringIO(request.body)
+#             data = JSONParser().parse(stream) 
+#             LoginData=data["loginData"]
+#             try:
+                
+#                 x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+#                 if x_forwarded_for:
+#                     real_ip = x_forwarded_for.split(',')[0]
+#                 else:
+#                     real_ip = request.META.get('REMOTE_ADDR')
+#                 LoginData['ip']=real_ip
+#                 log = dbconn.system_js.fnLogin(LoginData);
+#             except Exception as e:
+#                 return Response(str(e))
+#             return Response(json.dumps(log, default=json_util.default))
+#         else:    
+#             return Response("failure")
+           
+
+
 #created by MIDHUN SUDHAKAR
 #on 10-10-14
 @csrf_exempt  
@@ -485,9 +495,9 @@ def ManageRolesOfCompanyView(request):  #this service will retrieve all roles of
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        cmpid=data["companyId"]
+        userdata=data["userdata"]
         try:
-            rolls=dbconn.system_js.function_retriveCompany_Roles(cmpid)    
+            rolls=dbconn.system_js.function_retriveCompany_Roles(userdata)    
         except:
             return Response(json.dumps("error", default=json_util.default))
         # return Response(json.dumps(rolls, default=json_util.default))
@@ -933,47 +943,47 @@ def GetFeaturesConfigView(request):
     else:        
         return Response("failure")          
 
-#created by midhun sudhakar
-#on 13-10-14
-@csrf_exempt
-@api_view(['GET','POST'])
-def loadlogUserdata(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
+# #created by midhun sudhakar
+# #on 13-10-14
+# @csrf_exempt
+# @api_view(['GET','POST'])
+# def loadlogUserdata(request):
+#     #connect to our local mongodb
+#     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#     #get a connection to our database
+#     dbconn = db[settings.MONGO_DB]
     
-    if request.method == 'POST':      
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        UserDataObjId=data["UserDataObjId"]
-        try:
-           result=dbconn.system_js.fun_load_log_user_data(UserDataObjId)    
-        except:
-           return Response(json.dumps("error", default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
-    else:        
-        return Response(json.dumps("failed", default=json_util.default))
+#     if request.method == 'POST':      
+#         stream = StringIO(request.body)
+#         data = JSONParser().parse(stream)
+#         UserDataObjId=data["UserDataObjId"]
+#         try:
+#            result=dbconn.system_js.fun_load_log_user_data(UserDataObjId)    
+#         except:
+#            return Response(json.dumps("error", default=json_util.default))
+#         return Response(json.dumps(result, default=json_util.default))
+#     else:        
+#         return Response(json.dumps("failed", default=json_util.default))
 
-@csrf_exempt
-@api_view(['GET','POST'])
-def logout(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
+# @csrf_exempt
+# @api_view(['GET','POST'])
+# def logout(request):
+#     #connect to our local mongodb
+#     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#     #get a connection to our database
+#     dbconn = db[settings.MONGO_DB]
     
-    if request.method == 'POST':      
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        UserLogoutObjId=data["UserLogoutObjId"]
-        try:
-           result=dbconn.system_js.fun_logout(UserLogoutObjId)    
-        except:
-           return Response(json.dumps("error", default=json_util.default))
-        return Response(json.dumps("success", default=json_util.default))
-    else:        
-        return Response(json.dumps("failed", default=json_util.default))
+#     if request.method == 'POST':      
+#         stream = StringIO(request.body)
+#         data = JSONParser().parse(stream)
+#         UserLogoutObjId=data["UserLogoutObjId"]
+#         try:
+#            result=dbconn.system_js.fun_logout(UserLogoutObjId)    
+#         except:
+#            return Response(json.dumps("error", default=json_util.default))
+#         return Response(json.dumps("success", default=json_util.default))
+#     else:        
+#         return Response(json.dumps("failed", default=json_util.default))
          
 
 

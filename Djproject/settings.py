@@ -68,13 +68,15 @@ CORS_ALLOW_HEADERS = (
 'Access-Control-Allow-Methods'
 )
 
+
 ROOT_URLCONF = 'Djproject.urls'
 
 WSGI_APPLICATION = 'Djproject.wsgi.application'
 
 
 #MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
-MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
+# MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
+MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
 MONGO_PORT = 27017 #Mongodb port
 
 MONGO_DB = 'baabtra_db'  #Database name
@@ -124,6 +126,16 @@ REST_FRAMEWORK = {
     
 }
 
+# USE_X_FORWARDED_HOST This should only be enabled if a proxy which sets this header is in useself.
+USE_X_FORWARDED_HOST = True
+# HTTP_X_FORWARDED_FOR = True
+
+# FORWARDED_FOR_FIELDS = (
+# 'HTTP_X_FORWARDED_FOR',
+# 'HTTP_X_FORWARDED_HOST',
+# 'HTTP_X_FORWARDED_SERVER',        
+# )
+
 #LOGGING_CONFIG = None #added by Lijin for server seting up purpose
 #LOGGING = {'django.security.DisallowedHost': {
 #        'handlers': ['mail_admins'],
@@ -133,3 +145,4 @@ REST_FRAMEWORK = {
 
 #import logging.config
 #logging.config.dictConfig(LOGGING)
+ 
