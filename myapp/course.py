@@ -33,6 +33,7 @@ def saveCourseObjectView(request):  #this service will save add and update coure
             else:
                 data['courseObj']['crmId'] = ObjectId(data['courseObj']['crmId'])
                 pass
+            data['courseObj']['urmId'] = ObjectId(data['courseObj']['urmId'])
             coureDetails=dbconn.system_js.fnAddCourseDetails(data['courseObj'],data['courseId'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
