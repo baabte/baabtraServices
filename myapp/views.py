@@ -544,9 +544,8 @@ def DeleteCompanyRole(request):  #this service will change active flag of role o
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        RoleId=data["_id"]
         try:
-            dbconn.system_js.fun_delete_company_role(RoleId)    
+            dbconn.system_js.fun_delete_company_role(data)    
         except:
             return Response(json.dumps("error", default=json_util.default))
         return Response(json.dumps("success", default=json_util.default))
