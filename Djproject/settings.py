@@ -73,7 +73,8 @@ ROOT_URLCONF = 'Djproject.urls'
 WSGI_APPLICATION = 'Djproject.wsgi.application'
 
 
-#MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
+# MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
+# MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address outside
 MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
 MONGO_PORT = 27017 #Mongodb port
 
