@@ -36,8 +36,8 @@ def Login(request):
                 else:
                     real_ip = request.META.get('REMOTE_ADDR')
                 LoginData['ip']=real_ip
-                # log = dbconn.system_js.fnLogin_dummy(LoginData)
-                log = dbconn.system_js.fnLogin(LoginData);
+                log = dbconn.system_js.fnLogin(LoginData)
+                # log = dbconn.system_js.fnLogin(LoginData);
             except Exception as e:
                 return Response(str(e))
             return Response(json.dumps(log, default=json_util.default))
@@ -60,7 +60,7 @@ def logout(request):
            result=dbconn.system_js.fun_logout(UserLogoutObjId)    
         except:
            return Response(json.dumps("error", default=json_util.default))
-        return Response(json.dumps("success", default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
          
