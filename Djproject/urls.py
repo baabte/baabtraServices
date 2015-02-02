@@ -78,7 +78,6 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'myapp.loginLogoutRealted.logout', name='logout'),  #URL for the login,added by midhun
     url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain'),  #URL for the insert domain,added by jihin
     url(r'^LoadDomain/$', 'myapp.domainRelatedViews.LoadDomainView', name='LoadDomain'),  #URL for the insert domain,added by jihin
-    url(r'^logout/$', 'myapp.views.logout', name='logout'),  #URL for the login,added by midhun
     url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
