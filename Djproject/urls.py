@@ -93,11 +93,14 @@ urlpatterns = patterns('',
     url(r'^FetchUserDetails/$', 'myapp.views.FetchUserDetailsView', name='FetchUserDetails'),  #by Arun
     url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria'), #by Arun
     url(r'^saveCourseObject/$', 'myapp.course.saveCourseObjectView', name='saveCourseObject'), #for save course details, added by jihin
-    url(r'^loadDraftedCourses/$', 'myapp.course.loadDraftedCoursesView', name='loadDraftedCourses'), #for load drafted course, added by jihin
+    url(r'^loadDraftedCourses/$', 'myapp.course.loadDraftedCoursesView', name='loadDraftedCourses'), #for load drafted course, added by jihin 
+    url(r'^deleteDraftedCourse/$', 'myapp.course.deleteDraftedCourseView', name='deleteDraftedCourse'), #for delete Drafted Course, added by jihin 
     url(r'^loadCourseDetails/$', 'myapp.course.loadCourseDetailsView', name='loadCourseDetails'), #for load course details, added by jihin
     url(r'^saveCourseTimelineEelement/$', 'myapp.course.saveCourseTimelineEelementView', name='saveCourseTimelineEelement'), #for save course details, added by jihin
     url(r'^RegisterReseller/$', 'myapp.resellerRelatedViews.registerResellerView', name='RegisterReseller'), #for save reseller details, added by jihin
     url(r'^CourseFileUpload/$', CourseFileUploadView.as_view(), name='myapp.CourseFileUploadView.CourseFileUploadView'),# added by jihin, for upload course related files
+    url(r'^SaveCustomForm/$', 'myapp.customFormRelatedViews.SaveCustomFormView', name='SaveCustomForm'), #by Arun for custom Form
+    url(r'^FetchCustomForm/$', 'myapp.customFormRelatedViews.FetchCustomFormView', name='FetchCustomForm'), #by Arun for custom Form
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView') #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
