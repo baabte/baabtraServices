@@ -64,6 +64,46 @@ def saveCourseTimelineEelementView(request):  #this service will add & update co
 #creater :jihin
 @csrf_exempt
 @api_view(['GET','POST'])
+def removeCourseElementView(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            response = dbconn.system_js.fnRemoveCourseElement(ObjectId(data['courseId']), data['courseElemName'], data['tlPoint'], data['index'], ObjectId(data['rmId']))    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(response, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def editCourseElementView(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            response = dbconn.system_js.fnEditCourseElement(ObjectId(data['courseId']), data['courseElemName'], data['tlPoint'],data['courseObj'], ObjectId(data['rmId']))    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(response, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
 def loadDraftedCoursesView(request):  #this service will load Drafted courses
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
