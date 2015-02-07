@@ -158,3 +158,47 @@ def loadCourseDetailsView(request):  #this service will load Drafted courses
         return Response(json.dumps(courseDetils, default=json_util.default))
     else:        
         return Response("failed")
+
+
+#creater :Midhun
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadPublishedCourses(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            companyId=data["companyId"]
+            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(PublishedCourses, default=json_util.default))
+    else:        
+        return Response("failed")
+
+
+#creater :Midhun
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadCourseData(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            companyId=data["companyId"]
+            Courses = dbconn.system_js.fnLoadCourseData(companyId)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(Courses, default=json_util.default))
+    else:        
+        return Response("failed")

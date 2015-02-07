@@ -105,5 +105,9 @@ urlpatterns = patterns('',
     url(r'^FetchCustomForm/$', 'myapp.customFormRelatedViews.FetchCustomFormView', name='FetchCustomForm'), #by Arun for custom Form
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
-    url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView') #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
+    url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
+    url(r'^loadPublishedCourses/$', 'myapp.course.loadPublishedCourses', name='loadPublishedCourses'), #for load completed course by Midhun
+     url(r'^loadCourseData/$', 'myapp.course.loadCourseData', name='loadCourseData') #for load completed course by Midhun
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
+
+
