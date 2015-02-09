@@ -112,9 +112,11 @@ def loadDraftedCoursesView(request):  #this service will load Drafted courses
 
     if request.method == 'POST':
         try:
-            draftedCourses=dbconn.system_js.fnGetDraftedCourses()
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            draftedCourses=dbconn.system_js.fnGetDraftedCourses(ObjectId(data['cmp_id']))
         except ValueError:
-            return Response(json.dumps(ValueError, default=json_util.default))
+            return Response(json.dumps(data, default=json_util.default))
         return Response(json.dumps(draftedCourses, default=json_util.default))
     else:        
         return Response("failed")
@@ -132,7 +134,7 @@ def deleteDraftedCourseView(request):  #this service will delete drafted course
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            draftedCourses=dbconn.system_js.fnDeleteDraftedCourse(data['manageType'],ObjectId(data['courseId']),ObjectId(data['urmId']), data['courseType'],data['companyId'])
+            draftedCourses = dbconn.system_js.fnDeleteDraftedCourse(data['manageType'],ObjectId(data['courseId']),ObjectId(data['urmId']), data['courseType'], ObjectId(data['companyId']))
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(draftedCourses, default=json_util.default))
