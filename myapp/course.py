@@ -132,9 +132,10 @@ def deleteDraftedCourseView(request):  #this service will delete drafted course
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            draftedCourses=dbconn.system_js.fnDeleteDraftedCourse(data['manageType'],ObjectId(data['courseId']),ObjectId(data['urmId']), data['courseType'])
+            draftedCourses=dbconn.system_js.fnDeleteDraftedCourse(data['manageType'],ObjectId(data['courseId']),ObjectId(data['urmId']), data['courseType'],data['companyId'])
         except ValueError:
-            return Response(json.dumps(ValueError, default=json_util.default))
+            # return Response(json.dumps(ValueError, default=json_util.default))
+             return Response(ValueError)
         return Response(json.dumps(draftedCourses, default=json_util.default))
     else:        
         return Response("failed")
