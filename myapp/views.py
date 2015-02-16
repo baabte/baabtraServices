@@ -838,8 +838,8 @@ def ChangeUserPlanView(request):
     if request.method == 'POST':      
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        dbconn.system_js.fnChangeUserPlan(data);
-        return Response("success")            
+        result = dbconn.system_js.fnChangeUserPlan(data)
+        return Response(json.dumps(result, default=json_util.default))               
     else:        
         return Response("failure")   
 
@@ -876,8 +876,8 @@ def AddFeatureView(request):
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         result =dbconn.system_js.fnAddFeature(data);
-        # return Response(json.dumps(result, default=json_util.default))  
-        return Response("success")            
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
     else:        
         return Response("failure")   
 
@@ -896,8 +896,8 @@ def DeleteFeatureView(request):
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         result =dbconn.system_js.fnDeleteFeature(data);
-        # return Response(json.dumps(result, default=json_util.default))  
-        return Response("success")            
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
     else:        
         return Response("failure")            
 
