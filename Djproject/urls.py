@@ -106,8 +106,10 @@ urlpatterns = patterns('',
     url(r'^CourseFileUpload/$', CourseFileUploadView.as_view(), name='myapp.CourseFileUploadView.CourseFileUploadView'),# added by jihin, for upload course related files
     url(r'^SaveCustomForm/$', 'myapp.customFormRelatedViews.SaveCustomFormView', name='SaveCustomForm'), #by Arun for custom Form
     url(r'^FetchCustomForm/$', 'myapp.customFormRelatedViews.FetchCustomFormView', name='FetchCustomForm'), #by Arun for custom Form
-    url(r'^FetchCourseList/$', 'myapp.course.fetchCourseListView', name='FetchCourseList'), #by Arun for custom Form
     url(r'^saveAnswer/$', 'myapp.course.saveAnswer', name='saveAnswer'), #for remove course element, added by jihin
+    url(r'^FetchCourseList/$', 'myapp.course.FetchCourseListView', name='FetchCourseList'), #by Arun for custom Form
+    url(r'^FetchRolesList/$', 'myapp.customFormRelatedViews.FetchRolesListView', name='FetchRolesList'), #by Arun for custom Form
+
 
     
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')

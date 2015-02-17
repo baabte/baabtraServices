@@ -38,15 +38,18 @@ class companyRegisterView(APIView):
           result = dbconn.system_js.fnComRegInsert(postdata);
 
           file_obj = request.FILES['file']#['candidate']
-          #filename=file_obj.name.replace(' ', '')
+          # filename=file_obj.name.replace(' ', '')
+          slpos =file_obj.content_type.find('/')+1
+          imgType=file_obj.content_type[slpos:]
           filename=result.get('cLogo')
-          path = default_storage.save(settings.FILEUPLOAD_PATH+'/companyLogo/'+filename, file_obj)
-          filenameArray=path.split('/')
-          actualfilename=filenameArray[len(filenameArray)-1]
+          path = default_storage.save(settings.FILEUPLOAD_PATH+'/companyLogo/'+filename+'.'+imgType, file_obj)
+
           email=result.get('cmail')
           email = EmailMessage('Company Registered','Welcome to baabtra.com', to=[email])
           email.send()
-          return Response(json.dumps(request.POST, default=json_util.default))
+          # return Response(path)
+          return Response(json.dumps(result, default=json_util.default))
+
           #file_move_safe(file_obj, "/tmp/new_file")
           # ...
           # do some staff with uploaded file

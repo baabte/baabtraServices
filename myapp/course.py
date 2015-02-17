@@ -230,7 +230,7 @@ def GetCourseElementFieldsView(request):
 #creater :Arun
 @csrf_exempt
 @api_view(['GET','POST'])
-def fetchCourseListView(request):  #this service will load courses list 
+def FetchCourseListView(request):  #this service will load courses list 
    #connect to our local mongodb
    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
    #get a connection to our database
