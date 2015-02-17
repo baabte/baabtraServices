@@ -475,7 +475,7 @@ def ManageRolesOfCompany(request): #this webservice add roles of particular comp
         data = JSONParser().parse(stream)
         roles=data['roles']
         try:
-            dbconn.system_js.fun_add_new_roles(roles);
+             dbconn.system_js.fun_add_new_roles(roles);
         except:
             return Response(json.dumps("error", default=json_util.default))
         return Response(json.dumps("success", default=json_util.default))
