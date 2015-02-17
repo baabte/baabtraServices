@@ -282,9 +282,10 @@ def loadCourseData(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            companyId=data["courseid"]
+            courseid=data["courseid"]
             userLoginId=data["userLoginId"]
-            Courses = dbconn.system_js.fnLoadCourseData(companyId,userLoginId)
+            roleid=data["roleid"]
+            Courses = dbconn.system_js.fnLoadCourseData(courseid,userLoginId,roleid)
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(Courses, default=json_util.default))
