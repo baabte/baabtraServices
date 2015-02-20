@@ -161,10 +161,76 @@ def loadCourseDetailsView(request):  #this service will load Drafted courses
     else:        
         return Response("failed")
 
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def SaveCourseElementFieldsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database 
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            try:
+                data['element']['_id'] = ObjectId(data['element']['_id'])
+                pass
+            except KeyError:
+                a = 1
+            data['element']['crmId'] = ObjectId(data['element']['crmId'])
+            data['element']['urmId'] = ObjectId(data['element']['urmId'])
+            response = dbconn.system_js.fnSaveCourseElementFields(data['element'])
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(response, default=json_util.default))
+    else:        
+        return Response("failed")
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def DeleteCourseElementFieldsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database 
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+
+            response = dbconn.system_js.fnDeleteCourseElementFields(ObjectId(data['elementId']), data['manageType'], ObjectId(data['urmId']))
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(response, default=json_util.default))
+    else:        
+        return Response("failed")
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def GetCourseElementFieldsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database 
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            CourseElementFields = dbconn.system_js.fnGetCourseElementFields()
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(CourseElementFields, default=json_util.default))
+    else:        
+        return Response("failed")
+
 #creater :Arun
 @csrf_exempt
 @api_view(['GET','POST'])
-def fetchCourseListView(request):  #this service will load courses list 
+def FetchCourseListView(request):  #this service will load courses list 
    #connect to our local mongodb
    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
    #get a connection to our database
@@ -216,8 +282,10 @@ def loadCourseData(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            companyId=data["companyId"]
-            Courses = dbconn.system_js.fnLoadCourseData(companyId)
+            courseid=data["courseid"]
+            userLoginId=data["userLoginId"]
+            roleid=data["roleid"]
+            Courses = dbconn.system_js.fnLoadCourseData(courseid,userLoginId,roleid)
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(Courses, default=json_util.default))
@@ -267,6 +335,27 @@ def FetchCourseData(request):  #this service will load Drafted courses
         return Response(json.dumps(Course, default=json_util.default))
     else:        
         return Response("failed")
+
+
+#created by :Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def saveAnswer(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            response = dbconn.system_js.fnSaveUserAnswer(ObjectId(data['courseId']),ObjectId(data['userLoginId']),data['keyName'],data['tlPointInmins'],data['outerIndex'],data['innerIndex'],data['answerObj'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(response, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
 
 
 
