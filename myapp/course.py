@@ -261,7 +261,7 @@ def loadPublishedCourses(request):  #this service will load Drafted courses
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             companyId=data["companyId"]
-            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId)
+            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId,data["searchKey"])
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(PublishedCourses, default=json_util.default))
