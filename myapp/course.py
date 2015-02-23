@@ -85,7 +85,7 @@ def removeCourseElementView(request):  #this service will add & update course el
 @csrf_exempt
 @api_view(['GET','POST'])
 def editCourseElementView(request):  #this service will add & update course elements
-    #connect to our local mongodb
+    #connect to our local MONGO_DB
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
