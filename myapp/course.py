@@ -85,7 +85,7 @@ def removeCourseElementView(request):  #this service will add & update course el
 @csrf_exempt
 @api_view(['GET','POST'])
 def editCourseElementView(request):  #this service will add & update course elements
-    #connect to our local mongodb
+    #connect to our local MONGO_DB
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
@@ -261,7 +261,7 @@ def loadPublishedCourses(request):  #this service will load Drafted courses
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             companyId=data["companyId"]
-            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId)
+            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId,data["searchKey"])
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(PublishedCourses, default=json_util.default))
