@@ -323,7 +323,7 @@ def LoadUsers(request): #Loading All the users based on compny id supplied
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         try:
-            docs_list  = dbconn.system_js.fnSearchUsers(data['companyId'],data['prefix'],data["range"]);
+            docs_list  = dbconn.system_js.fnSearchUsers(ObjectId(data['companyId']),data['prefix'],data["range"]);
         except:
             return Response(json.dumps("", default=json_util.default))
         return Response(json.dumps(docs_list, default=json_util.default)) #return the response here
