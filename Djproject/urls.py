@@ -82,6 +82,7 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
     url(r'^LoadGlobalValues/$', 'myapp.commonViews.LoadGlobalValuesView', name='LoadGlobalValues'),#added by jihin for get global values
+    url(r'^UploadProfilePic/$', 'myapp.commonViews.UploadProfilePicView', name='UploadProfilePic'),#added by jihin for upload profile picture
     url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain'),  #URL for the insert domain,added by jihin
     url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
@@ -106,7 +107,10 @@ urlpatterns = patterns('',
     url(r'^CourseFileUpload/$', CourseFileUploadView.as_view(), name='myapp.CourseFileUploadView.CourseFileUploadView'),# added by jihin, for upload course related files
     url(r'^SaveCustomForm/$', 'myapp.customFormRelatedViews.SaveCustomFormView', name='SaveCustomForm'), #by Arun for custom Form
     url(r'^FetchCustomForm/$', 'myapp.customFormRelatedViews.FetchCustomFormView', name='FetchCustomForm'), #by Arun for custom Form
-    url(r'^FetchCourseList/$', 'myapp.course.fetchCourseListView', name='FetchCourseList'), #by Arun for custom Form
+    url(r'^saveAnswer/$', 'myapp.course.saveAnswer', name='saveAnswer'), #for remove course element, added by jihin
+    url(r'^FetchCourseList/$', 'myapp.course.FetchCourseListView', name='FetchCourseList'), #by Arun for custom Form
+    url(r'^FetchRolesList/$', 'myapp.customFormRelatedViews.FetchRolesListView', name='FetchRolesList'), #by Arun for custom Form
+
 
     
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')

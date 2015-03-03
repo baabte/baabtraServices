@@ -53,7 +53,7 @@ def newFeatureCreation(request):  #this service will retrieve all roles of parti
         try:
             dbconn.system_js.function_create_newFeature(newFeature)    
         except:
-            return Response(json.dumps("error", default=json_util.default))
+            return Response(json.dumps("newFeature", default=json_util.default))
         return Response(json.dumps("success", default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
