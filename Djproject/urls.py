@@ -110,6 +110,8 @@ urlpatterns = patterns('',
     url(r'^saveAnswer/$', 'myapp.course.saveAnswer', name='saveAnswer'), #for remove course element, added by jihin
     url(r'^FetchCourseList/$', 'myapp.course.FetchCourseListView', name='FetchCourseList'), #by Arun for custom Form
     url(r'^FetchRolesList/$', 'myapp.customFormRelatedViews.FetchRolesListView', name='FetchRolesList'), #by Arun for custom Form
+    url(r'^FetchSpecificCustomForm/$', 'myapp.customFormRelatedViews.FetchSpecificCustomFormView', name='FetchSpecificCustomForm'), #by Arun for custom Form
+
 
 
     
@@ -120,7 +122,8 @@ urlpatterns = patterns('',
     url(r'^loadCourseData/$', 'myapp.course.loadCourseData', name='loadCourseData'), #for load completed course by Midhun
     url(r'^loadCoursesForCandidates/$', 'myapp.course.loadCoursesForCandidates', name='loadCoursesForCandidates'), #for load completed course by Midhun
     url(r'^FetchCourseData/$', 'myapp.course.FetchCourseData', name='FetchCourseData'), #for load completed course by Midhun
-    url(r'^loadProfileData/$', 'myapp.profile.loadProfileData', name='loadProfileData') #for load completed course by Midhun
+    url(r'^loadProfileData/$', 'myapp.profile.loadProfileData', name='loadProfileData'), #for load completed course by Midhun
+    url(r'^updateUserProfileData/$', 'myapp.profile.updateUserProfileData', name='updateUserProfileData') #for update user profile data
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
