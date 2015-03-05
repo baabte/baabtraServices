@@ -37,7 +37,6 @@ def Login(request):
                     real_ip = request.META.get('REMOTE_ADDR')
                 LoginData['ip']=real_ip
                 log = dbconn.system_js.fnLogin(LoginData)
-                # log = dbconn.system_js.fnLogin(LoginData);
             except Exception as e:
                 return Response(str(e))
             return Response(json.dumps(log, default=json_util.default))
