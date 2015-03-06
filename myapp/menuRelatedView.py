@@ -69,8 +69,9 @@ def UpdateMenuView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        data['menu']['menu_id']=ObjectId(data['menu']['menu_id']);
-        response=dbconn.system_js.fnUpdateMenu(data['menu'],ObjectId(data['rm_id']));
+        data['menu']['_id'] = ObjectId(data['menu']['_id']);
+        data['menu']['urmId'] = ObjectId(data['menu']['urmId'])
+        response=dbconn.system_js.fnUpdateMenu(data['menu']);
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
