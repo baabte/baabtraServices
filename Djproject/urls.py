@@ -119,6 +119,7 @@ urlpatterns = patterns('',
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
     url(r'^loadPublishedCourses/$', 'myapp.course.loadPublishedCourses', name='loadPublishedCourses'), #for load completed course by Midhun
+    url(r'^courseByKeywords/$', 'myapp.course.courseByKeywordsView', name='courseByKeywords'), #for load course suggestions by Jihin
     url(r'^loadCourseData/$', 'myapp.course.loadCourseData', name='loadCourseData'), #for load completed course by Midhun
     url(r'^loadCoursesForCandidates/$', 'myapp.course.loadCoursesForCandidates', name='loadCoursesForCandidates'), #for load completed course by Midhun
     url(r'^FetchCourseData/$', 'myapp.course.FetchCourseData', name='FetchCourseData'), #for load completed course by Midhun
