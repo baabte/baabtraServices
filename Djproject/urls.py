@@ -6,6 +6,7 @@ from myapp.jobRelatedView import FileUploadView
 from myapp.fileUploadView import CourseFileUploadView 
 from myapp.paymentRelatedViews import PaymentView
 from myapp.companyRegisterRelatedView import companyRegisterView
+from myapp.fileRemoveView import FileRemove
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -21,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^GetAllRoles/$', 'myapp.views.GetAllRolesView', name='GetAllRoles'),
     url(r'^FnLoadTopLevelRoles/$', 'myapp.views.FnLoadTopLevelRolesView', name='FnLoadTopLevelRoles'),
     url(r'^CompanyRegistration/$',companyRegisterView.as_view(), name='CompanyRegistration'),
+    url(r'^fileRemove/$',FileRemove.as_view(), name='fileRemove'),
     url(r'^LoadUsers/$', 'myapp.views.LoadUsers', name='LoadUsers'),                                                    #url for routing to the LoadUsers() function inside view.py
     url(r'^LoadExMenuItems4AUMMapping/$', 'myapp.views.LoadExMenuItems4AUMMapping', name='LoadExMenuItems4AUMMapping'), #url for routing to the LoadExMenuItems4AUMMapping() function inside view.py
     url(r'^LoadMenuItems4AUMMapping/$', 'myapp.views.LoadMenuItems4AUMMapping', name='LoadMenuItems4AUMMapping'),   #url for routing to the LoadMenuItems4AUMMapping() function inside view.py
@@ -82,6 +84,8 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
     url(r'^LoadGlobalValues/$', 'myapp.commonViews.LoadGlobalValuesView', name='LoadGlobalValues'),#added by jihin for get global values
+    url(r'^RemoveFileFromServer/$', 'myapp.commonViews.RemoveFileFromServerView', name='RemoveFileFromServer'),#added by jihin for Remove File From Server
+    url(r'^SaveAppSettings/$', 'myapp.commonViews.SaveAppSettingsView', name='SaveAppSettings'),#added by jihin for Save App Settings
     url(r'^UploadProfilePic/$', 'myapp.commonViews.UploadProfilePicView', name='UploadProfilePic'),#added by jihin for upload profile picture
     url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain'),  #URL for the insert domain,added by jihin
     url(r'^GetExitCriteria/$', 'myapp.views.GetExitCriteriaView', name='GetExitCriteria'), #by Arun
