@@ -124,7 +124,8 @@ urlpatterns = patterns('',
     url(r'^loadCoursesForCandidates/$', 'myapp.course.loadCoursesForCandidates', name='loadCoursesForCandidates'), #for load completed course by Midhun
     url(r'^FetchCourseData/$', 'myapp.course.FetchCourseData', name='FetchCourseData'), #for load completed course by Midhun
     url(r'^loadProfileData/$', 'myapp.profile.loadProfileData', name='loadProfileData'), #for load completed course by Midhun
-    url(r'^updateUserProfileData/$', 'myapp.profile.updateUserProfileData', name='updateUserProfileData') #for update user profile data
+    url(r'^updateUserProfileData/$', 'myapp.profile.updateUserProfileData', name='updateUserProfileData'), #for update user profile data
+    url(r'^saveNewBatches/$', 'myapp.Batches.saveNewBatches', name='saveNewBatches') #for update user profile data
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
