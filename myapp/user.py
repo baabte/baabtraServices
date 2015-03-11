@@ -40,3 +40,27 @@ def fnLoadCompnayUsers(request):  #this service will load Drafted courses
         return Response(json.dumps(result, default=json_util.default))
     else:        
         return Response("failed")
+
+        
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadFeedbackList(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            companyId=data["companyId"]
+            firstId=data['firstId']
+            lastId=data['lastId']
+            print(lastId)
+            result = dbconn.system_js.fnLoadCompnayUsers(companyId,firstId,data['type'],lastId)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
