@@ -80,3 +80,21 @@ def LoadFeedbackRequestDetailsView(request):
         return Response(json.dumps(feedbackDetailsResponse, default=json_util.default))
     else:    
         return Response("failure")
+
+#created by jihin
+#For Save User Feedback View
+@csrf_exempt
+@api_view(['GET','POST'])
+def SaveUserFeedbackView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        feedbackDetailsResponse = dbconn.system_js.fnSaveUserFeedback(data['feedbackId'],data['feedback'], data['rmId'])
+        return Response(json.dumps(feedbackDetailsResponse, default=json_util.default))
+    else:    
+        return Response("failure")
