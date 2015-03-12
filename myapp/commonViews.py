@@ -15,6 +15,15 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 from jobRelatedView import FileUploadView
+from rest_framework.views import APIView
+from rest_framework.parsers import FormParser
+from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from pymongo import Connection
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 #created by jihin
 #For global values
@@ -53,3 +62,78 @@ def UploadProfilePicView(request):
     else:    
         return Response("failure")
 
+
+#created by jihin
+#For upload profile picture 
+@csrf_exempt
+@api_view(['GET','POST'])
+def SaveAppSettingsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        response=dbconn.system_js.fnSaveAppSettings(ObjectId(data["companyId"]),data["appSettings"],ObjectId(data["rmId"]));
+        return Response(json.dumps(response, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#created by jihin
+#For upload profile picture 
+@csrf_exempt
+@api_view(['GET','POST'])
+def RemoveFileFromServerView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        
+        myfile = data["pathToBeDelete"]
+        response = default_storage.delete(myfile)
+        #response=dbconn.system_js.fnSaveAppSettings(ObjectId(data["companyId"]),data["appSettings"],ObjectId(data["rmId"]));
+        return Response(response)
+    else:    
+        return Response("failure")
+
+#created by jihin
+#For load mentees by company
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadMenteesView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        menteesResponse = dbconn.system_js.fnLoadMenteesByCompanyId(data["companyId"]);
+        return Response(json.dumps(menteesResponse, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#created by jihin
+#For load Load Role Under a Company
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadRoleUnderCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        menteesResponse = dbconn.system_js.fnLoadRolesUnderCompany(data["companyId"]);
+        return Response(json.dumps(menteesResponse, default=json_util.default))
+    else:    
+        return Response("failure")

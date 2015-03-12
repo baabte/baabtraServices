@@ -15,16 +15,21 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 from jobRelatedView import FileUploadView
-
-
-
-
+from rest_framework.views import APIView
+from rest_framework.parsers import FormParser
+from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from pymongo import Connection
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 #created by jihin
-#For load menus for logined user
+#For save Feedback Form
 @csrf_exempt
 @api_view(['GET','POST'])
-def LoadMenuView(request):
+def saveFeedbackFormView(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -33,16 +38,54 @@ def LoadMenuView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnLoadMenus(ObjectId(data['rm_id']));
-        return Response(json.dumps(response, default=json_util.default))
+        feedbackFormResponse = dbconn.system_js.fnSaveFeedbackForm(data['feedbackForm'])
+        return Response(json.dumps(feedbackFormResponse, default=json_util.default))
+    else:    
+        return Response("failure")
+
+
+#created by jihin
+#For view Feedback Requests
+@csrf_exempt
+@api_view(['GET','POST'])
+def viewFeedbackRequestsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        FeedbackRequestsResponse = dbconn.system_js.fnViewFeedbackRequests(data['rmId'], data['companyId'])
+        return Response(json.dumps(FeedbackRequestsResponse, default=json_util.default))
+    else:    
+        return Response("failure")
+
+
+#created by jihin
+#For Load Feedback Request Details
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadFeedbackRequestDetailsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        feedbackDetailsResponse = dbconn.system_js.fnLoadFeedbackRequestDetails(data['companyId'], data['feedbackId'], data['rmId'])
+        return Response(json.dumps(feedbackDetailsResponse, default=json_util.default))
     else:    
         return Response("failure")
 
 #created by jihin
-#For load menus for logined user
+#For Save User Feedback View
 @csrf_exempt
 @api_view(['GET','POST'])
-def AddMenuView(request):
+def SaveUserFeedbackView(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -51,45 +94,7 @@ def AddMenuView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnInsertMenu(data['menu']);
-        return Response(json.dumps(response, default=json_util.default))
-    else:    
-        return Response("failure")
-
-#created by jihin
-#For update menus
-@csrf_exempt
-@api_view(['GET','POST'])
-def UpdateMenuView(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
-
-    if request.method == 'POST':
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        data['menu']['_id'] = ObjectId(data['menu']['_id']);
-        data['menu']['urmId'] = ObjectId(data['menu']['urmId'])
-        response=dbconn.system_js.fnUpdateMenu(data['menu']);
-        return Response(json.dumps(response, default=json_util.default))
-    else:    
-        return Response("failure")
-
-#created by jihin
-#For romove menu
-@csrf_exempt
-@api_view(['GET','POST'])
-def RemoveMenuView(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
-
-    if request.method == 'POST':
-        stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnRemoveMenu(ObjectId(data['rm_id']),ObjectId(data['menuId']),data['active_flag']);
-        return Response(json.dumps(response, default=json_util.default))
+        feedbackDetailsResponse = dbconn.system_js.fnSaveUserFeedback(data['feedbackId'],data['feedback'], data['rmId'])
+        return Response(json.dumps(feedbackDetailsResponse, default=json_util.default))
     else:    
         return Response("failure")

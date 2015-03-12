@@ -261,7 +261,7 @@ def loadPublishedCourses(request):  #this service will load Drafted courses
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             companyId=data["companyId"]
-            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId,data["searchKey"],data["searchRange"],data["type"])
+            PublishedCourses = dbconn.system_js.fun_load_publishedCourses(companyId,data["searchKey"],data["lastId"],data["type"],data["firstId"])
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(PublishedCourses, default=json_util.default))
@@ -289,6 +289,27 @@ def loadCourseData(request):  #this service will load Drafted courses
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(Courses, default=json_util.default))
+    else:        
+        return Response("failed")
+
+#creater : Jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def courseByKeywordsView(request):  #this service will load course suggestions
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+
+            courses = dbconn.system_js.fnCourseByKeyWord(data["companyId"],data["searchKey"])   
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courses, default=json_util.default))
     else:        
         return Response("failed")
 
