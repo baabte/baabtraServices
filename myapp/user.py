@@ -34,7 +34,52 @@ def fnLoadCompnayUsers(request):  #this service will load Drafted courses
             firstId=data['firstId']
             lastId=data['lastId']
             print(lastId)
-            result = dbconn.system_js.fnLoadCompnayUsers(companyId,firstId,data['type'],lastId)
+            result = dbconn.system_js.fnLoadCompanyUsers(companyId,firstId,data['type'],lastId)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
+
+#service function for loading feedback lists        
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadFeedbackList(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            companyId=data["companyId"] 
+            firstId=data['firstId']
+            lastId=data['lastId']
+            result = dbconn.system_js.fnLoadFeedbackList(companyId,firstId,data['type'],lastId)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
+
+
+#service function for loading feedback lists        
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadFeedbackReport(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            feedbackId=data["feedbackId"] 
+            result = dbconn.system_js.fnLoadFeedbackReport(feedbackId)
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(result, default=json_util.default))

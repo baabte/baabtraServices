@@ -84,7 +84,9 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
     url(r'^LoadGlobalValues/$', 'myapp.commonViews.LoadGlobalValuesView', name='LoadGlobalValues'),#added by jihin for get global values
-    url(r'^RemoveFileFromServer/$', 'myapp.commonViews.RemoveFileFromServerView', name='RemoveFileFromServer'),#added by jihin for Remove File From Server
+    url(r'^loadMentees/$', 'myapp.commonViews.loadMenteesView', name='loadMentees'),#added by jihin for load Mentees
+    url(r'^LoadRoleUnderCompany/$', 'myapp.commonViews.LoadRoleUnderCompanyView', name='LoadRoleUnderCompany'),#added by jihin for load Mentees
+    url(r'^RemoveFileFromServer/$', 'myapp.commonViews.RemoveFileFromServerView', name='RemoveFileFromServer'),#added by jihin for Load Role Under Company
     url(r'^SaveAppSettings/$', 'myapp.commonViews.SaveAppSettingsView', name='SaveAppSettings'),#added by jihin for Save App Settings
     url(r'^UploadProfilePic/$', 'myapp.commonViews.UploadProfilePicView', name='UploadProfilePic'),#added by jihin for upload profile picture
     url(r'^InsertDomain/$', 'myapp.domainRelatedViews.InsertDomainView', name='InsertDomain'),  #URL for the insert domain,added by jihin
@@ -136,7 +138,12 @@ urlpatterns = patterns('',
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
-    url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches') #for bulk enrollment
+    url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for bulk enrollment
+    url(r'^saveFeedbackForm/$', 'myapp.feedback.saveFeedbackFormView', name='saveFeedbackForm'), #for save Feedback Form
+    url(r'^viewFeedbackRequests/$', 'myapp.feedback.viewFeedbackRequestsView', name='viewFeedbackRequests'), #for view Feedback Requests
+    url(r'^LoadFeedbackRequestDetails/$', 'myapp.feedback.LoadFeedbackRequestDetailsView', name='LoadFeedbackRequestDetails'), #for view Feedback Requests
+    url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
+    url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
