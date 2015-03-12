@@ -137,7 +137,10 @@ urlpatterns = patterns('',
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
-    url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches') #for bulk enrollment
+    url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
+    url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
+    url(r'^addCoursesToBatch/$', 'myapp.Batches.addCoursesToBatch', name='addCoursesToBatch'), #for adding courses to batch
+    url(r'^loadCourseRelatedBatches/$', 'myapp.Batches.loadCourseRelatedBatches', name='loadCourseRelatedBatches') #for loading existing batches related to courses
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
