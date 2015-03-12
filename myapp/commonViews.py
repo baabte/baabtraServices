@@ -120,3 +120,20 @@ def loadMenteesView(request):
     else:    
         return Response("failure")
 
+#created by jihin
+#For load Load Role Under a Company
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadRoleUnderCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        menteesResponse = dbconn.system_js.fnLoadRolesUnderCompany(data["companyId"]);
+        return Response(json.dumps(menteesResponse, default=json_util.default))
+    else:    
+        return Response("failure")
