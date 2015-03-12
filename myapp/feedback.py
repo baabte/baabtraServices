@@ -76,7 +76,7 @@ def LoadFeedbackRequestDetailsView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        feedbackDetailsResponse = dbconn.system_js.fnLoadFeedbackRequestDetails(data['companyId'],data['feedbackId'])
+        feedbackDetailsResponse = dbconn.system_js.fnLoadFeedbackRequestDetails(data['companyId'], data['feedbackId'], data['rmId'])
         return Response(json.dumps(feedbackDetailsResponse, default=json_util.default))
     else:    
         return Response("failure")
