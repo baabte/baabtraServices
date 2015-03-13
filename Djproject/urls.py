@@ -122,9 +122,6 @@ urlpatterns = patterns('',
     url(r'^SaveTestStartTime/$', 'myapp.testRelatedViews.SaveTestStartTimeView', name='SaveTestStartTime'), #by Arun
     url(r'^TestTimeReCheck/$', 'myapp.testRelatedViews.TestTimeReCheckView', name='TestTimeReCheck'), #by Arun
     url(r'^SubmitTest/$', 'myapp.testRelatedViews.SubmitTestView', name='SubmitTest'), #by Arun
-
-
-    
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -135,6 +132,7 @@ urlpatterns = patterns('',
     url(r'^FetchCourseData/$', 'myapp.course.FetchCourseData', name='FetchCourseData'), #for load completed course by Midhun
     url(r'^loadProfileData/$', 'myapp.profile.loadProfileData', name='loadProfileData'), #for load completed course by Midhun
     url(r'^updateUserProfileData/$', 'myapp.profile.updateUserProfileData', name='updateUserProfileData'), #for update user profile data
+    url(r'^changeUserPassword/$', 'myapp.profile.changeUserPassword', name='changeUserPassword'), #for update user password data
     url(r'^saveNewBatches/$', 'myapp.Batches.saveNewBatches', name='saveNewBatches'), #for update user profile data
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
