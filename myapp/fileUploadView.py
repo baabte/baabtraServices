@@ -22,8 +22,12 @@ class CourseFileUploadView(APIView):
           # dbconn = db[settings.MONGO_DB]
           
           file_obj = request.FILES['file']
+          slpos =file_obj.content_type.find('/')+1
+          imgType=file_obj.content_type[slpos:]
           postdata = request.POST
-          filename = file_obj.name.replace(' ', '')
+          filename = postdata['pathToBeSave'] + '.' + imgType
+          #filename = file_obj.name.replace('(', '')
+          #filename = file_obj.name.replace(')', '')
           path = default_storage.save(settings.FILEUPLOAD_PATH+'/'+ postdata['pathToBeSave'] +'/'+filename, file_obj)
           filenameArray = path.split('/')
           actualfilename = filenameArray[len(filenameArray)-1]
