@@ -141,9 +141,9 @@ urlpatterns = patterns('',
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for bulk enrollment
     url(r'^saveFeedbackForm/$', 'myapp.feedback.saveFeedbackFormView', name='saveFeedbackForm'), #for save Feedback Form
     url(r'^viewFeedbackRequests/$', 'myapp.feedback.viewFeedbackRequestsView', name='viewFeedbackRequests'), #for view Feedback Requests
+    url(r'^LoadFeedbackRequestDetails/$', 'myapp.feedback.LoadFeedbackRequestDetailsView', name='LoadFeedbackRequestDetails'), #for view Feedback Requests
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport')
-
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 

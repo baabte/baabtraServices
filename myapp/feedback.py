@@ -61,3 +61,22 @@ def viewFeedbackRequestsView(request):
         return Response(json.dumps(FeedbackRequestsResponse, default=json_util.default))
     else:    
         return Response("failure")
+
+
+#created by jihin
+#For Load Feedback Request Details
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadFeedbackRequestDetailsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        feedbackDetailsResponse = dbconn.system_js.fnLoadFeedbackRequestDetails(data['companyId'],data['feedbackId'])
+        return Response(json.dumps(feedbackDetailsResponse, default=json_util.default))
+    else:    
+        return Response("failure")
