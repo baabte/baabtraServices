@@ -84,6 +84,7 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
     url(r'^LoadGlobalValues/$', 'myapp.commonViews.LoadGlobalValuesView', name='LoadGlobalValues'),#added by jihin for get global values
+    url(r'^LoadUserCardDetails/$', 'myapp.commonViews.LoadUserCardDetailsView', name='LoadUserCardDetails'),#added by jihin for Load User Card Details
     url(r'^loadMentees/$', 'myapp.commonViews.loadMenteesView', name='loadMentees'),#added by jihin for load Mentees
     url(r'^LoadRoleUnderCompany/$', 'myapp.commonViews.LoadRoleUnderCompanyView', name='LoadRoleUnderCompany'),#added by jihin for load Mentees
     url(r'^RemoveFileFromServer/$', 'myapp.commonViews.RemoveFileFromServerView', name='RemoveFileFromServer'),#added by jihin for Load Role Under Company
@@ -121,9 +122,6 @@ urlpatterns = patterns('',
     url(r'^SaveTestStartTime/$', 'myapp.testRelatedViews.SaveTestStartTimeView', name='SaveTestStartTime'), #by Arun
     url(r'^TestTimeReCheck/$', 'myapp.testRelatedViews.TestTimeReCheckView', name='TestTimeReCheck'), #by Arun
     url(r'^SubmitTest/$', 'myapp.testRelatedViews.SubmitTestView', name='SubmitTest'), #by Arun
-
-
-    
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -134,16 +132,25 @@ urlpatterns = patterns('',
     url(r'^FetchCourseData/$', 'myapp.course.FetchCourseData', name='FetchCourseData'), #for load completed course by Midhun
     url(r'^loadProfileData/$', 'myapp.profile.loadProfileData', name='loadProfileData'), #for load completed course by Midhun
     url(r'^updateUserProfileData/$', 'myapp.profile.updateUserProfileData', name='updateUserProfileData'), #for update user profile data
+    url(r'^changeUserPassword/$', 'myapp.profile.changeUserPassword', name='changeUserPassword'), #for update user password data
     url(r'^saveNewBatches/$', 'myapp.Batches.saveNewBatches', name='saveNewBatches'), #for update user profile data
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
+    url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
+    url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
+    url(r'^addCoursesToBatch/$', 'myapp.Batches.addCoursesToBatch', name='addCoursesToBatch'), #for adding courses to batch
+    url(r'^loadCourseRelatedBatches/$', 'myapp.Batches.loadCourseRelatedBatches', name='loadCourseRelatedBatches'), #for loading existing batches related to courses
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for bulk enrollment
     url(r'^saveFeedbackForm/$', 'myapp.feedback.saveFeedbackFormView', name='saveFeedbackForm'), #for save Feedback Form
     url(r'^viewFeedbackRequests/$', 'myapp.feedback.viewFeedbackRequestsView', name='viewFeedbackRequests'), #for view Feedback Requests
     url(r'^LoadFeedbackRequestDetails/$', 'myapp.feedback.LoadFeedbackRequestDetailsView', name='LoadFeedbackRequestDetails'), #for view Feedback Requests
+    url(r'^SaveUserFeedback/$', 'myapp.feedback.SaveUserFeedbackView', name='SaveUserFeedback'), #for Save User Feedback
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
-    url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport')
+    url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
+    url(r'^fnLoadBatchesForView/$', 'myapp.Batches.fnLoadBatchesForView', name='fnLoadBatchesForView'),
+    url(r'^fnLoadMenteesForView/$', 'myapp.Batches.fnLoadMenteesForView', name='fnLoadMenteesForView'),
+    url(r'^fnloadCourses4AssigningCourseMaterial/$', 'myapp.Batches.fnloadCourses4AssigningCourseMaterial', name='fnloadCourses4AssigningCourseMaterial')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
