@@ -25,7 +25,8 @@ class CourseFileUploadView(APIView):
           slpos =file_obj.content_type.find('/')+1
           imgType=file_obj.content_type[slpos:]
           postdata = request.POST
-          filename = postdata['pathToBeSave'] + '.' + imgType
+          filename = postdata['pathToBeSave'].split('/')# + '.' + imgType
+          filename = filename[len(filename)-1]+ '.' + imgType
           #filename = file_obj.name.replace('(', '')
           #filename = file_obj.name.replace(')', '')
           path = default_storage.save(settings.FILEUPLOAD_PATH+'/'+ postdata['pathToBeSave'] +'/'+filename, file_obj)
