@@ -84,6 +84,7 @@ urlpatterns = patterns('',
     url(r'^SaveCourseElementForm/$', 'myapp.views.SaveCourseElementFormView', name='SaveCourseElementForm'),  #by Arun
     url(r'^forgotPassword/$', 'myapp.views.forgotPassword', name='forgotPassword'), #URL for the forgot password,added by midhun
     url(r'^LoadGlobalValues/$', 'myapp.commonViews.LoadGlobalValuesView', name='LoadGlobalValues'),#added by jihin for get global values
+    url(r'^LoadUsersUnderRole/$', 'myapp.commonViews.LoadUsersUnderRoleView', name='LoadUsersUnderRole'),#added by jihin for Load Users Under a Role
     url(r'^LoadUserCardDetails/$', 'myapp.commonViews.LoadUserCardDetailsView', name='LoadUserCardDetails'),#added by jihin for Load User Card Details
     url(r'^loadMentees/$', 'myapp.commonViews.loadMenteesView', name='loadMentees'),#added by jihin for load Mentees
     url(r'^LoadRoleUnderCompany/$', 'myapp.commonViews.LoadRoleUnderCompanyView', name='LoadRoleUnderCompany'),#added by jihin for load Mentees
@@ -147,7 +148,12 @@ urlpatterns = patterns('',
     url(r'^LoadFeedbackRequestDetails/$', 'myapp.feedback.LoadFeedbackRequestDetailsView', name='LoadFeedbackRequestDetails'), #for view Feedback Requests
     url(r'^SaveUserFeedback/$', 'myapp.feedback.SaveUserFeedbackView', name='SaveUserFeedback'), #for Save User Feedback
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
-    url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport')
+    url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
+    url(r'^fnLoadBatchesForView/$', 'myapp.Batches.fnLoadBatchesForView', name='fnLoadBatchesForView'),
+    url(r'^fnLoadMenteesForView/$', 'myapp.Batches.fnLoadMenteesForView', name='fnLoadMenteesForView'),
+    url(r'^fnloadCourses4AssigningCourseMaterial/$', 'myapp.Batches.fnloadCourses4AssigningCourseMaterial', name='fnloadCourses4AssigningCourseMaterial'),
+    url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification')
+
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
