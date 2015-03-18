@@ -41,23 +41,26 @@ def fnBulkEnroll(request):
 	try:
 		#stream = StringIO(request.POST)
 		data = request.POST#JSONParser().parse(stream) 
-
+	      
 		#fd, tmp = tempfile.mkstemp()
 		with os.fdopen(fd, 'w') as out:
 			out.write(input_file.read())
 		wb = xlrd.open_workbook(tmp)
 		# do what you have to do
 		values=[]
-		print(data)	
 		ObjList=[]
 		#data['mandatoryData']={}
 		for s in wb.sheets():
 			#print 'Sheet:',s.name
 			for row in range(1, s.nrows):
 				dataObj={}
-				dataObj=data;
+				#dataObj=data;
+				#print(data['batch']['batchName']);
+				streambatch = StringIO(data['batch'])
+				streamcourse = StringIO(data['course'])
+				dataObj['batch']=JSONParser().parse(streambatch)
+				dataObj['course']=JSONParser().parse(streamcourse)
 				#dataObj['mandatoryData']={}
-				
 				col_names = s.row(0)
 				col_value = []
 				mandatoryData={}
@@ -70,20 +73,22 @@ def fnBulkEnroll(request):
 					ident=name.value
 					mandatoryData[name.value]=value
 					mandatoryData['password']=''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
-					json_size = len(mandatoryData)
+					#print(mandatoryData)
+					json_size = len(mandatoryData)					
 					if json_size == 3 :
 						dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
 						mandatoryData[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
-					if json_size == 6 :
-						dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
-						dataObj[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
-					if json_size == 7 :	
-						dataObj['course']={}
-						dataObj['course']['_id']=value#random.choice(randomCourse)
-						dataObj['mandatoryData']=mandatoryData
+					#if json_size == 6 :
+						#dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
+						#dataObj[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
+					#if json_size == 5 :	
+						#dataObj['course']={}
+						#dataObj['course']['_id']=value#random.choice(randomCourse)
+						#dataObj['mandatoryData']=mandatoryData
 						#dataObj=json.load(dataObj)
-						#print(dataObj)
-						result=dbconn.system_js.fnRegisterUsertemp(dataObj);
+						dataObj['mandatoryData']=mandatoryData
+						#print(dataObj['mandatoryData'])
+					result=dbconn.system_js.fnRegisterUser(dataObj);
 			ObjList.append(json.dumps(result, default=json_util.default))
 	finally:
 		os.unlink(tmp)  # delete the temp file no matter what

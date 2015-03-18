@@ -116,7 +116,7 @@ def loadCourseRelatedBatches(request):  #this service will add & update course e
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             #data['courseId']=ObjectId(data['courseId'])
-            batchDetails=dbconn.system_js.fnLoadCourseRelatedBatches(data['cmpId'],data['courseId'],data['joinDate'])    
+            batchDetails=dbconn.system_js.fnLoadCourseRelatedBatches(data['cmpId'],data['courseId'],data['joinDate'],data['courseType'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(batchDetails, default=json_util.default))
