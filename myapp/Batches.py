@@ -116,7 +116,7 @@ def loadCourseRelatedBatches(request):  #this service will add & update course e
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             #data['courseId']=ObjectId(data['courseId'])
-            batchDetails=dbconn.system_js.fnLoadCourseRelatedBatches(data['cmpId'],data['courseId'],data['joinDate'])    
+            batchDetails=dbconn.system_js.fnLoadCourseRelatedBatches(data['cmpId'],data['courseId'],data['joinDate'],data['courseType'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(batchDetails, default=json_util.default))
@@ -187,6 +187,7 @@ def fnloadCourses4AssigningCourseMaterial(request):  #this service will add & up
         return Response(json.dumps(batchDetails, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+<<<<<<< HEAD
 
 @csrf_exempt
 @api_view(['GET','POST'])
@@ -206,3 +207,5 @@ def fnloadCourseMaterial4multiSelect(request):  #this service will load Drafted 
         return Response(json.dumps(courseDetils, default=json_util.default))
     else:        
         return Response("failed")
+=======
+>>>>>>> a4c4893153c62a3151b709b457d9beddf2309d4d
