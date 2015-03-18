@@ -116,7 +116,72 @@ def loadCourseRelatedBatches(request):  #this service will add & update course e
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             #data['courseId']=ObjectId(data['courseId'])
-            batchDetails=dbconn.system_js.fnLoadCourseRelatedBatches(data['cmpId'],data['courseId'])    
+            batchDetails=dbconn.system_js.fnLoadCourseRelatedBatches(data['cmpId'],data['courseId'],data['joinDate'],data['courseType'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#function to load batches for view
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadBatchesForView(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            #data['courseId']=ObjectId(data['courseId'])
+            batchDetails=dbconn.system_js.fnLoadBatchesForView(data['companyId'],data['firstId'],data['type'],data['lastId'],data['searchKey'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#function to load batches for view
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadMenteesForView(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            #data['courseId']=ObjectId(data['courseId'])
+            batchDetails=dbconn.system_js.fnLoadMenteesForView(data['companyId'],data['firstId'],data['type'],data['lastId'],data['searchKey'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+
+#function to load batches for view
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnloadCourses4AssigningCourseMaterial(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            #data['courseId']=ObjectId(data['courseId'])
+            batchDetails=dbconn.system_js.fnloadCourses4AssigningCourseMaterial(data['companyId'],data['urmId'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(batchDetails, default=json_util.default))
