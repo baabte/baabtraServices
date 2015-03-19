@@ -154,6 +154,9 @@ urlpatterns = patterns('',
     url(r'^fnloadCourses4AssigningCourseMaterial/$', 'myapp.Batches.fnloadCourses4AssigningCourseMaterial', name='fnloadCourses4AssigningCourseMaterial'),
     url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
     url(r'^fnBulkEnrollavailable/$', 'myapp.enrollment.fnBulkEnrollavailable', name='fnBulkEnrollavailable'), #for bulk enrollment
+    url(r'^fnloadCourseMaterial4multiSelect/$', 'myapp.Batches.fnloadCourseMaterial4multiSelect', name='fnloadCourseMaterial4multiSelect'),
+    url(r'^fnAssignCourseMaterial2timeline/$', 'myapp.Batches.fnAssignCourseMaterial2timeline', name='fnAssignCourseMaterial2timeline')
+
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 

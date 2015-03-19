@@ -187,3 +187,43 @@ def fnloadCourses4AssigningCourseMaterial(request):  #this service will add & up
         return Response(json.dumps(batchDetails, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnloadCourseMaterial4multiSelect(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetils = dbconn.system_js.fnLoadCourseMaterialsById(ObjectId(data['courseId']),ObjectId(data['urmId']))
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetils, default=json_util.default))
+    else:        
+        return Response("failed")
+
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnAssignCourseMaterial2timeline(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetils = dbconn.system_js.funAssignCourseMaterial(data['courseId'],data['urmId'],data['courseObj'])
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetils, default=json_util.default))
+    else:        
+        return Response("failed")
+
