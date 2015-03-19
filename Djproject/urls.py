@@ -149,7 +149,10 @@ urlpatterns = patterns('',
     url(r'^SaveUserFeedback/$', 'myapp.feedback.SaveUserFeedbackView', name='SaveUserFeedback'), #for Save User Feedback
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
-    url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification')
+    url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
+    url(r'^AddDepartment/$', 'myapp.departmentView.AddDepartmentView', name='AddDepartment'),#for Add Department
+    url(r'^LoadDepartment/$', 'myapp.departmentView.LoadDepartmentView', name='LoadDepartment')#for load Department
+
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
