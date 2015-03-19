@@ -221,6 +221,7 @@ def fnAssignCourseMaterial2timeline(request):  #this service will load Drafted c
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             courseDetils = dbconn.system_js.funAssignCourseMaterial(data['courseId'],data['urmId'],data['courseObj'])
+        
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(courseDetils, default=json_util.default))
