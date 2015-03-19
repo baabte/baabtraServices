@@ -154,7 +154,8 @@ urlpatterns = patterns('',
     url(r'^fnloadCourses4AssigningCourseMaterial/$', 'myapp.Batches.fnloadCourses4AssigningCourseMaterial', name='fnloadCourses4AssigningCourseMaterial'),
     url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
     url(r'^fnloadCourseMaterial4multiSelect/$', 'myapp.Batches.fnloadCourseMaterial4multiSelect', name='fnloadCourseMaterial4multiSelect'),
-    url(r'^fnAssignCourseMaterial2timeline/$', 'myapp.Batches.fnAssignCourseMaterial2timeline', name='fnAssignCourseMaterial2timeline')
+    url(r'^fnAssignCourseMaterial2timeline/$', 'myapp.Batches.fnAssignCourseMaterial2timeline', name='fnAssignCourseMaterial2timeline'),
+    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment')
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
