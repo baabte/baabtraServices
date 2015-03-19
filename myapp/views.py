@@ -109,9 +109,10 @@ def FnGetCompanyDetailsView(request):
     data = JSONParser().parse(stream)
     if request.method == 'POST':
         try:
+            #docs_list  = dbconn.system_js.fnGetCompanyDetails(data['roleId'],data['companyId'],data['firstId'],data['type'],data['lastId'],data['searchText']);
             docs_list  = dbconn.system_js.fnGetCompanyDetails(data['roleId'],data['companyId'],data['range'],data['prefix']);
         except:
-            return Response(request.body)
+            return Response("failure")
         return Response(json.dumps(docs_list, default=json_util.default))
     else:
         return Response(docs_list)       
@@ -323,6 +324,7 @@ def LoadUsers(request): #Loading All the users based on compny id supplied
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         try:
+            #docs_list  = dbconn.system_js.fnSearchUsers(data['companyId'],data['firstId'],data["type"],data['lastId'],data["searchText"]);
             docs_list  = dbconn.system_js.fnSearchUsers(ObjectId(data['companyId']),data['prefix'],data["range"]);
         except:
             return Response(json.dumps("", default=json_util.default))
