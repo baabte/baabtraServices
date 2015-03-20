@@ -95,13 +95,16 @@ def fnBulkEnroll(request):
 							#if json_size == 6 :
 							#dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
 							#dataObj[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
-							#if json_size == 5 :	
+						if json_size == 4 :	
+							mandatoryData[name.value]=value	
+						if json_size == 5 :	
+							mandatoryData[name.value]=value	
 							#dataObj['course']={}
 							#dataObj['course']['_id']=value#random.choice(randomCourse)
 							#dataObj['mandatoryData']=mandatoryData
 							#dataObj=json.load(dataObj)
 							dataObj['mandatoryData']=mandatoryData
-							#print(dataObj['mandatoryData'])
+							
 							result=dbconn.system_js.fnRegisterUser(dataObj);
 			ObjList.append(json.dumps(result, default=json_util.default))
 	finally:
@@ -188,7 +191,12 @@ def fnBulkEnrollavailable(request):
 						dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
 						mandatoryData[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
 						dataObj['mandatoryData']=mandatoryData
+					if json_size == 4 :	
+							mandatoryData[name.value]=value	
+					if json_size == 5 :	
+						mandatoryData[name.value]=value		
 						#print(dataObj['mandatoryData'])
+						dataObj['mandatoryData']=mandatoryData
 						result=dbconn.system_js.fnRegisterUser(dataObj);
 			ObjList.append(json.dumps(result, default=json_util.default))
 	finally:
