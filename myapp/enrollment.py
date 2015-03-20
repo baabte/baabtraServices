@@ -25,6 +25,8 @@ import tempfile
 import random
 import string
 import datetime
+import dateutil
+import dateutil.parser as parser
 from dateutil import parser as date_parser
 #service function for bulk enrollment
 
@@ -91,7 +93,8 @@ def fnBulkEnroll(request):
 						json_size = len(mandatoryData)					
 						if json_size == 3 :
 							dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
-							mandatoryData[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
+							date=(parser.parse(datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")))   #converting to datetime format
+							mandatoryData[name.value]= date.isoformat()
 							#if json_size == 6 :
 							#dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
 							#dataObj[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
@@ -189,8 +192,9 @@ def fnBulkEnrollavailable(request):
 					json_size = len(mandatoryData)					
 					if json_size == 3 :
 						dt=datetime.datetime.strptime(value,'%d/%m/%Y').date() 				#coverting date format
-						mandatoryData[name.value]=datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")   #converting to datetime format
-						dataObj['mandatoryData']=mandatoryData
+						date=(parser.parse(datetime.date.strftime(dt, "%a %b %d %Y 00:00:00 GMT+0530 (IST)")))   #converting to datetime format
+						mandatoryData[name.value]= date.isoformat()
+						#dataObj['mandatoryData']=mandatoryData
 					if json_size == 4 :	
 							mandatoryData[name.value]=value	
 					if json_size == 5 :	
