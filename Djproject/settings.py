@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'Djproject.wsgi.application'
 
 
 #MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
-#MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
-MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
+MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
+#MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
 #MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb address
 MONGO_PORT = 27017 #Mongodb port
 
@@ -101,7 +101,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'testbaabtra@gmail.com'
 EMAIL_HOST_PASSWORD = 'baabtra_test'
 EMAIL_PORT = 587
-
+EBENSMSURL='http://tx.ebensms.in/api/web2sms.php?'
+EBENSMSURLPROMO='http://promo.ebensms.in/api/web2sms.php?workingkey='
+EBENSMSURLGLOBAL="http://global.ebensms.com/api/v1/?api_key="
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
