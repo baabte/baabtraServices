@@ -17,7 +17,8 @@ from django.core.mail import EmailMessage
 #creater :Arun \\\@///
 @csrf_exempt
 @api_view(['GET','POST'])
-def courseElementsByAttendenceView(request):  #this service will add reseller
+def EvaluationFetchView(request):  
+#this service will fetch all evaluation pending question to the evaluator
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -26,7 +27,7 @@ def courseElementsByAttendenceView(request):  #this service will add reseller
     if request.method == 'POST':   
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)   
-        result=dbconn.system_js.fncourseElementsByAttendence(data);
+        result=dbconn.system_js.fnEvaluationFetch(data);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
@@ -35,7 +36,7 @@ def courseElementsByAttendenceView(request):  #this service will add reseller
 #creater :Arun \\\@///
 @csrf_exempt
 @api_view(['GET','POST'])
-def MarkAttendenceView(request):  #this service will add reseller
+def EvaluateAnswerView(request):  #this service will evalute the question response to user timeline
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -44,7 +45,7 @@ def MarkAttendenceView(request):  #this service will add reseller
     if request.method == 'POST':   
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)   
-        result=dbconn.system_js.fnMarkAttendence(data);
+        result=dbconn.system_js.fnEvaluateAnswer(data);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
