@@ -287,3 +287,25 @@ def fnAssignCourseMaterials4Batch(request):  #this service will load Drafted cou
         return Response(json.dumps(courseDetils, default=json_util.default))
     else:        
         return Response("failed")
+
+        
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnloadCoursesMaterials4menteeAtt(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetils = dbconn.system_js.fnloadCoursesMaterials4menteeAtt(data['courseId'],data['urmId'])
+        
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetils, default=json_util.default))
+    else:        
+        return Response("failed")
