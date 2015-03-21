@@ -153,10 +153,21 @@ urlpatterns = patterns('',
     url(r'^SaveUserFeedback/$', 'myapp.feedback.SaveUserFeedbackView', name='SaveUserFeedback'), #for Save User Feedback
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
+    url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
+    url(r'^AddDepartment/$', 'myapp.departmentView.AddDepartmentView', name='AddDepartment'),#for Add Department
+    url(r'^LoadDepartment/$', 'myapp.departmentView.LoadDepartmentView', name='LoadDepartment'),#for load Department
     url(r'^fnLoadBatchesForView/$', 'myapp.Batches.fnLoadBatchesForView', name='fnLoadBatchesForView'),
     url(r'^fnLoadMenteesForView/$', 'myapp.Batches.fnLoadMenteesForView', name='fnLoadMenteesForView'),
     url(r'^fnloadCourses4AssigningCourseMaterial/$', 'myapp.Batches.fnloadCourses4AssigningCourseMaterial', name='fnloadCourses4AssigningCourseMaterial'),
-    url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification')
+    url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
+    url(r'^fnBulkEnrollavailable/$', 'myapp.enrollment.fnBulkEnrollavailable', name='fnBulkEnrollavailable'), #for bulk enrollment up to the selected users from the list
+    url(r'^sendEmailSmsNotification/$', 'myapp.emailSms.sendEmailSmsNotification', name='sendEmailSmsNotification'), #for sending email and sms notification
+    url(r'^fnloadCourseMaterial4multiSelect/$', 'myapp.Batches.fnloadCourseMaterial4multiSelect', name='fnloadCourseMaterial4multiSelect'),
+    url(r'^fnAssignCourseMaterial2timeline/$', 'myapp.Batches.fnAssignCourseMaterial2timeline', name='fnAssignCourseMaterial2timeline'),
+    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
+    url(r'^fnloadCourseMaterial4Batch/$', 'myapp.Batches.fnloadCourseMaterial4Batch', name='fnloadCourseMaterial4Batch'),
+    url(r'^fnAssignCourseMaterials4Batch/$', 'myapp.Batches.fnAssignCourseMaterials4Batch', name='fnAssignCourseMaterials4Batch'),
+    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment')
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
