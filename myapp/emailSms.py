@@ -43,3 +43,84 @@ def sendEmailSmsNotification(request):  #this service will add & update course e
         return Response(json.dumps(resp_email, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadMenuNames(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+           # stream = StringIO(request.body)
+            #data = JSONParser().parse(stream)
+            resp=dbconn.system_js.fnLoadMenuNames()    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadMenuStates(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            resp=dbconn.system_js.fnLoadMenuStates(data['id'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def saveTemplates(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            resp=dbconn.system_js.fnSaveTemplates(data['template'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadTemplate(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+           # stream = StringIO(request.body)
+            #data = JSONParser().parse(stream)
+            resp=dbconn.system_js.fnLoadTemplates()    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+

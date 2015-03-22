@@ -160,7 +160,11 @@ urlpatterns = patterns('',
     url(r'^sendEmailSmsNotification/$', 'myapp.emailSms.sendEmailSmsNotification', name='sendEmailSmsNotification'), #for sending email and sms notification
     url(r'^fnloadCourseMaterial4multiSelect/$', 'myapp.Batches.fnloadCourseMaterial4multiSelect', name='fnloadCourseMaterial4multiSelect'),
     url(r'^fnAssignCourseMaterial2timeline/$', 'myapp.Batches.fnAssignCourseMaterial2timeline', name='fnAssignCourseMaterial2timeline'),
-    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment')
+    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
+    url(r'^loadMenuStates/$', 'myapp.emailSms.loadMenuStates', name='loadMenuStates'), #for sending email and sms notification
+    url(r'^loadMenuNames/$', 'myapp.emailSms.loadMenuNames', name='loadMenuNames'), #for sending email and sms notification  
+    url(r'^saveTemplates/$', 'myapp.emailSms.saveTemplates', name='saveTemplates'), #for sending email and sms notification      
+     url(r'^loadTemplate/$', 'myapp.emailSms.loadTemplate', name='loadTemplate'), #for sending email and sms notification      
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
