@@ -168,8 +168,9 @@ urlpatterns = patterns('',
     url(r'^fnloadCourseMaterial4Batch/$', 'myapp.Batches.fnloadCourseMaterial4Batch', name='fnloadCourseMaterial4Batch'),
     url(r'^fnAssignCourseMaterials4Batch/$', 'myapp.Batches.fnAssignCourseMaterials4Batch', name='fnAssignCourseMaterials4Batch'),
     url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
-    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt')
-
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
+    url(r'^fnloadCourseMaterials4batchAtt/$', 'myapp.Batches.fnloadCourseMaterials4batchAtt', name='fnloadCourseMaterials4batchAtt'),
+    url(r'^fnloadMentees4batchAtt/$', 'myapp.Batches.fnloadMentees4batchAtt', name='fnloadMentees4batchAtt')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
