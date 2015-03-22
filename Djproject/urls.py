@@ -153,6 +153,11 @@ urlpatterns = patterns('',
     url(r'^SaveUserFeedback/$', 'myapp.feedback.SaveUserFeedbackView', name='SaveUserFeedback'), #for Save User Feedback
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
+    url(r'^addEvaluator/$', 'myapp.globalSettings.addEvaluator', name='addEvaluator'),
+    url(r'^GenerateCode/$', 'myapp.globalSettings.GenerateCode', name='GenerateCode'),
+    url(r'^retrieveExistingConf/$', 'myapp.globalSettings.retrieveExistingConf', name='retrieveExistingConf'),
+    url(r'^removeExistingEvaluator/$', 'myapp.globalSettings.removeExistingEvaluator', name='removeExistingEvaluator'),
+    url(r'^updateExistingPrefix/$', 'myapp.globalSettings.updateExistingPrefix', name='updateExistingPrefix'),
     url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
     url(r'^AddDepartment/$', 'myapp.departmentView.AddDepartmentView', name='AddDepartment'),#for Add Department
     url(r'^LoadDepartment/$', 'myapp.departmentView.LoadDepartmentView', name='LoadDepartment'),#for load Department
@@ -170,7 +175,8 @@ urlpatterns = patterns('',
     url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
     url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
     url(r'^fnloadCourseMaterials4batchAtt/$', 'myapp.Batches.fnloadCourseMaterials4batchAtt', name='fnloadCourseMaterials4batchAtt'),
-    url(r'^fnloadMentees4batchAtt/$', 'myapp.Batches.fnloadMentees4batchAtt', name='fnloadMentees4batchAtt')
+    url(r'^fnloadMentees4batchAtt/$', 'myapp.Batches.fnloadMentees4batchAtt', name='fnloadMentees4batchAtt'),
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
