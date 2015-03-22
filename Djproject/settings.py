@@ -101,7 +101,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'testbaabtra@gmail.com'
 EMAIL_HOST_PASSWORD = 'baabtra_test'
 EMAIL_PORT = 587
-
+#EbenSms url for sending sms
+EBENSMSURL='http://tx.ebensms.in/api/web2sms.php?'
+EBENSMSURLPROMO='http://promo.ebensms.in/api/web2sms.php?workingkey='
+EBENSMSURLGLOBAL="http://global.ebensms.com/api/v1/?api_key="
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
