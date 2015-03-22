@@ -123,6 +123,10 @@ urlpatterns = patterns('',
     url(r'^SaveTestStartTime/$', 'myapp.testRelatedViews.SaveTestStartTimeView', name='SaveTestStartTime'), #by Arun
     url(r'^TestTimeReCheck/$', 'myapp.testRelatedViews.TestTimeReCheckView', name='TestTimeReCheck'), #by Arun
     url(r'^SubmitTest/$', 'myapp.testRelatedViews.SubmitTestView', name='SubmitTest'), #by Arun
+    url(r'^courseElementsByAttendence/$', 'myapp.attendenceRelatedViews.courseElementsByAttendenceView', name='courseElementsByAttendence'), #by Arun
+    url(r'^MarkAttendence/$', 'myapp.attendenceRelatedViews.MarkAttendenceView', name='MarkAttendence'), #by Arun
+    url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
+    url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -164,7 +168,11 @@ urlpatterns = patterns('',
     url(r'^loadMenuStates/$', 'myapp.emailSms.loadMenuStates', name='loadMenuStates'), #for sending email and sms notification
     url(r'^loadMenuNames/$', 'myapp.emailSms.loadMenuNames', name='loadMenuNames'), #for sending email and sms notification  
     url(r'^saveTemplates/$', 'myapp.emailSms.saveTemplates', name='saveTemplates'), #for sending email and sms notification      
-     url(r'^loadTemplate/$', 'myapp.emailSms.loadTemplate', name='loadTemplate'), #for sending email and sms notification      
+    url(r'^loadTemplate/$', 'myapp.emailSms.loadTemplate', name='loadTemplate'), #for sending email and sms notification      
+    url(r'^fnloadCourseMaterial4Batch/$', 'myapp.Batches.fnloadCourseMaterial4Batch', name='fnloadCourseMaterial4Batch'),
+    url(r'^fnAssignCourseMaterials4Batch/$', 'myapp.Batches.fnAssignCourseMaterials4Batch', name='fnAssignCourseMaterials4Batch'),
+    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
