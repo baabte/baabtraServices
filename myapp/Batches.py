@@ -302,7 +302,47 @@ def fnloadCoursesMaterials4menteeAtt(request):  #this service will load Drafted 
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            courseDetils = dbconn.system_js.fnloadCoursesMaterials4menteeAtt(data['courseId'],data['urmId'])
+            courseDetils = dbconn.system_js.fnloadCoursesMaterials4menteeAtt(data['userCourseId'],data['urmId'])
+        
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetils, default=json_util.default))
+    else:        
+        return Response("failed")
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnloadCourseMaterials4batchAtt(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetils = dbconn.system_js.fnloadCourseMaterials4batchAtt(data['batchMappingId'])
+        
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetils, default=json_util.default))
+    else:        
+        return Response("failed")
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnloadMentees4batchAtt(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetils = dbconn.system_js.fnloadMentees4batchAtt(data['batchMappingId'],data['batchObj'])
         
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
