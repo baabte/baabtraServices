@@ -15,32 +15,44 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 import requests
+from django.http import HttpResponse
+from django.template import Context
+from django.template.loader import render_to_string, get_template
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
 def sendEmailSmsNotification(request):  #this service will add & update course elements
     #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
+    #dbconn = db[settings.MONGO_DB]
 
     if request.method == 'POST':
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            #print(data['phone'])
-            #print(data['email'])
-            #print(data['senderId'])
-            #print(data['smsKey'])
-            payload = {'workingkey':data['smsKey'],'method':'sms','sender':data['senderId'],'to':data['phone'],'message':"testing sms sending"}
-            resp=requests.get(settings.EBENSMSURL,params=payload)
-            #send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
-            send_mail('Welcome to Baabtra.com','Your account is registered in baabtra.com',settings.EMAIL_HOST_USER,[data['email']],fail_silently=False) 
-            #print(resp_email);
+            data['template']="An Account has been created for you in Baabtra.com"
+            data['Heading'] = "Welcome to Baabtra.com"
+            data['user']=data['menteeName']
+            data['LOGO_PATH']=settings.LOGO_PATH
+            message = get_template(settings.TEMPLATE_DIRS[0]+'/user_registration.html').render(Context(data))
+            send_mail('Welcome to Baabtra.com',message,settings.EMAIL_HOST_USER,[data['menteeEmail']],fail_silently=False,html_message=message)#for sending mail to mentee 
+            #print(message)
+            data['user']=data['userName']
+            data['template'] ="Successfullly created a mentee account for "+data['menteeName'] +" in Baabtra.com"
+            message = get_template(settings.TEMPLATE_DIRS[0]+'/user_registration.html').render(Context(data))
+            send_mail('Welcome to Baabtra.com',message,settings.EMAIL_HOST_USER,[data['userEmail']],fail_silently=False,html_message=message)#for sending mail to mentee 
+            for item in data['evaluatorEmailLIst']:
+                print item['Name']
+                print item['Email']['userName']
+                data['user']=item['Name']
+                data['template'] ="Successfullly created a mentee account for "+data['menteeName'] +" in Baabtra.com"
+                message = get_template(settings.TEMPLATE_DIRS[0]+'/user_registration.html').render(Context(data))
+                send_mail('Welcome to Baabtra.com',message,settings.EMAIL_HOST_USER,[data['menteeEmail']],fail_silently=False,html_message=message)#for sending mail to mentee 
             #batchDetails=dbconn.system_js.fnAddNewBatches(data['batchObj'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(resp_email, default=json_util.default))
+        return Response(json.dumps(data, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 #created by: vineeth C
@@ -96,7 +108,7 @@ def saveTemplates(request):  #this service will add & update course elements
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             resp=dbconn.system_js.fnSaveTemplates(data['template'])    
-        except ValueError:
+        except ValueError   :
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(resp, default=json_util.default))
     else:        

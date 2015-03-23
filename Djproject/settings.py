@@ -87,6 +87,7 @@ MONGO_DB = 'baabtra_db'  #Database name
 FILEUPLOAD_PATH="uploaded" #path for uploading the files
 RESUME_PATH='http://localhost:8000/files/resume/' #path for mailing the resume link
 LOGO_PATH='http://localhost:8000/files/companyLogo/' #path for mailing the resume link
+#LOGO_PATH='http://services.baabtra.com/files/companyLogo/' #path for mailing the resume link
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
