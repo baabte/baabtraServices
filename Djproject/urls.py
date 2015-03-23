@@ -142,6 +142,8 @@ urlpatterns = patterns('',
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
+    url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
+    url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
     url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
     url(r'^addCoursesToBatch/$', 'myapp.Batches.addCoursesToBatch', name='addCoursesToBatch'), #for adding courses to batch
@@ -176,7 +178,10 @@ urlpatterns = patterns('',
     url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
     url(r'^fnloadCourseMaterials4batchAtt/$', 'myapp.Batches.fnloadCourseMaterials4batchAtt', name='fnloadCourseMaterials4batchAtt'),
     url(r'^fnloadMentees4batchAtt/$', 'myapp.Batches.fnloadMentees4batchAtt', name='fnloadMentees4batchAtt'),
-    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt')
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
+    url(r'^removeItemFromAgroup/$', 'myapp.globalSettings.removeItemFromAgroup', name='removeItemFromAgroup'),
+    url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
+    url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
