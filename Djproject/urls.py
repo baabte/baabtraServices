@@ -123,6 +123,10 @@ urlpatterns = patterns('',
     url(r'^SaveTestStartTime/$', 'myapp.testRelatedViews.SaveTestStartTimeView', name='SaveTestStartTime'), #by Arun
     url(r'^TestTimeReCheck/$', 'myapp.testRelatedViews.TestTimeReCheckView', name='TestTimeReCheck'), #by Arun
     url(r'^SubmitTest/$', 'myapp.testRelatedViews.SubmitTestView', name='SubmitTest'), #by Arun
+    url(r'^courseElementsByAttendence/$', 'myapp.attendenceRelatedViews.courseElementsByAttendenceView', name='courseElementsByAttendence'), #by Arun
+    url(r'^MarkAttendence/$', 'myapp.attendenceRelatedViews.MarkAttendenceView', name='MarkAttendence'), #by Arun
+    url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
+    url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -151,6 +155,11 @@ urlpatterns = patterns('',
     url(r'^SaveUserFeedback/$', 'myapp.feedback.SaveUserFeedbackView', name='SaveUserFeedback'), #for Save User Feedback
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
+    url(r'^addEvaluator/$', 'myapp.globalSettings.addEvaluator', name='addEvaluator'),
+    url(r'^GenerateCode/$', 'myapp.globalSettings.GenerateCode', name='GenerateCode'),
+    url(r'^retrieveExistingConf/$', 'myapp.globalSettings.retrieveExistingConf', name='retrieveExistingConf'),
+    url(r'^removeExistingEvaluator/$', 'myapp.globalSettings.removeExistingEvaluator', name='removeExistingEvaluator'),
+    url(r'^updateExistingPrefix/$', 'myapp.globalSettings.updateExistingPrefix', name='updateExistingPrefix'),
     url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
     url(r'^AddDepartment/$', 'myapp.departmentView.AddDepartmentView', name='AddDepartment'),#for Add Department
     url(r'^LoadDepartment/$', 'myapp.departmentView.LoadDepartmentView', name='LoadDepartment'),#for load Department
@@ -165,8 +174,11 @@ urlpatterns = patterns('',
     url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
     url(r'^fnloadCourseMaterial4Batch/$', 'myapp.Batches.fnloadCourseMaterial4Batch', name='fnloadCourseMaterial4Batch'),
     url(r'^fnAssignCourseMaterials4Batch/$', 'myapp.Batches.fnAssignCourseMaterials4Batch', name='fnAssignCourseMaterials4Batch'),
-    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment')
-
+    url(r'^fnloadBatchDetails4assignment/$', 'myapp.Batches.fnloadBatchDetails4assignment', name='fnloadBatchDetails4assignment'),
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
+    url(r'^fnloadCourseMaterials4batchAtt/$', 'myapp.Batches.fnloadCourseMaterials4batchAtt', name='fnloadCourseMaterials4batchAtt'),
+    url(r'^fnloadMentees4batchAtt/$', 'myapp.Batches.fnloadMentees4batchAtt', name='fnloadMentees4batchAtt'),
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
