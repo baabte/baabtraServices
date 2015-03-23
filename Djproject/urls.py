@@ -176,7 +176,10 @@ urlpatterns = patterns('',
     url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
     url(r'^fnloadCourseMaterials4batchAtt/$', 'myapp.Batches.fnloadCourseMaterials4batchAtt', name='fnloadCourseMaterials4batchAtt'),
     url(r'^fnloadMentees4batchAtt/$', 'myapp.Batches.fnloadMentees4batchAtt', name='fnloadMentees4batchAtt'),
-    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt')
+    url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
+    url(r'^removeItemFromAgroup/$', 'myapp.globalSettings.removeItemFromAgroup', name='removeItemFromAgroup'),
+    url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
+    url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
