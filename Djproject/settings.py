@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Djproject.wsgi.application'
 #MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
 MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
 # MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
-#MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb address
+# MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb address
 MONGO_PORT = 27017 #Mongodb port
 
 MONGO_DB = 'baabtra_db'  #Database name
@@ -87,6 +87,7 @@ MONGO_DB = 'baabtra_db'  #Database name
 FILEUPLOAD_PATH="uploaded" #path for uploading the files
 RESUME_PATH='http://localhost:8000/files/resume/' #path for mailing the resume link
 LOGO_PATH='http://localhost:8000/files/companyLogo/' #path for mailing the resume link
+#LOGO_PATH='http://services.baabtra.com/files/companyLogo/' #path for mailing the resume link
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -101,7 +102,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'testbaabtra@gmail.com'
 EMAIL_HOST_PASSWORD = 'baabtra_test'
 EMAIL_PORT = 587
-
+#EbenSms url for sending sms
+EBENSMSURL='http://tx.ebensms.in/api/web2sms.php?'
+EBENSMSURLPROMO='http://promo.ebensms.in/api/web2sms.php?workingkey='
+EBENSMSURLGLOBAL="http://global.ebensms.com/api/v1/?api_key="
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 

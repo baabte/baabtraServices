@@ -2,7 +2,6 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from pymongo import Connection
-#from models import UserMenuMapping
 from serializers import MongoAwareEncoder
 from datetime import datetime
 import json
@@ -14,13 +13,11 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
-from django.template import Context
-from django.template.loader import render_to_string, get_template
 
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadCompnayUsers(request):  #this service will load Drafted courses
+def addEvaluator(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -30,21 +27,20 @@ def fnLoadCompnayUsers(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            companyId=data["companyId"]
-            firstId=data['firstId']
-            lastId=data['lastId']
-            print(lastId)
-            result = dbconn.system_js.fnLoadCompanyUsers(companyId,firstId,data['type'],lastId)
+            datas = data["data"]
+            insertResp=dbconn.system_js.fnaddEvaluator(datas)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(insertResp, default=json_util.default))
     else:        
-        return Response("failed")
+        return Response(json.dumps("failed", default=json_util.default))
 
-#service function for loading feedback lists        
+
+
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadFeedbackList(request):  #this service will load Drafted courses
+def GenerateCode(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -54,21 +50,19 @@ def fnLoadFeedbackList(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            companyId=data["companyId"] 
-            firstId=data['firstId']
-            lastId=data['lastId']
-            result = dbconn.system_js.fnLoadFeedbackList(companyId,firstId,data['type'],lastId)
+            datas = data["data"]
+            insertResp=dbconn.system_js.fnaddGeneratedCode(datas)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(insertResp, default=json_util.default))
     else:        
-        return Response("failed")
+        return Response(json.dumps("failed", default=json_util.default))
 
 
-#service function for loading feedback lists        
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadFeedbackReport(request):  #this service will load Drafted courses
+def retrieveExistingConf(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -78,18 +72,19 @@ def fnLoadFeedbackReport(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            feedbackId=data["feedbackId"] 
-            result = dbconn.system_js.fnLoadFeedbackReport(feedbackId)
+            datas = data["comapanyId"]
+            Resp=dbconn.system_js.fnretrieveExistingGlobalConf(datas)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
     else:        
-        return Response("failed")
+        return Response(json.dumps("failed", default=json_util.default))
 
-#service function for Load Mentees For Approve  
+
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadMenteesForApproveView(request):  #this service will load Drafted courses
+def removeExistingEvaluator(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -99,17 +94,20 @@ def fnLoadMenteesForApproveView(request):  #this service will load Drafted cours
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            result = dbconn.system_js.fnLoadMenteesForApprove(data["companyId"], data["statusType"])
+            datas = data["data"]
+            Resp=dbconn.system_js.fnremoveExistingEvaluator(datas)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
     else:        
-        return Response("failed")
+        return Response(json.dumps("failed", default=json_util.default))
 
-#service function for Load Mentees For Approve  
+
+
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def ApproveUserRequestView(request):  #this service will load Drafted courses
+def removeItemFromAgroup(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -119,19 +117,19 @@ def ApproveUserRequestView(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            result = dbconn.system_js.fnApproveUserRequest(data["userId"], data["orderFormId"], data["courseKey"], data["statusType"], data["rmId"], data['companyId'])
+            datas = data["data"]
+            Resp=dbconn.system_js.fnremoveItemFormAgroup(datas)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
     else:        
-        return Response("failed")
+        return Response(json.dumps("failed", default=json_util.default))
 
 
-
-#service function for Add User Nomination
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def addUserNominationView(request):  #this service will load Drafted courses
+def updateExistingPrefix(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -141,19 +139,42 @@ def addUserNominationView(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            responseObject = dbconn.system_js.fnAddUserNomination(data['orderObject'] ,data["rmId"])
+            datas = data["data"]
+            Resp=dbconn.system_js.fnupdateExistingPrefix(datas)    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+
+#creater :Midhun Sudhakar
+@csrf_exempt
+@api_view(['GET','POST'])
+def setSupervisors(request):  #this service will save add and update coures details
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            datas = data["data"]
+            Resp=dbconn.system_js.fnsetSupervisors(datas)    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
         
-        except ValueError:
-            return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(responseObject, default=json_util.default))
-    else:        
-        return Response("failed")
-
-
-#service function for Add User Nomination
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadOrderFormByIdView(request):  #this service will load Drafted courses
+def removeExistingSupervisors(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -163,10 +184,10 @@ def loadOrderFormByIdView(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            responseObject = dbconn.system_js.fnLoadOrderFormById(data['ofId'])
-        
+            datas = data["data"]
+            Resp=dbconn.system_js.fnremoveExistingSupervisors(datas)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(responseObject, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
     else:        
-        return Response("failed")
+        return Response(json.dumps("failed", default=json_util.default))

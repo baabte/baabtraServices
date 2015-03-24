@@ -109,9 +109,10 @@ def FnGetCompanyDetailsView(request):
     data = JSONParser().parse(stream)
     if request.method == 'POST':
         try:
+            #docs_list  = dbconn.system_js.fnGetCompanyDetails(data['roleId'],data['companyId'],data['firstId'],data['type'],data['lastId'],data['searchText']);
             docs_list  = dbconn.system_js.fnGetCompanyDetails(data['roleId'],data['companyId'],data['range'],data['prefix']);
         except:
-            return Response(request.body)
+            return Response("failure")
         return Response(json.dumps(docs_list, default=json_util.default))
     else:
         return Response(docs_list)       
@@ -264,18 +265,14 @@ def SaveNewRoleMenu(request): #for Insert or update menu items for specific user
     if request.method == 'POST':
         stream = StringIO(request.body)#reads the data passed along with the request
         data = JSONParser().parse(stream)#converts to json
-        response=""
-        
         test(data["menus"],None)
+        
+        userResponse = dbconn.system_js.fnSaveUserMenuMapping(data['rm_id'],data['role_id'],data['menus']); 
 
-        if response=="":
-            try:            
-                response=dbconn.system_js.fnSaveUserMenuMapping(data['rm_id'],data['role_id'],data['menus']); 
-                response=dbconn.system_js.fnSaveRoleMenuMapping(data['rm_id'],data['role_id'],data['menus']);
-            except:
-                return Response(json.dumps("", default=json_util.default))
+        roleResponse = dbconn.system_js.fnSaveRoleMenuMapping(data['rm_id'],data['role_id'],data['menus']);
+        
         pass
-        return Response(StringIO(response))
+        return Response(StringIO(roleResponse))
     else:
         return Response(request.body)
 
@@ -323,6 +320,7 @@ def LoadUsers(request): #Loading All the users based on compny id supplied
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         try:
+            #docs_list  = dbconn.system_js.fnSearchUsers(data['companyId'],data['firstId'],data["type"],data['lastId'],data["searchText"]);
             docs_list  = dbconn.system_js.fnSearchUsers(ObjectId(data['companyId']),data['prefix'],data["range"]);
         except:
             return Response(json.dumps("", default=json_util.default))
@@ -1194,7 +1192,28 @@ def RegisterUserView(request):
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
-        return Response("failure")                 
+        return Response("failure")
+
+#created by Jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def RegisterMultipleUsersView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        
+        for user in data["users"]:   
+            result=dbconn.system_js.fnRegisterUser(user);
+
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")              
 
 
 #created by Arun.R.Menon
