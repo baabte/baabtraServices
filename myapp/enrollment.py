@@ -108,7 +108,7 @@ def fnBulkEnroll(request):
 							#dataObj=json.load(dataObj)
 							dataObj['mandatoryData']=mandatoryData
 							
-							result=dbconn.system_js.fnRegisterUser(dataObj);
+							result = dbconn.system_js.fnRegisterUser(dataObj);
 			ObjList.append(json.dumps(result, default=json_util.default))
 	finally:
 		os.unlink(tmp)  # delete the temp file no matter what

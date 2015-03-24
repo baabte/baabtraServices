@@ -35,4 +35,3 @@ def loadUserNotificationView(request):  #this service will save add and update c
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
-#fnAddUserNomination
