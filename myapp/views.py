@@ -265,18 +265,14 @@ def SaveNewRoleMenu(request): #for Insert or update menu items for specific user
     if request.method == 'POST':
         stream = StringIO(request.body)#reads the data passed along with the request
         data = JSONParser().parse(stream)#converts to json
-        response=""
-        
         test(data["menus"],None)
+        
+        userResponse = dbconn.system_js.fnSaveUserMenuMapping(data['rm_id'],data['role_id'],data['menus']); 
 
-        if response=="":
-            try:            
-                response=dbconn.system_js.fnSaveUserMenuMapping(data['rm_id'],data['role_id'],data['menus']); 
-                response=dbconn.system_js.fnSaveRoleMenuMapping(data['rm_id'],data['role_id'],data['menus']);
-            except:
-                return Response(json.dumps("", default=json_util.default))
+        roleResponse = dbconn.system_js.fnSaveRoleMenuMapping(data['rm_id'],data['role_id'],data['menus']);
+        
         pass
-        return Response(StringIO(response))
+        return Response(StringIO(roleResponse))
     else:
         return Response(request.body)
 

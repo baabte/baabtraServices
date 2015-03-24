@@ -57,10 +57,10 @@ def updateUserProfileData(request):  #this service will save add and update cour
         return Response(json.dumps("failed", default=json_util.default))
 
 
-
+# this service used for change password of the user
 @csrf_exempt
 @api_view(['GET','POST'])
-def changeUserPassword(request):  #this service will save add and update coures details
+def changeUserPassword(request):  
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
