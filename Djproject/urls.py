@@ -181,7 +181,8 @@ urlpatterns = patterns('',
     url(r'^fnloadCoursesMaterials4menteeAtt/$', 'myapp.Batches.fnloadCoursesMaterials4menteeAtt', name='fnloadCoursesMaterials4menteeAtt'),
     url(r'^removeItemFromAgroup/$', 'myapp.globalSettings.removeItemFromAgroup', name='removeItemFromAgroup'),
     url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
-    url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors')
+    url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors'),
+    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 

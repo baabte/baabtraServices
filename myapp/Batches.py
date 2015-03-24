@@ -200,7 +200,7 @@ def fnloadCourseMaterial4multiSelect(request):  #this service will load Drafted 
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            courseDetils = dbconn.system_js.fnLoadCourseMaterialsById(ObjectId(data['courseId']),ObjectId(data['urmId']))
+            courseDetils = dbconn.system_js.fnLoadCourseMaterialsById(data['courseId'],data['urmId'])
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(courseDetils, default=json_util.default))
