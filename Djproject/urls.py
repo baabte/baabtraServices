@@ -99,6 +99,7 @@ urlpatterns = patterns('',
     url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement'),  #by Arun
     url(r'^SaveExitCriteria/$', 'myapp.views.SaveExitCriteriaView', name='SaveExitCriteria'),  #by Arun
     url(r'^RegisterUser/$', 'myapp.views.RegisterUserView', name='RegisterUser'),  #by Arun
+    url(r'^RegisterMultipleUsers/$', 'myapp.views.RegisterMultipleUsersView', name='RegisterMultipleUsers'),  #by Register Multiple Users
     url(r'^FetchUserDetails/$', 'myapp.views.FetchUserDetailsView', name='FetchUserDetails'),  #by Arun
     url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria'), #by Arun
     url(r'^saveCourseObject/$', 'myapp.course.saveCourseObjectView', name='saveCourseObject'), #for save course details, added by jihin
