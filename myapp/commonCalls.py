@@ -14,10 +14,10 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 
-#creater :jihin
+#creater :Midhun Sudhakar
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadUserNotificationView(request):  #this service will save add and update coures details
+def GetCode(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -27,12 +27,11 @@ def loadUserNotificationView(request):  #this service will save add and update c
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-
-            notificationDetails = dbconn.system_js.fnLoadUserNotification(data['rmId'])    
+            datas = data["data"]
+            returndata=dbconn.system_js.fnGetCode(datas)     
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(notificationDetails, default=json_util.default))
+        return Response(json.dumps(returndata, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
-#fnAddUserNomination
