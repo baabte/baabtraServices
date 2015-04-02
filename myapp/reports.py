@@ -14,10 +14,10 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 
-#creater :jihin
+#to load the user attendance report
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadUserNotificationView(request):  #this service will save add and update coures details
+def fnLoadMenteesAttReport(request):  #this service will load Drafted courses
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -27,11 +27,10 @@ def loadUserNotificationView(request):  #this service will save add and update c
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-
-            notificationDetails = dbconn.system_js.fnLoadUserNotification(data['rmId'])    
+            courseDetils = dbconn.system_js.fnLoadMenteesAttReport(data['courseId'],data['userId'])
+        
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(notificationDetails, default=json_util.default))
+        return Response(json.dumps(courseDetils, default=json_util.default))
     else:        
-        return Response(json.dumps("failed", default=json_util.default))
-
+        return Response("failed")
