@@ -35,7 +35,7 @@ def sendEmailSmsNotification(request):  #this service will add & update course e
             data['template']="A Mentee  Account has been created for you in " + data['userName']
             data['Heading'] = "Welcome to " + data['userName']
             data['user']=data['menteeName']
-            #data['LOGO_PATH']=settings.LOGO_PATH
+            data['LOGO_PATH']=settings.LOGO_PATH
             message = get_template(settings.TEMPLATE_DIRS[0]+'/user_registration.html').render(Context(data))
             #send_mail('An account is created for you',message,settings.EMAIL_HOST_USER,[data['menteeEmail']],fail_silently=False,html_message=message)#for sending mail to mentee 
             email= EmailMessage('An account is created for you',message,settings.EMAIL_HOST_USER,[data['menteeEmail']])

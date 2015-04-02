@@ -99,6 +99,7 @@ urlpatterns = patterns('',
     url(r'^DeleteCourseElement/$', 'myapp.views.DeleteCourseElementView', name='DeleteCourseElement'),  #by Arun
     url(r'^SaveExitCriteria/$', 'myapp.views.SaveExitCriteriaView', name='SaveExitCriteria'),  #by Arun
     url(r'^RegisterUser/$', 'myapp.views.RegisterUserView', name='RegisterUser'),  #by Arun
+    url(r'^RegisterMultipleUsers/$', 'myapp.views.RegisterMultipleUsersView', name='RegisterMultipleUsers'),  #by Register Multiple Users
     url(r'^FetchUserDetails/$', 'myapp.views.FetchUserDetailsView', name='FetchUserDetails'),  #by Arun
     url(r'^DeleteExitCriteria/$', 'myapp.views.DeleteExitCriteriaView', name='DeleteExitCriteria'), #by Arun
     url(r'^saveCourseObject/$', 'myapp.course.saveCourseObjectView', name='saveCourseObject'), #for save course details, added by jihin
@@ -192,7 +193,8 @@ urlpatterns = patterns('',
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
-    url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType')
+    url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType'),
+    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
