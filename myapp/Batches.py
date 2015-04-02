@@ -280,7 +280,7 @@ def fnAssignCourseMaterials4Batch(request):  #this service will load Drafted cou
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            courseDetils = dbconn.system_js.fnAssignCourseMaterials4Batch(data['batchMappingId'],data['courseObj'],data['companyId'])
+            courseDetils = dbconn.system_js.fnAssignCourseMaterials4Batch(data['batchMappingId'],data['courseObj'])
         
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))

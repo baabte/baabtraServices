@@ -189,6 +189,11 @@ urlpatterns = patterns('',
     url(r'^removeItemFromAgroup/$', 'myapp.globalSettings.removeItemFromAgroup', name='removeItemFromAgroup'),
     url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
     url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors'),
+    url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
+    url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
+    url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
+    url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
+    url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType'),
     url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
