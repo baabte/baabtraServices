@@ -189,7 +189,8 @@ urlpatterns = patterns('',
     url(r'^removeItemFromAgroup/$', 'myapp.globalSettings.removeItemFromAgroup', name='removeItemFromAgroup'),
     url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
     url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors'),
-    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport')
+    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
+    url(r'^fnLoadCustomFormTemplates/$', 'myapp.custom-form.fnLoadCustomFormTemplates', name='fnLoadCustomFormTemplates')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
