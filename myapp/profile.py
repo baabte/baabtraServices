@@ -78,3 +78,26 @@ def changeUserPassword(request):
         return Response(json.dumps(changePwdResponse, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+
+
+# this service used for change password of the user
+@csrf_exempt
+@api_view(['GET','POST'])
+def changelanguage(request):  
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            datas = data["data"]
+            changelanguageResponse=dbconn.system_js.fnchangelanguage(datas)    
+            
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(changelanguageResponse, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
