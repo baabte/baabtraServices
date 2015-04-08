@@ -349,3 +349,67 @@ def fnloadMentees4batchAtt(request):  #this service will load Drafted courses
         return Response(json.dumps(courseDetils, default=json_util.default))
     else:        
         return Response("failed")
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def deleteBatch(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            batchDetails=dbconn.system_js.fnDeleteBatch(data['id'],data['cmpId'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def editBatch(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            batchDetails=dbconn.system_js.fnLoadExistingCoursesUnderBatch(data['id'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def updateBatch(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            data['batchObj']['_id']=ObjectId(data['batchObj']['_id'])
+            data['batchObj']['crmId'] = ObjectId(data['batchObj']['crmId'])
+            data['batchObj']['urmId'] = ObjectId(data['batchObj']['urmId'])
+            data['batchObj']['companyId'] = ObjectId(data['batchObj']['companyId'])
+            print data['batchObj']
+            batchDetails=dbconn.system_js.fnUpdateBatch(data['batchObj'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
