@@ -200,7 +200,9 @@ urlpatterns = patterns('',
     url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType'),
     url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
     url(r'^saveMenuColor/$', 'myapp.globalSettings.saveMenuColor', name='saveMenuColor'),
-    url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds')
+    url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds'),
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus')
+
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
