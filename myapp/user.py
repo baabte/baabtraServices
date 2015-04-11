@@ -170,3 +170,28 @@ def loadOrderFormByIdView(request):  #this service will load Drafted courses
         return Response(json.dumps(responseObject, default=json_util.default))
     else:        
         return Response("failed")
+
+#service function to update the status of an order form
+@csrf_exempt
+@api_view(['GET','POST'])
+def updateOrderFormStatusView(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            data['orderForm']['_id'] = ObjectId(data['orderForm']['_id'])
+            data['orderForm']['companyId'] = ObjectId(data['orderForm']['companyId'])
+            data['orderForm']['crmId'] = ObjectId(data['orderForm']['crmId'])
+            data['orderForm']['urmId'] = ObjectId(data['orderForm']['urmId'])
+            responseObject = dbconn.system_js.fnUpdateOrderFormStatus(data['orderForm'])
+        
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(responseObject, default=json_util.default))
+    else:        
+        return Response("failed")
