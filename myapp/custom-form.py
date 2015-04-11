@@ -31,3 +31,4 @@ def fnLoadCustomFormTemplates(request):
         return Response(json.dumps(CourseElementFields, default=json_util.default))
     else:        
         return Response("failed")
+
