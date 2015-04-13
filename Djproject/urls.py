@@ -128,6 +128,9 @@ urlpatterns = patterns('',
     url(r'^MarkAttendence/$', 'myapp.attendenceRelatedViews.MarkAttendenceView', name='MarkAttendence'), #by Arun
     url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
+    url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
+
+
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -189,12 +192,18 @@ urlpatterns = patterns('',
     url(r'^removeItemFromAgroup/$', 'myapp.globalSettings.removeItemFromAgroup', name='removeItemFromAgroup'),
     url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
     url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors'),
+    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
+    url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
+    url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
+    url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
     url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
     url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType'),
-    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport')
+    url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
+    url(r'^saveMenuColor/$', 'myapp.globalSettings.saveMenuColor', name='saveMenuColor'),
+    url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
