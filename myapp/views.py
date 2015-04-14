@@ -247,7 +247,11 @@ def SaveNewRoleMenu(request): #for Insert or update menu items for specific user
         if sub<len(menu):
             if 'fkMenuId' in menu[sub]:
                 menu[sub]['fkMenuId']=ObjectId(menu[sub]['fkMenuId'])
-                del menu[sub]['actionMaster']
+                try:
+                    pass
+                except Exception, e:
+                    raise e
+                
                 if 'actionStatus' in menu[sub]:
                     del menu[sub]['actionStatus']
                     pass

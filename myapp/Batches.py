@@ -362,7 +362,7 @@ def deleteBatch(request):  #this service will add & update course elements
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            batchDetails=dbconn.system_js.fnDeleteBatch(data['id'])    
+            batchDetails=dbconn.system_js.fnDeleteBatch(data['id'],data['cmpId'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(batchDetails, default=json_util.default))
