@@ -128,6 +128,9 @@ urlpatterns = patterns('',
     url(r'^MarkAttendence/$', 'myapp.attendenceRelatedViews.MarkAttendenceView', name='MarkAttendence'), #by Arun
     url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
+    url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
+
+
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -205,8 +208,9 @@ urlpatterns = patterns('',
     url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
     url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
-    url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers')
-
+    url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
+    url(r'^saveAttendanceAlertSettings/$', 'myapp.globalSettings.saveAttendanceAlertSettings', name='saveAttendanceAlertSettings'),
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
