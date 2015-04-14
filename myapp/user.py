@@ -188,7 +188,7 @@ def updateOrderFormStatusView(request):  #this service will load Drafted courses
             data['orderForm']['companyId'] = ObjectId(data['orderForm']['companyId'])
             data['orderForm']['crmId'] = ObjectId(data['orderForm']['crmId'])
             data['orderForm']['urmId'] = ObjectId(data['orderForm']['urmId'])
-            responseObject = dbconn.system_js.fnUpdateOrderFormStatus(data['orderForm'])
+            responseObject = dbconn.system_js.fnUpdateOrderFormStatus(data['orderForm'], data['actTransactions'], data['paymentReceipt'])
         
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
