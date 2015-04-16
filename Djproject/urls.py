@@ -210,7 +210,8 @@ urlpatterns = patterns('',
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
     url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
     url(r'^saveAttendanceAlertSettings/$', 'myapp.globalSettings.saveAttendanceAlertSettings', name='saveAttendanceAlertSettings'),
-    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus')
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
+    url(r'^setOrderFormConfOrNot/$', 'myapp.globalSettings.setOrderFormConfOrNot', name='setOrderFormConfOrNot')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
