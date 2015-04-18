@@ -201,8 +201,9 @@ urlpatterns = patterns('',
     url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
     url(r'^saveMenuColor/$', 'myapp.globalSettings.saveMenuColor', name='saveMenuColor'),
     url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds'),
-    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus')
-
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
+    url(r'^loadCourseToWebSite/$', 'myapp.publicAPIs.loadCourseToWebSiteView', name='loadCourseToWebSite'),
+    url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails')#added by jihin for get global values
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
