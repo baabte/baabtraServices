@@ -188,10 +188,90 @@ def updateOrderFormStatusView(request):  #this service will load Drafted courses
             data['orderForm']['companyId'] = ObjectId(data['orderForm']['companyId'])
             data['orderForm']['crmId'] = ObjectId(data['orderForm']['crmId'])
             data['orderForm']['urmId'] = ObjectId(data['orderForm']['urmId'])
-            responseObject = dbconn.system_js.fnUpdateOrderFormStatus(data['orderForm'])
+            responseObject = dbconn.system_js.fnUpdateOrderFormStatus(data['orderForm'], data['actTransactions'], data['paymentReceipt'])
         
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(responseObject, default=json_util.default))
     else:        
         return Response("failed")
+
+#service function to load the verified users from training request
+@csrf_exempt
+@api_view(['GET','POST'])
+def FnLoadVerifiedCandidates(request): 
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            responseObject = dbconn.system_js.fnLoadMenteesForApprove(data['companyId'],data['statusType'])
+        
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(responseObject, default=json_util.default))
+    else:        
+        return Response("failed")
+
+#created by Akshath
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnenrollSingleUser(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)   
+            result=dbconn.system_js.fnRegisterUser(data['regObject']);
+        except ValueError:
+            return Response(json.dumps(result, default=json_util.default))
+        dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
+        return Response(json.dumps(result, default=json_util.default))
+
+        # return Response("success")            
+    else:        
+        return Response("failure")
+
+#created by Akshath
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnenrollBulkUsers(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            for user in data['regObject']['mandatoryData']:
+                mandatoryData={}
+                mandatoryData['firstName']=user['firstName']
+                mandatoryData['lastName']=user['lastName']
+                mandatoryData['dob']=user['dob']
+                mandatoryData['password']=user['eMail']
+                mandatoryData['eMail']=user['eMail']
+                data['regObject']['mandatoryData']=mandatoryData
+                try:
+                    result=dbconn.system_js.fnRegisterUser(data['regObject'])
+                except ValueError:
+                    return Response(json.dumps(ValueError, default=json_util.default))
+                data['courseObj']['index']=user['index']
+                result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
+            
+        except ValueError:
+            return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+
+        # return Response("success")            
+    else:        
+        return Response("failure")
