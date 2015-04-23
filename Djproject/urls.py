@@ -198,6 +198,7 @@ urlpatterns = patterns('',
     url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
     url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
     url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
+    url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for editing batches
     url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
