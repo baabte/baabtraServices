@@ -206,11 +206,15 @@ urlpatterns = patterns('',
     url(r'^saveMenuColor/$', 'myapp.globalSettings.saveMenuColor', name='saveMenuColor'),
     url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds'),
     url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
+    url(r'^loadCourseToWebSite/$', 'myapp.publicAPIs.loadCourseToWebSiteView', name='loadCourseToWebSite'),
+    url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails'),#added by jihin for get global values
     url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
     url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
     url(r'^saveAttendanceAlertSettings/$', 'myapp.globalSettings.saveAttendanceAlertSettings', name='saveAttendanceAlertSettings'),
-    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus')
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
+    url(r'^setOrderFormConfOrNot/$', 'myapp.globalSettings.setOrderFormConfOrNot', name='setOrderFormConfOrNot'),
+    url(r'^FetchCandidateReport/$', 'myapp.reports.FetchCandidateReport', name='FetchCandidateReport')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
