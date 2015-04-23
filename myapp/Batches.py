@@ -413,3 +413,22 @@ def updateBatch(request):  #this service will add & update course elements
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
+#created by: vineeth C
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadCoureBatchByBatchIdView(request):  #this service will add & update course elements
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            batchDetails=dbconn.system_js.fnLoadCoureBatchByBatchId(data['coureBatchId'],data['companyId'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
