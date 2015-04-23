@@ -292,10 +292,31 @@ def FetchUsersToCourseAllocateView(request):  #this service will load Drafted co
             companyId=data["companyId"]
             firstId=data['firstId']
             lastId=data['lastId']
-            result = dbconn.system_js.fnFetchUsersToCourseAllocate(companyId,firstId,data['type'],lastId)
+            searchKey=data['searchKey']
+            result = dbconn.system_js.fnFetchUsersToCourseAllocate(companyId,firstId,data['type'],lastId,searchKey)
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(result, default=json_util.default))
     else:        
         return Response("failed")
 
+
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def AllocateUsersToCourseView(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            result = dbconn.system_js.fnAllocateUsersToCourse(data)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
