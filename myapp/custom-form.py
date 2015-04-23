@@ -12,24 +12,23 @@ import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
+from django.core.mail import EmailMessage
 
-#service function for Add User Nomination
+#function to load the custom templates from db
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadCourseToWebSiteView(request):  #this service will load Drafted courses
+def fnLoadCustomFormTemplates(request):  
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
+    #get a connection to our database 
     dbconn = db[settings.MONGO_DB]
 
     if request.method == 'POST':
         try:
-            stream = StringIO(request.body)
-            data = JSONParser().parse(stream)
-            responseObject = dbconn.system_js.fnLoadCourseToWebSite(data['companyId'])
+            CourseElementFields = dbconn.system_js.fnLoadCustomFormTemplates()
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-
-        return Response(json.dumps(responseObject, default=json_util.default))
+        return Response(json.dumps(CourseElementFields, default=json_util.default))
     else:        
         return Response("failed")
+
