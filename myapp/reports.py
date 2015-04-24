@@ -57,6 +57,7 @@ def FetchCandidateReport(request):  #this service will load Drafted courses
     else:        
         return Response("failed")
 
+<<<<<<< HEAD
 #to load the user attendance report for batch
 @csrf_exempt
 @api_view(['GET','POST'])
@@ -83,6 +84,13 @@ def fnLoadAllBatches4Report(request):  #this service will load Drafted courses
 @csrf_exempt
 @api_view(['GET','POST'])
 def fnLoadBatchAttReport(request):  #this service will load Drafted courses
+=======
+
+#to load the user attendance report
+@csrf_exempt
+@api_view(['GET','POST'])
+def FetchCandidateRegisteredReport(request):  #this service will load Drafted courses
+>>>>>>> 618f26989a5584b4ab859623269b386b4da9814e
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -92,7 +100,11 @@ def fnLoadBatchAttReport(request):  #this service will load Drafted courses
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
+<<<<<<< HEAD
             courseCandidateList = dbconn.system_js.fnLoadBatchAttReport(data['filterObj'])
+=======
+            courseCandidateList = dbconn.system_js.fnFetchCandidateRegistrationReport(data['data'])
+>>>>>>> 618f26989a5584b4ab859623269b386b4da9814e
         
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
