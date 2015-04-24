@@ -151,6 +151,8 @@ urlpatterns = patterns('',
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
+    url(r'^FetchUsersToCourseAllocate/$', 'myapp.user.FetchUsersToCourseAllocateView', name='FetchUsersToCourseAllocate'), #for bulk enrollment
+    url(r'^AllocateUsersToCourse/$', 'myapp.user.AllocateUsersToCourseView', name='AllocateUsersToCourse'), #for bulk enrollment
     url(r'^addUserNomination/$', 'myapp.user.addUserNominationView', name='addUserNomination'), #for add User Nomination
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
     url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
@@ -202,6 +204,7 @@ urlpatterns = patterns('',
     url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
     url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
     url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
+    url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for editing batches
     url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
@@ -219,7 +222,9 @@ urlpatterns = patterns('',
     url(r'^saveAttendanceAlertSettings/$', 'myapp.globalSettings.saveAttendanceAlertSettings', name='saveAttendanceAlertSettings'),
     url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
     url(r'^setOrderFormConfOrNot/$', 'myapp.globalSettings.setOrderFormConfOrNot', name='setOrderFormConfOrNot'),
-    url(r'^FetchCandidateReport/$', 'myapp.reports.FetchCandidateReport', name='FetchCandidateReport')
+    url(r'^FetchCandidateReport/$', 'myapp.reports.FetchCandidateReport', name='FetchCandidateReport'),
+    url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
+    url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
