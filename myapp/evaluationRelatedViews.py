@@ -45,7 +45,7 @@ def EvaluateAnswerView(request):  #this service will evalute the question respon
     if request.method == 'POST':   
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)   
-        result=dbconn.system_js.fnEvaluateAnswer(data);
+        result = dbconn.system_js.fnEvaluateAnswer(data['userCourseMappingId'], data['element'], data['elementOrder']);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
