@@ -413,10 +413,10 @@ def updateBatch(request):  #this service will add & update course elements
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
-#created by: vineeth C
+#created by: Jihin
 @csrf_exempt
 @api_view(['GET','POST'])
-def LoadCoureBatchByBatchIdView(request):  #this service will add & update course elements
+def LoadCoureBatchByBatchIdView(request):  #this service will load batch details by batch id
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -430,5 +430,45 @@ def LoadCoureBatchByBatchIdView(request):  #this service will add & update cours
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(batchDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#created by: Jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def saveBatchTimelineChangesView(request):  #this service will load batch details by batch id
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            response = dbconn.system_js.fnSaveBatchTimelineChanges(data['coureBatchId'],data['courseTimeline'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(response, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#created by: Jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadUserCourseDetailsView(request):  #this service will load batch details by batch id
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetails = dbconn.system_js.fnLoadUserCourseDetails(data['usersList'],data['courseId'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetails, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
