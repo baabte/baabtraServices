@@ -218,6 +218,7 @@ urlpatterns = patterns('',
     url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
     url(r'^loadCourseToWebSite/$', 'myapp.publicAPIs.loadCourseToWebSiteView', name='loadCourseToWebSite'),
     url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails'),#added by jihin for get global values
+    url(r'^LoadInterviewQuestionBank/$', 'myapp.commonViews.LoadInterviewQuestionBankView', name='LoadInterviewQuestionBank'),#added by jihin for get global values
     url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
     url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
@@ -229,7 +230,7 @@ urlpatterns = patterns('',
     url(r'^fnLoadAllBatches4Report/$', 'myapp.reports.fnLoadAllBatches4Report', name='fnLoadAllBatches4Report'),
     url(r'^fnLoadBatchAttReport/$', 'myapp.reports.fnLoadBatchAttReport', name='fnLoadBatchAttReport'),
     url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
-    url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment')
+    # url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment')
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
