@@ -99,7 +99,7 @@ def fnLoadMenteesForApproveView(request):  #this service will load Drafted cours
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            result = dbconn.system_js.fnLoadMenteesForApprove(data["companyId"], data["statusType"])
+            result = dbconn.system_js.fnLoadMenteesForApprove(data["companyId"], data["statusType"], data['pageNumber'], data['nPerPage'])
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(result, default=json_util.default))
