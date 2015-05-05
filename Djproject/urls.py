@@ -129,7 +129,7 @@ urlpatterns = patterns('',
     url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
     url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
-    url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
+    # url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
     url(r'^fnLoadMenteesBlindFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesBlindFromBatch', name='fnLoadMenteesBlindFromBatch'), #by lijin
     url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
     url(r'^updateCandidatesAttendance/$', 'myapp.attendenceRelatedViews.updateCandidatesAttendance', name='updateCandidatesAttendance'), #by lijin
@@ -204,7 +204,9 @@ urlpatterns = patterns('',
     url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
     url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
     url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
-    url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for editing batches
+    url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for Load Coure Batch By Batch Id
+    url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
+    url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
     url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
@@ -216,6 +218,7 @@ urlpatterns = patterns('',
     url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
     url(r'^loadCourseToWebSite/$', 'myapp.publicAPIs.loadCourseToWebSiteView', name='loadCourseToWebSite'),
     url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails'),#added by jihin for get global values
+    url(r'^LoadInterviewQuestionBank/$', 'myapp.commonViews.LoadInterviewQuestionBankView', name='LoadInterviewQuestionBank'),#added by jihin for get global values
     url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
     url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
@@ -227,7 +230,11 @@ urlpatterns = patterns('',
     url(r'^fnLoadAllBatches4Report/$', 'myapp.reports.fnLoadAllBatches4Report', name='fnLoadAllBatches4Report'),
     url(r'^fnLoadBatchAttReport/$', 'myapp.reports.fnLoadBatchAttReport', name='fnLoadBatchAttReport'),
     url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
-    url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment')
+    url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
+    url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
+    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank')
+
+
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 
