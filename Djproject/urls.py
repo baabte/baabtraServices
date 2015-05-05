@@ -211,6 +211,7 @@ urlpatterns = patterns('',
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
+    url(r'^getStatus/$', 'myapp.commonCalls.getStatus', name='getStatus'), #by lijin for online check
     url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType'),
     url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
     url(r'^saveMenuColor/$', 'myapp.globalSettings.saveMenuColor', name='saveMenuColor'),
