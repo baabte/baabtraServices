@@ -226,10 +226,10 @@ urlpatterns = patterns('',
     url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
     url(r'^setOrderFormConfOrNot/$', 'myapp.globalSettings.setOrderFormConfOrNot', name='setOrderFormConfOrNot'),
     url(r'^FetchCandidateReport/$', 'myapp.reports.FetchCandidateReport', name='FetchCandidateReport'),
-    url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnLoadAllBatches4Report/$', 'myapp.reports.fnLoadAllBatches4Report', name='fnLoadAllBatches4Report'),
     url(r'^fnLoadBatchAttReport/$', 'myapp.reports.fnLoadBatchAttReport', name='fnLoadBatchAttReport'),
     url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
+
     url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
     url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank')
