@@ -157,6 +157,9 @@ urlpatterns = patterns('',
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
     url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
     url(r'^loadOrderFormById/$', 'myapp.user.loadOrderFormByIdView', name='loadOrderFormById'), #for load Order Form By Id 
+    
+    url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
+    
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
     url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
     url(r'^addCoursesToBatch/$', 'myapp.Batches.addCoursesToBatch', name='addCoursesToBatch'), #for adding courses to batch
