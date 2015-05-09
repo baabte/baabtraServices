@@ -253,20 +253,14 @@ def fnenrollBulkUsers(request):
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            for user in data['regObject']['mandatoryData']:
-                mandatoryData={}
-                mandatoryData['firstName']=user['firstName']
-                mandatoryData['lastName']=user['lastName']
-                mandatoryData['dob']=user['dob']
-                mandatoryData['password']=user['eMail']
-                mandatoryData['eMail']=user['eMail']
-                data['regObject']['mandatoryData']=mandatoryData
+            for user in data['listData']:
+
                 try:
-                    result=dbconn.system_js.fnRegisterUser(data['regObject'])
+                    result=dbconn.system_js.fnRegisterUser(user['selectedUser'])
                 except ValueError:
                     return Response(json.dumps(ValueError, default=json_util.default))
-                data['courseObj']['index']=user['index']
-                result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
+                # data['courseObj']['index']=user['index']
+                result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(user['orderFormData'],user['selectedUser']['loggedusercrmid'])
             
         except ValueError:
             return Response(json.dumps(result, default=json_util.default))
