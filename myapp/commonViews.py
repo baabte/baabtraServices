@@ -173,3 +173,39 @@ def LoadUsersUnderRoleView(request):
         return Response(json.dumps(userResponse, default=json_util.default))
     else:    
         return Response("failure")
+
+#created by jihin
+#For Load Company Customer Details
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadCompanyCustomerDetailsView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        userResponse = dbconn.system_js.fnLoadCompanyCustomerDetails(data["eMailId"], data['companyId'], data['type']);
+        return Response(json.dumps(userResponse, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#created by jihin
+#For Load Company Customer Details
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadInterviewQuestionBankView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        QuestionBank = dbconn.system_js.fnLoadInterviewQuestionBank(data['companyId'], data['noQuestion']);
+        return Response(json.dumps(QuestionBank, default=json_util.default))
+    else:    
+        return Response("failure")

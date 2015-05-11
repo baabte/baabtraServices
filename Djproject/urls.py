@@ -128,6 +128,14 @@ urlpatterns = patterns('',
     url(r'^MarkAttendence/$', 'myapp.attendenceRelatedViews.MarkAttendenceView', name='MarkAttendence'), #by Arun
     url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
+    url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
+    # url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
+    url(r'^fnLoadMenteesBlindFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesBlindFromBatch', name='fnLoadMenteesBlindFromBatch'), #by lijin
+    url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
+    url(r'^updateCandidatesAttendance/$', 'myapp.attendenceRelatedViews.updateCandidatesAttendance', name='updateCandidatesAttendance'), #by lijin
+    url(r'^fnLoadMenteesMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesMarkedAttendanceFromBatch', name='fnLoadMenteesMarkedAttendanceFromBatch'), #by lijin
+
+
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -143,10 +151,15 @@ urlpatterns = patterns('',
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
+    url(r'^FetchUsersToCourseAllocate/$', 'myapp.user.FetchUsersToCourseAllocateView', name='FetchUsersToCourseAllocate'), #for bulk enrollment
+    url(r'^AllocateUsersToCourse/$', 'myapp.user.AllocateUsersToCourseView', name='AllocateUsersToCourse'), #for bulk enrollment
     url(r'^addUserNomination/$', 'myapp.user.addUserNominationView', name='addUserNomination'), #for add User Nomination
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
     url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
     url(r'^loadOrderFormById/$', 'myapp.user.loadOrderFormByIdView', name='loadOrderFormById'), #for load Order Form By Id 
+    
+    url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
+    
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
     url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
     url(r'^addCoursesToBatch/$', 'myapp.Batches.addCoursesToBatch', name='addCoursesToBatch'), #for adding courses to batch
@@ -190,17 +203,44 @@ urlpatterns = patterns('',
     url(r'^setSupervisors/$', 'myapp.globalSettings.setSupervisors', name='setSupervisors'),
     url(r'^removeExistingSupervisors/$', 'myapp.globalSettings.removeExistingSupervisors', name='removeExistingSupervisors'),
     url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
+    url(r'^fnLoadCustomFormTemplates/$', 'myapp.custom-form.fnLoadCustomFormTemplates', name='fnLoadCustomFormTemplates'),
     url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
     url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
     url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
+    url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for Load Coure Batch By Batch Id
+    url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
+    url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
     url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
+    url(r'^getStatus/$', 'myapp.commonCalls.getStatus', name='getStatus'), #by lijin for online check
     url(r'^setMenuType/$', 'myapp.globalSettings.setMenuType', name='setMenuType'),
     url(r'^fnLoadMenteesAttReport/$', 'myapp.reports.fnLoadMenteesAttReport', name='fnLoadMenteesAttReport'),
     url(r'^saveMenuColor/$', 'myapp.globalSettings.saveMenuColor', name='saveMenuColor'),
-    url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds')
+    url(r'^saveSubMenuAndBackgrounds/$', 'myapp.globalSettings.saveSubMenuAndBackgrounds', name='saveSubMenuAndBackgrounds'),
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
+    url(r'^loadCourseToWebSite/$', 'myapp.publicAPIs.loadCourseToWebSiteView', name='loadCourseToWebSite'),
+    url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails'),#added by jihin for get global values
+    url(r'^LoadInterviewQuestionBank/$', 'myapp.commonViews.LoadInterviewQuestionBankView', name='LoadInterviewQuestionBank'),#added by jihin for get global values
+    url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
+    url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
+    url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
+    url(r'^saveAttendanceAlertSettings/$', 'myapp.globalSettings.saveAttendanceAlertSettings', name='saveAttendanceAlertSettings'),
+    url(r'^updateOrderFormStatus/$', 'myapp.user.updateOrderFormStatusView', name='updateOrderFormStatus'),
+    url(r'^setOrderFormConfOrNot/$', 'myapp.globalSettings.setOrderFormConfOrNot', name='setOrderFormConfOrNot'),
+    url(r'^FetchCandidateReport/$', 'myapp.reports.FetchCandidateReport', name='FetchCandidateReport'),
+    url(r'^fnLoadAllBatches4Report/$', 'myapp.reports.fnLoadAllBatches4Report', name='fnLoadAllBatches4Report'),
+    url(r'^fnLoadBatchAttReport/$', 'myapp.reports.fnLoadBatchAttReport', name='fnLoadBatchAttReport'),
+    url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
+    url(r'^FetchAllQuestionBundles/$', 'myapp.questionBankReletedViews.FetchAllQuestionBundlesView', name='FetchAllQuestionBundles'),
+    url(r'^ModifyQuestionBundles/$', 'myapp.questionBankReletedViews.ModifyQuestionBundlesView', name='ModifyQuestionBundles'),
+
+    url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
+    url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
+    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank')
+
+
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 

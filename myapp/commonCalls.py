@@ -35,3 +35,16 @@ def GetCode(request):  #this service will save add and update coures details
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
+
+
+csrf_exempt
+@api_view(['GET','POST'])
+def getStatus(request):  #this service will save add and update coures details
+    #connect to our local mongodb
+    # db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    # dbconn = db[settings.MONGO_DB]
+
+            
+    return Response(json.dumps("ok", default=json_util.default))
+
