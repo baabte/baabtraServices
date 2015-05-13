@@ -131,7 +131,7 @@ urlpatterns = patterns('',
     url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
     url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
-    url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
+    # url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
     url(r'^fnLoadMenteesBlindFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesBlindFromBatch', name='fnLoadMenteesBlindFromBatch'), #by lijin
     url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
     url(r'^updateCandidatesAttendance/$', 'myapp.attendenceRelatedViews.updateCandidatesAttendance', name='updateCandidatesAttendance'), #by lijin
@@ -235,6 +235,8 @@ urlpatterns = patterns('',
     url(r'^fnLoadAllBatches4Report/$', 'myapp.reports.fnLoadAllBatches4Report', name='fnLoadAllBatches4Report'),
     url(r'^fnLoadBatchAttReport/$', 'myapp.reports.fnLoadBatchAttReport', name='fnLoadBatchAttReport'),
     url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
+    url(r'^FetchAllQuestionBundles/$', 'myapp.questionBankReletedViews.FetchAllQuestionBundlesView', name='FetchAllQuestionBundles'),
+    url(r'^ModifyQuestionBundles/$', 'myapp.questionBankReletedViews.ModifyQuestionBundlesView', name='ModifyQuestionBundles'),
 
     url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
