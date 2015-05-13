@@ -253,20 +253,14 @@ def fnenrollBulkUsers(request):
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            for user in data['regObject']['mandatoryData']:
-                mandatoryData={}
-                mandatoryData['firstName']=user['firstName']
-                mandatoryData['lastName']=user['lastName']
-                mandatoryData['dob']=user['dob']
-                mandatoryData['password']=user['eMail']
-                mandatoryData['eMail']=user['eMail']
-                data['regObject']['mandatoryData']=mandatoryData
+            for user in data['listData']:
+
                 try:
-                    result=dbconn.system_js.fnRegisterUser(data['regObject'])
+                    result=dbconn.system_js.fnRegisterUser(user['selectedUser'])
                 except ValueError:
                     return Response(json.dumps(ValueError, default=json_util.default))
-                data['courseObj']['index']=user['index']
-                result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
+                # data['courseObj']['index']=user['index']
+                result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(user['orderFormData'],user['selectedUser']['loggedusercrmid'])
             
         except ValueError:
             return Response(json.dumps(result, default=json_util.default))
@@ -320,3 +314,28 @@ def AllocateUsersToCourseView(request):  #this service will load Drafted courses
         return Response(json.dumps(result, default=json_util.default))
     else:        
         return Response("failed")
+
+#created by Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def verifyCandidateByCourse(request):
+    #connect to mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            for user in data['listData']:
+
+                result=dbconn.system_js.fnUpdateOrderFormStatus4Verify(user['orderFormData'],user['crm'])
+            
+        except ValueError:
+            return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+
+        # return Response("success")            
+    else:        
+        return Response("failure")
