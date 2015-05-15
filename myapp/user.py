@@ -230,45 +230,45 @@ def fnenrollSingleUser(request):
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)   
-            result=dbconn.system_js.fnRegisterUser(data['regObject']);
+            result=dbconn.system_js.fnEnrollUser(data['regObject']);
         except ValueError:
             return Response(json.dumps(result, default=json_util.default))
-        dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
-        return Response(json.dumps(result, default=json_util.default))
+        # dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
+        # return Response(json.dumps(result, default=json_util.default))
 
         # return Response("success")            
     else:        
         return Response("failure")
 
-#created by Akshath
-@csrf_exempt
-@api_view(['GET','POST'])
-def fnenrollBulkUsers(request):
-    #connect to our local mongodb
-    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-    #get a connection to our database
-    dbconn = db[settings.MONGO_DB]
+# #created by Akshath
+# @csrf_exempt
+# @api_view(['GET','POST'])
+# def fnenrollBulkUsers(request):
+#     #connect to our local mongodb
+#     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+#     #get a connection to our database
+#     dbconn = db[settings.MONGO_DB]
     
-    if request.method == 'POST':
-        try:
-            stream = StringIO(request.body)
-            data = JSONParser().parse(stream)
-            for user in data['listData']:
+#     if request.method == 'POST':
+#         try:
+#             stream = StringIO(request.body)
+#             data = JSONParser().parse(stream)
+#             for user in data['listData']:
 
-                try:
-                    result=dbconn.system_js.fnRegisterUser(user['selectedUser'])
-                except ValueError:
-                    return Response(json.dumps(ValueError, default=json_util.default))
-                # data['courseObj']['index']=user['index']
-                result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(user['orderFormData'],user['selectedUser']['loggedusercrmid'])
+#                 try:
+#                     result=dbconn.system_js.fnEnrollUser(user['selectedUser'])
+#                 except ValueError:
+#                     return Response(json.dumps(ValueError, default=json_util.default))
+#                 # # data['courseObj']['index']=user['index']
+#                 # result=dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(user['orderFormData'],user['selectedUser']['loggedusercrmid'])
             
-        except ValueError:
-            return Response(json.dumps(result, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+#         except ValueError:
+#             return Response(json.dumps(result, default=json_util.default))
+#         return Response(json.dumps(result, default=json_util.default))
 
-        # return Response("success")            
-    else:        
-        return Response("failure")
+#         # return Response("success")            
+#     else:        
+#         return Response("failure")
 
 
 @csrf_exempt
