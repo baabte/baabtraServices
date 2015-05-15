@@ -123,6 +123,7 @@ urlpatterns = patterns('',
     url(r'^FetchRolesList/$', 'myapp.customFormRelatedViews.FetchRolesListView', name='FetchRolesList'), #by Arun for custom Form
     url(r'^FetchSpecificCustomForm/$', 'myapp.customFormRelatedViews.FetchSpecificCustomFormView', name='FetchSpecificCustomForm'), #by Arun for custom Form
     url(r'^getCurrentElement/$', 'myapp.candidateCourseRelated.getCurrentElement', name='getCurrentElement'), #by Lijin for managing candidate course full view
+    url(r'^getCandidateDetailsForCertificate/$', 'myapp.candidateCourseRelated.getCandidateDetailsForCertificate', name='getCandidateDetailsForCertificate'), #by Lijin for managing candidate certificate
     url(r'^SaveTestStartTime/$', 'myapp.testRelatedViews.SaveTestStartTimeView', name='SaveTestStartTime'), #by Arun
     url(r'^TestTimeReCheck/$', 'myapp.testRelatedViews.TestTimeReCheckView', name='TestTimeReCheck'), #by Arun
     url(r'^SubmitTest/$', 'myapp.testRelatedViews.SubmitTestView', name='SubmitTest'), #by Arun
