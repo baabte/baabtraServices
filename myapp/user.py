@@ -240,27 +240,6 @@ def fnenrollSingleUser(request):
     else:        
         return Response("failure")
 
-
-
-
-
-
-
-
-
-
-# except ValueError:
-#             return Response(json.dumps(result, default=json_util.default))
-#         dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
-#         return Response(json.dumps(result, default=json_util.default))
-
-#         # return Response("success")            
-#     else:        
-#         return Response("failure")
-
-
-        
-
 #created by Akshath
 @csrf_exempt
 @api_view(['GET','POST'])
