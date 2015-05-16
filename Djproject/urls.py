@@ -124,6 +124,7 @@ urlpatterns = patterns('',
     url(r'^FetchSpecificCustomForm/$', 'myapp.customFormRelatedViews.FetchSpecificCustomFormView', name='FetchSpecificCustomForm'), #by Arun for custom Form
     url(r'^getCurrentElement/$', 'myapp.candidateCourseRelated.getCurrentElement', name='getCurrentElement'), #by Lijin for managing candidate course full view
     url(r'^SaveTestStartTime/$', 'myapp.testRelatedViews.SaveTestStartTimeView', name='SaveTestStartTime'), #by Arun
+    url(r'^SaveTestStartTimeRandomExam/$', 'myapp.testRelatedViews.SaveTestStartTimeRandomExamView', name='SaveTestStartTimeRandomExam'), #by Arun
     url(r'^TestTimeReCheck/$', 'myapp.testRelatedViews.TestTimeReCheckView', name='TestTimeReCheck'), #by Arun
     url(r'^SubmitTest/$', 'myapp.testRelatedViews.SubmitTestView', name='SubmitTest'), #by Arun
     url(r'^courseElementsByAttendence/$', 'myapp.attendenceRelatedViews.courseElementsByAttendenceView', name='courseElementsByAttendence'), #by Arun
@@ -237,6 +238,7 @@ urlpatterns = patterns('',
     url(r'^FetchCandidateRegisteredReport/$', 'myapp.reports.FetchCandidateRegisteredReport', name='FetchCandidateRegisteredReport'),
     url(r'^FetchAllQuestionBundles/$', 'myapp.questionBankReletedViews.FetchAllQuestionBundlesView', name='FetchAllQuestionBundles'),
     url(r'^ModifyQuestionBundles/$', 'myapp.questionBankReletedViews.ModifyQuestionBundlesView', name='ModifyQuestionBundles'),
+    url(r'^FetchQuestionBankList/$', 'myapp.questionBankReletedViews.FetchQuestionBankListView', name='FetchQuestionBankList'),
 
     url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),

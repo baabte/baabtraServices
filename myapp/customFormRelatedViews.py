@@ -9,7 +9,7 @@ from bson import json_util
 from StringIO import StringIO
 from rest_framework.parsers import JSONParser
 import pymongo
-from pymongo import MongoClient
+# from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
