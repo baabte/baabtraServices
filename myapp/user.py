@@ -99,7 +99,7 @@ def fnLoadMenteesForApproveView(request):  #this service will load Drafted cours
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            result = dbconn.system_js.fnLoadMenteesForApprove(data["companyId"], data["statusType"], data['pageNumber'], data['nPerPage'])
+            result = dbconn.system_js.fnLoadMenteesForApprove(data["companyId"], data["statusType"], data['pageNumber'], data['nPerPage'], data['searchKey'])
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(result, default=json_util.default))
@@ -230,7 +230,7 @@ def fnenrollSingleUser(request):
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)   
-            result=dbconn.system_js.fnRegisterUser(data['regObject']);
+            result=dbconn.system_js.fnEnrollUser(data['regObject']);
         except ValueError:
             return Response(json.dumps(result, default=json_util.default))
         dbconn.system_js.fnUpdateOrderFormStatus4EnrollUser(data['courseObj'],data['regObject']['loggedusercrmid'])
@@ -256,7 +256,7 @@ def fnenrollBulkUsers(request):
             for user in data['listData']:
 
                 try:
-                    result=dbconn.system_js.fnRegisterUser(user['selectedUser'])
+                    result=dbconn.system_js.fnEnrollUser(user['selectedUser'])
                 except ValueError:
                     return Response(json.dumps(ValueError, default=json_util.default))
                 # data['courseObj']['index']=user['index']
