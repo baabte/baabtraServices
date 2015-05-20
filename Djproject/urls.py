@@ -180,6 +180,7 @@ urlpatterns = patterns('',
     url(r'^retrieveExistingConf/$', 'myapp.globalSettings.retrieveExistingConf', name='retrieveExistingConf'),
     url(r'^removeExistingEvaluator/$', 'myapp.globalSettings.removeExistingEvaluator', name='removeExistingEvaluator'),
     url(r'^updateExistingPrefix/$', 'myapp.globalSettings.updateExistingPrefix', name='updateExistingPrefix'),
+    url(r'^fnUpdateCandidateAgeLimit/$', 'myapp.globalSettings.fnUpdateCandidateAgeLimit', name='fnUpdateCandidateAgeLimit'),#created by lijin
     url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
     url(r'^AddDepartment/$', 'myapp.departmentView.AddDepartmentView', name='AddDepartment'),#for Add Department
     url(r'^LoadDepartment/$', 'myapp.departmentView.LoadDepartmentView', name='LoadDepartment'),#for load Department
