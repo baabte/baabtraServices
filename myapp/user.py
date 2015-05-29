@@ -106,6 +106,27 @@ def fnLoadMenteesForApproveView(request):  #this service will load Drafted cours
     else:        
         return Response("failed")
 
+
+#service function for Load Mentees For payment after enrolling  
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadMenteesForPayment(request):  #this service will load Drafted courses
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            result = dbconn.system_js.fnLoadMenteesForPayment(data["companyId"], data['pageNumber'], data['nPerPage'], data['searchKey'])
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
+
 #service function for Load Mentees For Approve  
 @csrf_exempt
 @api_view(['GET','POST'])
