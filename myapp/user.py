@@ -230,7 +230,7 @@ def FnLoadVerifiedCandidates(request):
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            responseObject = dbconn.system_js.fnLoadMenteesForApprove(data['companyId'],data['statusType'])
+            responseObject = dbconn.system_js.fnLoadMenteesForApprove(data['companyId'],data['statusType'],'','','','')
         
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
