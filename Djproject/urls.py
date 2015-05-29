@@ -157,6 +157,7 @@ urlpatterns = patterns('',
     url(r'^fnBulkEnroll/$', 'myapp.enrollment.fnBulkEnroll', name='fnBulkEnroll'), #for bulk enrollment
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
+    url(r'^fnLoadMenteesForPayment/$', 'myapp.user.fnLoadMenteesForPayment', name='fnLoadMenteesForPayment'), #for paymnet option after enrolling : Lijin - on 27-5-2015
     url(r'^FetchUsersToCourseAllocate/$', 'myapp.user.FetchUsersToCourseAllocateView', name='FetchUsersToCourseAllocate'), #for bulk enrollment
     url(r'^AllocateUsersToCourse/$', 'myapp.user.AllocateUsersToCourseView', name='AllocateUsersToCourse'), #for bulk enrollment
     url(r'^addUserNomination/$', 'myapp.user.addUserNominationView', name='addUserNomination'), #for add User Nomination
