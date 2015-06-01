@@ -126,7 +126,7 @@ def fnLoadCustomFormforRegistration(request):  #this service will load Custom Fo
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            customForms = dbconn.system_js.fnLoadCustomFormforRegistration(data['formId'])    
+            customForms = dbconn.system_js.fnLoadCustomFormforRegistration(data['companyId'], data['formName'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(customForms, default=json_util.default))
