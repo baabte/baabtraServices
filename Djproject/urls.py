@@ -221,6 +221,7 @@ urlpatterns = patterns('',
     url(r'^SaveCompanyCustomForm/$', 'myapp.custom-form.fnSaveCompanyCustomForm', name='SaveCompanyCustomForm'),
     url(r'^LoadCompanyCustomForm/$', 'myapp.custom-form.fnLoadCompanyCustomForm', name='LoadCompanyCustomForm'),
     url(r'^LoadCustomFormforRegistration/$', 'myapp.custom-form.fnLoadCustomFormforRegistration', name='LoadCustomFormforRegistration'),
+    url(r'^CustomFormUserRegistration/$', 'myapp.custom-form.fnCustomFormUserRegistration', name='CustomFormUserRegistration'),
     url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
     url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
     url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
