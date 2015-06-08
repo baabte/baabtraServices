@@ -134,6 +134,7 @@ urlpatterns = patterns('',
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
     url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
     url(r'^SaveExistingElement/$', 'myapp.course.SaveExistingElementView', name='SaveExistingElement'), #by Arun
+    url(r'^moveCourseElement/$', 'myapp.course.moveCourseElementView', name='moveCourseElement'), #by Jihin
     url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
     url(r'^fnLoadMenteesBlindFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesBlindFromBatch', name='fnLoadMenteesBlindFromBatch'), #by lijin
     url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
