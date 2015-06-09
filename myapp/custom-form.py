@@ -133,4 +133,25 @@ def fnLoadCustomFormforRegistration(request):  #this service will load Custom Fo
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
+#service function for ave Custom Form User Registration
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnCustomFormUserRegistration(request):  #this save Custom Form User Registration
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            responseObject = dbconn.system_js.fnCustomFormUserRegistration(data['orderObject'] ,data["rmId"])
+        
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(responseObject, default=json_util.default))
+    else:        
+        return Response("failed")
+
 
