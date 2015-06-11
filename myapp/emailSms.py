@@ -171,3 +171,27 @@ def sendNewUserRegistrationMail(request):
         return Response(json.dumps("failed", default=json_util.default))
 
 
+#created by: Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def sendBatchStatusUpdateMail(request):
+    #connect to our local mongodb
+    #db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    #dbconn = db[settings.MONGO_DB]
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            message = get_template(settings.TEMPLATE_DIRS[0]+'/responsive-batch-status-update-mail.html').render(Context(data))
+            email= EmailMessage('Batch status changed.',message,settings.EMAIL_HOST_USER,[data['recipient']])
+            #email.attach_file(settings.LOGO_PATH+'Logo.png')
+            email.content_subtype = 'html'
+            email.send();
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(data, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
