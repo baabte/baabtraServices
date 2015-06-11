@@ -133,7 +133,9 @@ urlpatterns = patterns('',
     url(r'^EvaluationFetch/$', 'myapp.evaluationRelatedViews.EvaluationFetchView', name='EvaluationFetch'), #by Arun
     url(r'^EvaluateAnswer/$', 'myapp.evaluationRelatedViews.EvaluateAnswerView', name='EvaluateAnswer'), #by Arun
     url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
+    url(r'^GetCourses/$', 'myapp.course.GetCoursesView', name='GetCourses'), #by Arun
     url(r'^SaveExistingElement/$', 'myapp.course.SaveExistingElementView', name='SaveExistingElement'), #by Arun
+    url(r'^moveCourseElement/$', 'myapp.course.moveCourseElementView', name='moveCourseElement'), #by Jihin
     url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
     url(r'^fnLoadMenteesBlindFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesBlindFromBatch', name='fnLoadMenteesBlindFromBatch'), #by lijin
     url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
@@ -183,6 +185,8 @@ urlpatterns = patterns('',
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
     url(r'^addEvaluator/$', 'myapp.globalSettings.addEvaluator', name='addEvaluator'),
+    url(r'^fnUpdateNotificationConfig/$', 'myapp.globalSettings.fnUpdateNotificationConfig', name='fnUpdateNotificationConfig'),#by:lijin , for updating notification configuration
+    url(r'^fnGetNotificationConfig/$', 'myapp.globalSettings.fnGetNotificationConfig', name='fnGetNotificationConfig'),#by:lijin , for getting notification configuration
     url(r'^GenerateCode/$', 'myapp.globalSettings.GenerateCode', name='GenerateCode'),
     url(r'^retrieveExistingConf/$', 'myapp.globalSettings.retrieveExistingConf', name='retrieveExistingConf'),
     url(r'^removeExistingEvaluator/$', 'myapp.globalSettings.removeExistingEvaluator', name='removeExistingEvaluator'),
@@ -225,6 +229,7 @@ urlpatterns = patterns('',
     url(r'^deleteBatch/$', 'myapp.Batches.deleteBatch', name='deleteBatch'), #for deleting batches
     url(r'^editBatch/$', 'myapp.Batches.editBatch', name='editBatch'), #for editing batches
     url(r'^updateBatch/$', 'myapp.Batches.updateBatch', name='updateBatch'), #for editing batches
+    url(r'^ChangeBatchStatus/$', 'myapp.Batches.ChangeBatchStatus', name='ChangeBatchStatus'), #for editing batches
     url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for Load Coure Batch By Batch Id
     url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
     url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
@@ -257,8 +262,9 @@ urlpatterns = patterns('',
 
     url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
-    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank')
+    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank'),
 
+    url(r'^sendNewUserRegistrationMail/$', 'myapp.emailSms.sendNewUserRegistrationMail', name='sendNewUserRegistrationMail') #by Lijin on 9-6-2015 for sending email notification on user reg.
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 

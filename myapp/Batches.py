@@ -405,7 +405,7 @@ def updateBatch(request):  #this service will add & update course elements
             data['batchObj']['crmId'] = ObjectId(data['batchObj']['crmId'])
             data['batchObj']['urmId'] = ObjectId(data['batchObj']['urmId'])
             data['batchObj']['companyId'] = ObjectId(data['batchObj']['companyId'])
-            print data['batchObj']
+            # print data['batchObj']
             batchDetails=dbconn.system_js.fnUpdateBatch(data['batchObj'])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
@@ -552,6 +552,29 @@ def fnGetUnallocatedCandidatesByCourse(request):  #this service will load batch 
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             courseDetails = dbconn.system_js.fnGetUnallocatedCandidatesByCourse(data['companyId'],data['courseId'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+        
+
+#created by: Arun
+@csrf_exempt
+@api_view(['GET','POST'])
+def ChangeBatchStatus(request):  #this service will load batch details by batch id
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetails = dbconn.system_js.fnChangeBatchStatus(data)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(courseDetails, default=json_util.default))

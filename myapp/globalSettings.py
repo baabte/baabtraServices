@@ -333,3 +333,47 @@ def fnUpdateCandidateAgeLimit(request):  #this service will save add and update 
         return Response(json.dumps(Resp, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+
+
+#created by Lijin on 8-5-2015 for fetching notification configuration
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnGetNotificationConfig(request):  #this service will save add and update coures details
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            # data = data["data"]
+            Resp=dbconn.system_js.fnGetNotificationConfig(data['companyId'],data['configType'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+#created by Lijin on 8-5-2015 for fetching notification configuration
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnUpdateNotificationConfig(request):  #this service will save add and update coures details
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            # data = data["data"]
+            Resp=dbconn.system_js.fnUpdateNotificationConfig(data['companyId'],data['rmId'],data['config'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(Resp, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
