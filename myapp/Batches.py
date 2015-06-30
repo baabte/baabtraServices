@@ -561,7 +561,7 @@ def fnGetUnallocatedCandidatesByCourse(request):  #this service will load batch 
 
         
 
-#created by: Lijin
+#created by: Arun
 @csrf_exempt
 @api_view(['GET','POST'])
 def ChangeBatchStatus(request):  #this service will load batch details by batch id

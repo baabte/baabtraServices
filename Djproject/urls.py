@@ -135,6 +135,7 @@ urlpatterns = patterns('',
     url(r'^ExistingMaterials/$', 'myapp.course.ExistingMaterialsView', name='ExistingMaterials'), #by Arun
     url(r'^GetCourses/$', 'myapp.course.GetCoursesView', name='GetCourses'), #by Arun
     url(r'^SaveExistingElement/$', 'myapp.course.SaveExistingElementView', name='SaveExistingElement'), #by Arun
+    url(r'^moveCourseElement/$', 'myapp.course.moveCourseElementView', name='moveCourseElement'), #by Jihin
     url(r'^getPaymentReport/$', 'myapp.paymentReport.getPaymentReport', name='getPaymentReport'), #by Arun
     url(r'^fnLoadMenteesBlindFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesBlindFromBatch', name='fnLoadMenteesBlindFromBatch'), #by lijin
     url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
@@ -169,6 +170,10 @@ urlpatterns = patterns('',
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
     url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
     url(r'^loadOrderFormById/$', 'myapp.user.loadOrderFormByIdView', name='loadOrderFormById'), #for load Order Form By Id 
+    url(r'^userCourseDetailsOF/$', 'myapp.payment.userCourseDetailsOFView', name='userCourseDetailsOF'), #for load Order Form By Id 
+    url(r'^FetchOrderForms/$', 'myapp.orderForm.FetchOrderFormsView', name='FetchOrderForms'), #for orderform 
+    url(r'^OFDetails/$', 'myapp.orderForm.OFDetailsView', name='OFDetails'), #for orderform 
+    
     
     url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
     
@@ -184,6 +189,8 @@ urlpatterns = patterns('',
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
     url(r'^addEvaluator/$', 'myapp.globalSettings.addEvaluator', name='addEvaluator'),
+    url(r'^fnUpdateNotificationConfig/$', 'myapp.globalSettings.fnUpdateNotificationConfig', name='fnUpdateNotificationConfig'),#by:lijin , for updating notification configuration
+    url(r'^fnGetNotificationConfig/$', 'myapp.globalSettings.fnGetNotificationConfig', name='fnGetNotificationConfig'),#by:lijin , for getting notification configuration
     url(r'^GenerateCode/$', 'myapp.globalSettings.GenerateCode', name='GenerateCode'),
     url(r'^retrieveExistingConf/$', 'myapp.globalSettings.retrieveExistingConf', name='retrieveExistingConf'),
     url(r'^removeExistingEvaluator/$', 'myapp.globalSettings.removeExistingEvaluator', name='removeExistingEvaluator'),
@@ -259,8 +266,10 @@ urlpatterns = patterns('',
 
     url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
-    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank')
+    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank'),
 
+    url(r'^sendNewUserRegistrationMail/$', 'myapp.emailSms.sendNewUserRegistrationMail', name='sendNewUserRegistrationMail'), #by Lijin on 9-6-2015 for sending email notification on user reg.
+    url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail') #by Lijin on 9-6-2015 for sending email notification on batch status update.
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
