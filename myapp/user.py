@@ -360,3 +360,23 @@ def verifyCandidateByCourse(request):
         # return Response("success")            
     else:        
         return Response("failure")
+
+#created by lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def fnLoadParents(request):  #this service will load parent users
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            result = dbconn.system_js.fnLoadParents(data)
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
