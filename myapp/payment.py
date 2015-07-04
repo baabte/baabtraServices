@@ -32,3 +32,77 @@ def userCourseDetailsOFView(request):  #this service will add reseller
     else:        
         return Response("failure")             
 
+#creater :Arun
+@csrf_exempt
+@api_view(['GET','POST'])
+def requestRefundView(request):  #this service will add reseller
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnrequestRefund(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")             
+
+
+#creater :Arun
+@csrf_exempt
+@api_view(['GET','POST'])
+def fetchRefundRequestView(request):  #this service will add reseller
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnfetchRefundRequest(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")          
+
+
+#creater :Arun
+@csrf_exempt
+@api_view(['GET','POST'])
+def updateRefundRequestView(request):  #this service will add reseller
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnupdateRefundRequest(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")       
+
+#creater :Arun
+@csrf_exempt
+@api_view(['GET','POST'])
+def processRefundView(request):  #this service will add reseller
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnprocessRefund(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")                     
+
