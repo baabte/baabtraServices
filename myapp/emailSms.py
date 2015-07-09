@@ -14,7 +14,7 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
-import requests
+# import requests
 from django.http import HttpResponse
 from django.template import Context
 from django.template.loader import render_to_string, get_template
@@ -144,5 +144,54 @@ def loadTemplate(request):  #this service will add & update course elements
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
+
+
+
+#created by: Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def sendNewUserRegistrationMail(request):
+    #connect to our local mongodb
+    #db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    #dbconn = db[settings.MONGO_DB]
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            message = get_template(settings.TEMPLATE_DIRS[0]+'/responsive-user-registration-mail.html').render(Context(data))
+            email= EmailMessage('An account is created for you',message,settings.EMAIL_HOST_USER,[data['recipient']])
+            #email.attach_file(settings.LOGO_PATH+'Logo.png')
+            email.content_subtype = 'html'
+            email.send();
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(data, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+#created by: Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def sendBatchStatusUpdateMail(request):
+    #connect to our local mongodb
+    #db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    #dbconn = db[settings.MONGO_DB]
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            message = get_template(settings.TEMPLATE_DIRS[0]+'/responsive-batch-status-update-mail.html').render(Context(data))
+            email= EmailMessage('Batch status changed.',message,settings.EMAIL_HOST_USER,[data['recipient']])
+            #email.attach_file(settings.LOGO_PATH+'Logo.png')
+            email.content_subtype = 'html'
+            email.send();
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(data, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
 
 

@@ -164,7 +164,9 @@ urlpatterns = patterns('',
     url(r'^fnLoadUserReport/$', 'myapp.enrollment.fnLoadUserReport', name='fnLoadUserReport'), #for bulk enrollment
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
     url(r'^fnLoadMenteesForPayment/$', 'myapp.user.fnLoadMenteesForPayment', name='fnLoadMenteesForPayment'), #for paymnet option after enrolling : Lijin - on 27-5-2015
+    url(r'^fetchUsersByDynamicSearch/$', 'myapp.user.fetchUsersByDynamicSearchView', name='fetchUsersByDynamicSearch'), #for fetch Users By Dynamic Search
     url(r'^FetchUsersToCourseAllocate/$', 'myapp.user.FetchUsersToCourseAllocateView', name='FetchUsersToCourseAllocate'), #for bulk enrollment
+    url(r'^fnFetchFormFeildsForSearch/$', 'myapp.user.fnFetchFormFeildsForSearchView', name='fnFetchFormFeildsForSearch'), #for Fetch Form Feilds For Search
     url(r'^AllocateUsersToCourse/$', 'myapp.user.AllocateUsersToCourseView', name='AllocateUsersToCourse'), #for bulk enrollment
     url(r'^addUserNomination/$', 'myapp.user.addUserNominationView', name='addUserNomination'), #for add User Nomination
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
@@ -185,6 +187,8 @@ urlpatterns = patterns('',
     url(r'^fnLoadFeedbackList/$', 'myapp.user.fnLoadFeedbackList', name='fnLoadFeedbackList'), #for loading feedback list
     url(r'^fnLoadFeedbackReport/$', 'myapp.user.fnLoadFeedbackReport', name='fnLoadFeedbackReport'),
     url(r'^addEvaluator/$', 'myapp.globalSettings.addEvaluator', name='addEvaluator'),
+    url(r'^fnUpdateNotificationConfig/$', 'myapp.globalSettings.fnUpdateNotificationConfig', name='fnUpdateNotificationConfig'),#by:lijin , for updating notification configuration
+    url(r'^fnGetNotificationConfig/$', 'myapp.globalSettings.fnGetNotificationConfig', name='fnGetNotificationConfig'),#by:lijin , for getting notification configuration
     url(r'^GenerateCode/$', 'myapp.globalSettings.GenerateCode', name='GenerateCode'),
     url(r'^retrieveExistingConf/$', 'myapp.globalSettings.retrieveExistingConf', name='retrieveExistingConf'),
     url(r'^removeExistingEvaluator/$', 'myapp.globalSettings.removeExistingEvaluator', name='removeExistingEvaluator'),
@@ -233,6 +237,7 @@ urlpatterns = patterns('',
     url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
     url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
+    url(r'^loadUserProfileDetails/$', 'myapp.baabtraComProfile.loadUserProfileDetailsView', name='loadUserProfileDetails'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
     url(r'^getStatus/$', 'myapp.commonCalls.getStatus', name='getStatus'), #by lijin for online check
@@ -244,6 +249,7 @@ urlpatterns = patterns('',
     url(r'^loadCourseToWebSite/$', 'myapp.publicAPIs.loadCourseToWebSiteView', name='loadCourseToWebSite'),
     url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails'),#added by jihin for get global values
     url(r'^LoadInterviewQuestionBank/$', 'myapp.commonViews.LoadInterviewQuestionBankView', name='LoadInterviewQuestionBank'),#added by jihin for get global values
+    url(r'^checkDomainExits/$', 'myapp.commonViews.checkDomainExitsView', name='checkDomainExits'),#added by jihin for check Domain Exits
     url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
     url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
@@ -260,8 +266,10 @@ urlpatterns = patterns('',
 
     url(r'^fnSubmitAssignment/$', 'myapp.assignmentFunctions.fnSubmitAssignment', name='fnSubmitAssignment'),
     url(r'^fnAddToQuestionBank/$', 'myapp.interviewFunctions.fnAddToQuestionBank', name='fnAddToQuestionBank'),
-    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank')
+    url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank'),
 
+    url(r'^sendNewUserRegistrationMail/$', 'myapp.emailSms.sendNewUserRegistrationMail', name='sendNewUserRegistrationMail'), #by Lijin on 9-6-2015 for sending email notification on user reg.
+    url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail') #by Lijin on 9-6-2015 for sending email notification on batch status update.
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
