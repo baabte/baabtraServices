@@ -165,29 +165,18 @@ urlpatterns = patterns('',
     url(r'^fnLoadCompnayUsers/$', 'myapp.user.fnLoadCompnayUsers', name='fnLoadCompnayUsers'), #for bulk enrollment
     url(r'^fnLoadMenteesForPayment/$', 'myapp.user.fnLoadMenteesForPayment', name='fnLoadMenteesForPayment'), #for paymnet option after enrolling : Lijin - on 27-5-2015
     url(r'^fetchUsersByDynamicSearch/$', 'myapp.user.fetchUsersByDynamicSearchView', name='fetchUsersByDynamicSearch'), #for fetch Users By Dynamic Search
-    url(r'^FetchUsersToCourseAllocate/$', 'myapp.user.FetchUsersToCourseAllocateView', name='FetchUsersToCourseAllocate'), #for bulk enrollment
     url(r'^fnFetchFormFeildsForSearch/$', 'myapp.user.fnFetchFormFeildsForSearchView', name='fnFetchFormFeildsForSearch'), #for Fetch Form Feilds For Search
+    url(r'^FetchUsersToCourseAllocate/$', 'myapp.user.FetchUsersToCourseAllocateView', name='FetchUsersToCourseAllocate'), #for bulk enrollment
     url(r'^AllocateUsersToCourse/$', 'myapp.user.AllocateUsersToCourseView', name='AllocateUsersToCourse'), #for bulk enrollment
     url(r'^addUserNomination/$', 'myapp.user.addUserNominationView', name='addUserNomination'), #for add User Nomination
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
     url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
     url(r'^loadOrderFormById/$', 'myapp.user.loadOrderFormByIdView', name='loadOrderFormById'), #for load Order Form By Id 
-    url(r'^userCourseDetailsOF/$', 'myapp.payment.userCourseDetailsOFView', name='userCourseDetailsOF'), #for load Order Form By Id     
-    url(r'^FetchOrderForms/$', 'myapp.orderForm.FetchOrderFormsView', name='FetchOrderForms'), #for orderform 
-    url(r'^OFDetails/$', 'myapp.orderForm.OFDetailsView', name='OFDetails'), #for orderform 
-    url(r'^requestRefund/$', 'myapp.payment.requestRefundView', name='requestRefund'), #for load Order Form By Id 
-    url(r'^fetchRefundRequest/$', 'myapp.payment.fetchRefundRequestView', name='fetchRefundRequest'), #for load Order Form By Id 
-    url(r'^updateRefundRequest/$', 'myapp.payment.updateRefundRequestView', name='updateRefundRequest'), #for load Order Form By Id 
-    url(r'^processRefund/$', 'myapp.payment.processRefundView', name='processRefund'), #for load Order Form By Id 
-    url(r'^fetchUserResults/$', 'myapp.reports.fetchUserResultsView', name='fetchUserResults'), #for load Order Form By Id 
-    url(r'^fetchUserResultReport/$', 'myapp.reports.fetchUserResultReportView', name='fetchUserResultReport'), #for load Order Form By Id 
-    
-    
-    
-    url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
-    url(r'^fnLoadParents/$', 'myapp.user.fnLoadParents', name='fnLoadParents'), #for loading parents, Created by Lijin
     url(r'^fnSaveCandidateMapping/$', 'myapp.user.fnSaveCandidateMapping', name='fnSaveCandidateMapping'), #for saving parent-candidate mapping into parent's user details, Created by Lijin
+     url(r'^fnLoadParents/$', 'myapp.user.fnLoadParents', name='fnLoadParents'), #for loading parents, Created by Lijin
     url(r'^fnLoadMappedCandidatesForParent/$', 'myapp.user.fnLoadMappedCandidatesForParent', name='fnLoadMappedCandidatesForParent'), #for loading candidates that are mapped to a parent, Created by Lijin
+
+    url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
     
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
     url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
@@ -249,9 +238,8 @@ urlpatterns = patterns('',
     url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for Load Coure Batch By Batch Id
     url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
     url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
-    url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
-    url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^loadUserProfileDetails/$', 'myapp.baabtraComProfile.loadUserProfileDetailsView', name='loadUserProfileDetails'),
+    url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
     url(r'^getStatus/$', 'myapp.commonCalls.getStatus', name='getStatus'), #by lijin for online check
