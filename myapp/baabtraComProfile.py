@@ -14,10 +14,10 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 
-#creater :Midhun Sudhakar
+#creater :Jihin
 @csrf_exempt
 @api_view(['GET','POST'])
-def userbaabtraComProfileData(request):  #this service will save add and update coures details
+def loadUserProfileDetailsView(request):  #this service will save add and update coures details
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -27,8 +27,7 @@ def userbaabtraComProfileData(request):  #this service will save add and update 
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            userloginId = data["userloginId"]
-            profileData=dbconn.system_js.fnuserbaabtraComProfileData(userloginId)    
+            profileData=dbconn.system_js.fnLoadUserProfileDetails(data["userloginId"], data["type"])    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(profileData, default=json_util.default))
