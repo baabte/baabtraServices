@@ -175,10 +175,10 @@ urlpatterns = patterns('',
     url(r'^loadOrderFormById/$', 'myapp.user.loadOrderFormByIdView', name='loadOrderFormById'), #for load Order Form By Id 
     url(r'^FetchOrderForms/$', 'myapp.orderForm.FetchOrderFormsView', name='FetchOrderForms'), #for orderform 
     url(r'^OFDetails/$', 'myapp.orderForm.OFDetailsView', name='OFDetails'), #for orderform 
-    url(r'^requestRefund/$', 'myapp.payment.requestRefundView', name='requestRefund'), #for load Order Form By Id 
-    url(r'^fetchRefundRequest/$', 'myapp.payment.fetchRefundRequestView', name='fetchRefundRequest'), #for load Order Form By Id 
-    url(r'^updateRefundRequest/$', 'myapp.payment.updateRefundRequestView', name='updateRefundRequest'), #for load Order Form By Id 
-    url(r'^processRefund/$', 'myapp.payment.processRefundView', name='processRefund'), #for load Order Form By Id 
+    # url(r'^requestRefund/$', 'myapp.payment.requestRefundView', name='requestRefund'), #for load Order Form By Id 
+    # url(r'^fetchRefundRequest/$', 'myapp.payment.fetchRefundRequestView', name='fetchRefundRequest'), #for load Order Form By Id 
+    # url(r'^updateRefundRequest/$', 'myapp.payment.updateRefundRequestView', name='updateRefundRequest'), #for load Order Form By Id 
+    # url(r'^processRefund/$', 'myapp.payment.processRefundView', name='processRefund'), #for load Order Form By Id 
     url(r'^fetchUserResults/$', 'myapp.reports.fetchUserResultsView', name='fetchUserResults'), #for load Order Form By Id 
     url(r'^fetchUserResultReport/$', 'myapp.reports.fetchUserResultReportView', name='fetchUserResultReport'), #for load Order Form By Id 
     
