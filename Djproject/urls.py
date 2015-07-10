@@ -143,7 +143,7 @@ urlpatterns = patterns('',
     url(r'^fnLoadMenteesMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesMarkedAttendanceFromBatch', name='fnLoadMenteesMarkedAttendanceFromBatch'), #by lijin
     url(r'^userCourseDetailsOF/$', 'myapp.payment.userCourseDetailsOFView', name='userCourseDetailsOF'), #by lijin
 
-# userCourseDetailsOFView
+    # userCourseDetailsOFView
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
