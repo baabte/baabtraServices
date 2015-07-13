@@ -143,6 +143,7 @@ urlpatterns = patterns('',
     url(r'^fnLoadMenteesMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesMarkedAttendanceFromBatch', name='fnLoadMenteesMarkedAttendanceFromBatch'), #by lijin
     url(r'^userCourseDetailsOF/$', 'myapp.payment.userCourseDetailsOFView', name='userCourseDetailsOF'), #by lijin
     url(r'^RegisterCollege/$', 'myapp.college.RegisterCollegeView', name='RegisterCollege'), #by lijin
+    url(r'^getCourseSyllabus4CandidateView/$', 'myapp.candidateCourseRelated.getCourseSyllabus4CandidateView', name='getCourseSyllabus4CandidateView'), #by Arun for managing candidate course full view
 
     
     # userCourseDetailsOFView
