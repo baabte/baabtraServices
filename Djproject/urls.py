@@ -57,14 +57,7 @@ urlpatterns = patterns('',
     url(r'^LinkAccountWithFacebook/$', 'myapp.views.LinkAccountWithFacebook', name='LinkAccountWithFacebook'),
     url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany'),#Arun
     url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany'),#Arun
-    # url(r'^GetUserPlan/$', 'myapp.views.GetUserPlanView', name='GetUserPlan'),#Arun
-    # url(r'^GetPlans/$', 'myapp.views.GetPlansView', name='GetPlans'),#Arun
-    # url(r'^GetFeatures/$', 'myapp.views.GetFeaturesView', name='GetFeatures'),#Arun
-    # url(r'^ChangeUserPlan/$', 'myapp.views.ChangeUserPlanView', name='ChangeUserPlan'),#Arun
-    # url(r'^EditPricing/$', 'myapp.views.EditPricingView', name='EditPricing'),#Arun
-    # url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
-    # url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
-    # url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
+
     url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig'),#Arun
     url(r'^SaveFeaturesConfig/$', 'myapp.views.SaveFeaturesConfigView', name='SaveFeaturesConfig'),#Arun
     url(r'^GetFeaturesConfigValues/$', 'myapp.views.GetFeaturesConfigValues', name='GetFeaturesConfigValues'),#Arun
@@ -288,5 +281,20 @@ urlpatterns = patterns('',
     url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail') #by Lijin on 9-6-2015 for sending email notification on batch status update.
 
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
+
+urlpatterns += patterns('',
+    # Examples:
+    # url(r'^$', 'Djproject.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+
+    url(r'^GetUserPlan/$', 'myapp.views.GetUserPlanView', name='GetUserPlan'),#Arun
+    url(r'^GetPlans/$', 'myapp.views.GetPlansView', name='GetPlans'),#Arun
+    url(r'^GetFeatures/$', 'myapp.views.GetFeaturesView', name='GetFeatures'),#Arun
+    url(r'^ChangeUserPlan/$', 'myapp.views.ChangeUserPlanView', name='ChangeUserPlan'),#Arun
+    url(r'^EditPricing/$', 'myapp.views.EditPricingView', name='EditPricing'),#Arun
+    url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
+    url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
+    url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
+)
 
 
