@@ -144,6 +144,7 @@ urlpatterns = patterns('',
     url(r'^userCourseDetailsOF/$', 'myapp.payment.userCourseDetailsOFView', name='userCourseDetailsOF'), #by lijin
     url(r'^RegisterCollege/$', 'myapp.college.RegisterCollegeView', name='RegisterCollege'), #by lijin
     url(r'^getCourseSyllabus4CandidateView/$', 'myapp.candidateCourseRelated.getCourseSyllabus4CandidateView', name='getCourseSyllabus4CandidateView'), #by Arun for managing candidate course full view
+    url(r'^getElement4CandidateView/$', 'myapp.candidateCourseRelated.getElement4CandidateView', name='getElement4CandidateView'), #by Arun for managing candidate course full view
 
     
     # userCourseDetailsOFView
@@ -250,7 +251,7 @@ urlpatterns = patterns('',
     url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for Load Coure Batch By Batch Id
     url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
     url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
-    url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
+    # url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^loadUserProfileDetails/$', 'myapp.baabtraComProfile.loadUserProfileDetailsView', name='loadUserProfileDetails'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
