@@ -295,6 +295,8 @@ urlpatterns += patterns('',
     url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
     url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
+    url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
+    url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
 )
 
 
