@@ -17,6 +17,11 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.template import Context
 from django.template.loader import render_to_string, get_template
+from django.core.files.storage import default_storage
+import sys
+import urllib
+import os.path
+
 
 @csrf_exempt
 @api_view(['GET','POST'])
@@ -458,5 +463,36 @@ def fnFetchFormFeildsForSearchView(request):  #this service will load Drafted co
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response("failed")
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def getUserCourseDetails4SyncView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+
+    localDB = Connection(settings.MONGO_LOCAL_SERVER_ADDR,settings.MONGO_PORT)
+    
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+    localDBConn = localDB[settings.MONGO_DB]
+    if request.method == 'POST':
+
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            result = dbconn.system_js.fnGetUserCourseDetails4Sync(data['userLoginIds'])
+            downloadResponse = localDBConn.system_js.fnDownloadUserDetails(result)
+            url = downloadResponse[0];
+            filePath = url.split(data['bws']+'files')[1];
+            webFile = urllib.urlopen(url)
+            if os.path.exists(settings.FILEUPLOAD_PATH + filePath) != True:
+                path = default_storage.save(settings.FILEUPLOAD_PATH + filePath, webFile)
+                pass
+
+        except Exception, e:
+            return Response(json.dumps(str(e), default=json_util.default))
+        return Response(json.dumps(downloadResponse, default=json_util.default))
     else:        
         return Response("failed")

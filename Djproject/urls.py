@@ -57,14 +57,14 @@ urlpatterns = patterns('',
     url(r'^LinkAccountWithFacebook/$', 'myapp.views.LinkAccountWithFacebook', name='LinkAccountWithFacebook'),
     url(r'^SelectedCompany/$', 'myapp.views.SelectedCompanyView', name='SelectedCompany'),#Arun
     url(r'^SearchCompany/$', 'myapp.views.SearchCompanyView', name='SearchCompany'),#Arun
-    url(r'^GetUserPlan/$', 'myapp.views.GetUserPlanView', name='GetUserPlan'),#Arun
-    url(r'^GetPlans/$', 'myapp.views.GetPlansView', name='GetPlans'),#Arun
-    url(r'^GetFeatures/$', 'myapp.views.GetFeaturesView', name='GetFeatures'),#Arun
-    url(r'^ChangeUserPlan/$', 'myapp.views.ChangeUserPlanView', name='ChangeUserPlan'),#Arun
-    url(r'^EditPricing/$', 'myapp.views.EditPricingView', name='EditPricing'),#Arun
-    url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
-    url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
-    url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
+    # url(r'^GetUserPlan/$', 'myapp.views.GetUserPlanView', name='GetUserPlan'),#Arun
+    # url(r'^GetPlans/$', 'myapp.views.GetPlansView', name='GetPlans'),#Arun
+    # url(r'^GetFeatures/$', 'myapp.views.GetFeaturesView', name='GetFeatures'),#Arun
+    # url(r'^ChangeUserPlan/$', 'myapp.views.ChangeUserPlanView', name='ChangeUserPlan'),#Arun
+    # url(r'^EditPricing/$', 'myapp.views.EditPricingView', name='EditPricing'),#Arun
+    # url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
+    # url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
+    # url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
     url(r'^GetFeaturesConfig/$', 'myapp.views.GetFeaturesConfigView', name='GetFeaturesConfig'),#Arun
     url(r'^SaveFeaturesConfig/$', 'myapp.views.SaveFeaturesConfigView', name='SaveFeaturesConfig'),#Arun
     url(r'^GetFeaturesConfigValues/$', 'myapp.views.GetFeaturesConfigValues', name='GetFeaturesConfigValues'),#Arun
@@ -141,8 +141,13 @@ urlpatterns = patterns('',
     url(r'^saveCandidatesAttendance/$', 'myapp.attendenceRelatedViews.saveCandidatesAttendance', name='saveCandidatesAttendance'), #by lijin
     url(r'^updateCandidatesAttendance/$', 'myapp.attendenceRelatedViews.updateCandidatesAttendance', name='updateCandidatesAttendance'), #by lijin
     url(r'^fnLoadMenteesMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.fnLoadMenteesMarkedAttendanceFromBatch', name='fnLoadMenteesMarkedAttendanceFromBatch'), #by lijin
+    url(r'^userCourseDetailsOF/$', 'myapp.payment.userCourseDetailsOFView', name='userCourseDetailsOF'), #by lijin
+    url(r'^RegisterCollege/$', 'myapp.college.RegisterCollegeView', name='RegisterCollege'), #by lijin
+    url(r'^getCourseSyllabus4CandidateView/$', 'myapp.candidateCourseRelated.getCourseSyllabus4CandidateView', name='getCourseSyllabus4CandidateView'), #by Arun for managing candidate course full view
+    url(r'^getElement4CandidateView/$', 'myapp.candidateCourseRelated.getElement4CandidateView', name='getElement4CandidateView'), #by Arun for managing candidate course full view
 
-
+    
+    # userCourseDetailsOFView
     #url(r'^userRegisterationPayment/$', 'myapp.paymentRelatedViews.userRegisterationPaymentView', name='userRegisterationPayment')
     # registerResellerView
     url(r'^userRegisterationPayment/$', PaymentView.as_view(), name='myapp.paymentRelatedViews.PaymentView'), #Author:Lijin,Purpose:Add feature for candidates to apply for the jobs,
@@ -172,11 +177,19 @@ urlpatterns = patterns('',
     url(r'^fnLoadMenteesForApprove/$', 'myapp.user.fnLoadMenteesForApproveView', name='fnLoadMenteesForApprove'), #for Load Mentees For Approve
     url(r'^ApproveUserRequest/$', 'myapp.user.ApproveUserRequestView', name='ApproveUserRequest'), #for Approve User Request 
     url(r'^loadOrderFormById/$', 'myapp.user.loadOrderFormByIdView', name='loadOrderFormById'), #for load Order Form By Id 
-    url(r'^fnSaveCandidateMapping/$', 'myapp.user.fnSaveCandidateMapping', name='fnSaveCandidateMapping'), #for saving parent-candidate mapping into parent's user details, Created by Lijin
-     url(r'^fnLoadParents/$', 'myapp.user.fnLoadParents', name='fnLoadParents'), #for loading parents, Created by Lijin
-    url(r'^fnLoadMappedCandidatesForParent/$', 'myapp.user.fnLoadMappedCandidatesForParent', name='fnLoadMappedCandidatesForParent'), #for loading candidates that are mapped to a parent, Created by Lijin
-
+    url(r'^FetchOrderForms/$', 'myapp.orderForm.FetchOrderFormsView', name='FetchOrderForms'), #for orderform 
+    url(r'^OFDetails/$', 'myapp.orderForm.OFDetailsView', name='OFDetails'), #for orderform 
+    url(r'^requestRefund/$', 'myapp.payment.requestRefundView', name='requestRefund'), #for load Order Form By Id 
+    url(r'^fetchRefundRequest/$', 'myapp.payment.fetchRefundRequestView', name='fetchRefundRequest'), #for load Order Form By Id 
+    url(r'^updateRefundRequest/$', 'myapp.payment.updateRefundRequestView', name='updateRefundRequest'), #for load Order Form By Id 
+    url(r'^processRefund/$', 'myapp.payment.processRefundView', name='processRefund'), #for load Order Form By Id 
+    url(r'^fetchUserResults/$', 'myapp.reports.fetchUserResultsView', name='fetchUserResults'), #for load Order Form By Id 
+    url(r'^fetchUserResultReport/$', 'myapp.reports.fetchUserResultReportView', name='fetchUserResultReport'), #for load Order Form By Id 
+  
     url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
+    url(r'^fnSaveCandidateMapping/$', 'myapp.user.fnSaveCandidateMapping', name='fnSaveCandidateMapping'), #for saving parent-candidate mapping into parent's user details, Created by Lijin
+    url(r'^fnLoadParents/$', 'myapp.user.fnLoadParents', name='fnLoadParents'), #for loading parents, Created by Lijin
+    url(r'^fnLoadMappedCandidatesForParent/$', 'myapp.user.fnLoadMappedCandidatesForParent', name='fnLoadMappedCandidatesForParent'), #for loading candidates that are mapped to a parent, Created by Lijin
     
     url(r'^loadBatches/$', 'myapp.Batches.loadBatches', name='loadBatches'), #for loading batches
     url(r'^loadExistingCoursesUnderBatch/$', 'myapp.Batches.loadExistingCoursesUnderBatch', name='loadExistingCoursesUnderBatch'), #for loading batches
@@ -238,8 +251,9 @@ urlpatterns = patterns('',
     url(r'^LoadCoureBatchByBatchId/$', 'myapp.Batches.LoadCoureBatchByBatchIdView', name='LoadCoureBatchByBatchId'), #for Load Coure Batch By Batch Id
     url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
     url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
-    url(r'^loadUserProfileDetails/$', 'myapp.baabtraComProfile.loadUserProfileDetailsView', name='loadUserProfileDetails'),
+    # url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
     url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
+    url(r'^loadUserProfileDetails/$', 'myapp.baabtraComProfile.loadUserProfileDetailsView', name='loadUserProfileDetails'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
     url(r'^getStatus/$', 'myapp.commonCalls.getStatus', name='getStatus'), #by lijin for online check
@@ -271,8 +285,8 @@ urlpatterns = patterns('',
     url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank'),
 
     url(r'^sendNewUserRegistrationMail/$', 'myapp.emailSms.sendNewUserRegistrationMail', name='sendNewUserRegistrationMail'), #by Lijin on 9-6-2015 for sending email notification on user reg.
-    url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail') #by Lijin on 9-6-2015 for sending email notification on batch status update.
-
+    url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail'), #by Lijin on 9-6-2015 for sending email notification on batch status update.
+    url(r'^getUserCourseDetails4Sync/$', 'myapp.user.getUserCourseDetails4SyncView', name='getUserCourseDetails4Sync') #for bulk enrollment
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 

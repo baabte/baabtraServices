@@ -170,7 +170,7 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
             date=data['date']
             UserResults = dbconn.system_js.fnfetchUserResultReport(companyId,searchKey,testDetails,date)        
             # Create a workbook and add a worksheet.
-            print UserResults['userList']
+            # print UserResults['userList']
 
             if UserResults['userList'] != None:
 
@@ -179,14 +179,14 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
 
                 filename='userReport'+rand+'.xlsx'
                 filepath='Reports/UserResults/'+filename
-                workbook = xlsxwriter.Workbook('uploaded/'+filepath)
+                workbook = xlsxwriter.Workbook('uploaded/'+filepath,{'in_memory': True})
                 # workbook = xlsxwriter.Workbook(filename, {'tmpdir': '/home/user/tmp'})
 
                 worksheet = workbook.add_worksheet()
                 out = eval(json.dumps(UserResults['userList'], default=json_util.default))
                 out = tuple(out)
 
-                print out
+                # print out
 
                 # Add a bold format to use to highlight cells.
                 bold = workbook.add_format({'bold': True})
@@ -196,17 +196,23 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
                 worksheet.write('B1', 'Name', bold)
                 worksheet.write('C1', 'College', bold)
                 worksheet.write('D1', 'Mark', bold)
+                worksheet.write('E1', 'Year Of Pass Out', bold)
+                worksheet.write('F1', 'Stream', bold)
+
 
 
                 row = 1
                 col = 0
 
                 # Iterate over the data and write it out row by row.
-                for name,college,mark in (out):
+                for name,college,mark,year,stream in (out):
                     worksheet.write(row, col,row)                
                     worksheet.write(row, col+ 1,name)
                     worksheet.write(row, col+ 2,college)
                     worksheet.write(row, col+ 3,mark)
+                    worksheet.write(row, col+ 4,year)
+                    worksheet.write(row, col+ 5,stream)
+
                     row += 1
 
                 workbook.close()
