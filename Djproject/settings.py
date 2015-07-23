@@ -77,18 +77,11 @@ WSGI_APPLICATION = 'Djproject.wsgi.application'
 
 
 
-<<<<<<< HEAD
-MONGO_LOCAL_SERVER_ADDR = 'localhost' #Mongodb address
+#MONGO_LOCAL_SERVER_ADDR = 'localhost' #Mongodb address
 # MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
 #MONGO_SERVER_ADDR = 'localhost' #Mongodb address
 MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
-#MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb address
-=======
-# MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
-# MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
-MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
-# MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb address
->>>>>>> f0ebd13eb391a4f24c630414dadcec024e6de2ea
+#MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb addres
 # MONGO_SERVER_ADDR = '104.199.128.179' #Mongodb address cloud
 
 MONGO_PORT = 27017 #Mongodb port
