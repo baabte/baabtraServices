@@ -483,16 +483,8 @@ def getUserCourseDetails4SyncView(request):
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
             result = dbconn.system_js.fnGetUserCourseDetails4Sync(data['userLoginIds'])
-            downloadResponse = localDBConn.system_js.fnDownloadUserDetails(result)
-            url = downloadResponse[0];
-            filePath = url.split(data['bws']+'files')[1];
-            webFile = urllib.urlopen(url)
-            if os.path.exists(settings.FILEUPLOAD_PATH + filePath) != True:
-                path = default_storage.save(settings.FILEUPLOAD_PATH + filePath, webFile)
-                pass
-
         except Exception, e:
             return Response(json.dumps(str(e), default=json_util.default))
-        return Response(json.dumps(downloadResponse, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
     else:        
         return Response("failed")
