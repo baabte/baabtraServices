@@ -471,12 +471,9 @@ def fnFetchFormFeildsForSearchView(request):  #this service will load Drafted co
 def getUserCourseDetails4SyncView(request):
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
-
-    localDB = Connection(settings.MONGO_LOCAL_SERVER_ADDR,settings.MONGO_PORT)
     
     #get a connection to our database
     dbconn = db[settings.MONGO_DB]
-    localDBConn = localDB[settings.MONGO_DB]
     if request.method == 'POST':
 
         try:
