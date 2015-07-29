@@ -295,14 +295,10 @@ urlpatterns += patterns('',
     url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
     url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
-<<<<<<< HEAD
     url(r'^FetchCurrentStatus/$', 'myapp.statusRelated.FetchCurrentStatusView', name='FetchCurrentStatus'),#Arun
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
-
-=======
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
->>>>>>> 1d98b773924590cccf9085c0604dcff7329ba95d
 )
 
 
