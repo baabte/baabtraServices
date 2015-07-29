@@ -278,8 +278,8 @@ urlpatterns = patterns('',
     url(r'^fnDeleteFromQuestionBank/$', 'myapp.interviewFunctions.fnDeleteFromQuestionBank', name='fnDeleteFromQuestionBank'),
 
     url(r'^sendNewUserRegistrationMail/$', 'myapp.emailSms.sendNewUserRegistrationMail', name='sendNewUserRegistrationMail'), #by Lijin on 9-6-2015 for sending email notification on user reg.
-    url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail') #by Lijin on 9-6-2015 for sending email notification on batch status update.
-
+    url(r'^sendBatchStatusUpdateMail/$', 'myapp.emailSms.sendBatchStatusUpdateMail', name='sendBatchStatusUpdateMail'), #by Lijin on 9-6-2015 for sending email notification on batch status update.
+    url(r'^getUserCourseDetails4Sync/$', 'myapp.user.getUserCourseDetails4SyncView', name='getUserCourseDetails4Sync') #for bulk enrollment
 )+ static('/files/', document_root=settings.FILEUPLOAD_PATH)
 
 urlpatterns += patterns('',
@@ -295,9 +295,14 @@ urlpatterns += patterns('',
     url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
     url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
+<<<<<<< HEAD
     url(r'^FetchCurrentStatus/$', 'myapp.statusRelated.FetchCurrentStatusView', name='FetchCurrentStatus'),#Arun
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
 
+=======
+    url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
+    url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
+>>>>>>> 1d98b773924590cccf9085c0604dcff7329ba95d
 )
 
 

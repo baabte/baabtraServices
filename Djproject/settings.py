@@ -23,7 +23,7 @@ SECRET_KEY = 'ijk@3)*123456789ijhkdkhdgsta&*()$>/k12309545%fFsop' #i+ypsvjxaifwh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #added by lijin for deploying in server
 
-TEMPLATE_DEBUG = True
+#TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -77,10 +77,11 @@ WSGI_APPLICATION = 'Djproject.wsgi.application'
 
 
 
-# MONGO_SERVER_ADDR = 'localhost' #Mongodb address 
+#MONGO_LOCAL_SERVER_ADDR = 'localhost' #Mongodb address
 # MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
+#MONGO_SERVER_ADDR = 'localhost' #Mongodb address
 MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
-# MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb address
+#MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb addres
 # MONGO_SERVER_ADDR = '104.199.128.179' #Mongodb address cloud
 
 MONGO_PORT = 27017 #Mongodb port
