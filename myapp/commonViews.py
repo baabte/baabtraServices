@@ -205,7 +205,7 @@ def LoadInterviewQuestionBankView(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        QuestionBank = dbconn.system_js.fnLoadInterviewQuestionBank(data['companyId'], data['noQuestion']);
+        QuestionBank = dbconn.system_js.fnLoadInterviewQuestionBank(data['interviewQuestionObj']);
         return Response(json.dumps(QuestionBank, default=json_util.default))
     else:    
         return Response("failure")

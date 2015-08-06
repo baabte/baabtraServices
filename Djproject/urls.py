@@ -178,7 +178,8 @@ urlpatterns = patterns('',
     url(r'^processRefund/$', 'myapp.payment.processRefundView', name='processRefund'), #for load Order Form By Id 
     url(r'^fetchUserResults/$', 'myapp.reports.fetchUserResultsView', name='fetchUserResults'), #for load Order Form By Id 
     url(r'^fetchUserResultReport/$', 'myapp.reports.fetchUserResultReportView', name='fetchUserResultReport'), #for load Order Form By Id 
-  
+    url(r'^fetchUsersReportBasedOnDynamicSearch/$', 'myapp.reports.fetchUsersReportBasedOnDynamicSearchView', name='fetchUsersReportBasedOnDynamicSearch'), #for fetch Users Report Based On Dynamic Search
+
     url(r'^verifyCandidateByCourse/$', 'myapp.user.verifyCandidateByCourse', name='verifyCandidateByCourse'), #for verifying order form by course Created by Lijin
     url(r'^fnSaveCandidateMapping/$', 'myapp.user.fnSaveCandidateMapping', name='fnSaveCandidateMapping'), #for saving parent-candidate mapping into parent's user details, Created by Lijin
     url(r'^fnLoadParents/$', 'myapp.user.fnLoadParents', name='fnLoadParents'), #for loading parents, Created by Lijin
@@ -209,6 +210,7 @@ urlpatterns = patterns('',
     url(r'^fnLoadBatchesForView/$', 'myapp.Batches.fnLoadBatchesForView', name='fnLoadBatchesForView'),
     url(r'^fnLoadMenteesForView/$', 'myapp.Batches.fnLoadMenteesForView', name='fnLoadMenteesForView'),
     url(r'^fnloadCourses4AssigningCourseMaterial/$', 'myapp.Batches.fnloadCourses4AssigningCourseMaterial', name='fnloadCourses4AssigningCourseMaterial'),
+    url(r'^loadCourses4AssigningCourseMaterialStudent/$', 'myapp.Batches.loadCourses4AssigningCourseMaterialStudentView', name='loadCourses4AssigningCourseMaterialStudent'),
     url(r'^loadUserNotification/$', 'myapp.notification.loadUserNotificationView', name='loadUserNotification'),
     url(r'^fnBulkEnrollavailable/$', 'myapp.enrollment.fnBulkEnrollavailable', name='fnBulkEnrollavailable'), #for bulk enrollment up to the selected users from the list
     url(r'^sendEmailSmsNotification/$', 'myapp.emailSms.sendEmailSmsNotification', name='sendEmailSmsNotification'), #for sending email and sms notification
@@ -245,7 +247,7 @@ urlpatterns = patterns('',
     url(r'^saveBatchTimelineChanges/$', 'myapp.Batches.saveBatchTimelineChangesView', name='saveBatchTimelineChanges'), #for save Batch Timeline Changes
     url(r'^LoadUserCourseDetails/$', 'myapp.Batches.LoadUserCourseDetailsView', name='LoadUserCourseDetails'), #for Load User Course Details
     # url(r'^userbaabtraComProfileData/$', 'myapp.baabtraComProfile.userbaabtraComProfileData', name='userbaabtraComProfileData'),
-    url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
+    #url(r'^baabtraComProfileData/$', 'myapp.baabtraComProfile.baabtraComProfileData', name='baabtraComProfileData'),
     url(r'^loadUserProfileDetails/$', 'myapp.baabtraComProfile.loadUserProfileDetailsView', name='loadUserProfileDetails'),
     url(r'^changelanguage/$', 'myapp.profile.changelanguage', name='changelanguage'),
     url(r'^GetCode/$', 'myapp.commonCalls.GetCode', name='GetCode'),
@@ -295,6 +297,8 @@ urlpatterns += patterns('',
     url(r'^AddFeature/$', 'myapp.views.AddFeatureView', name='AddFeature'),#Arun
     url(r'^DeleteFeature/$', 'myapp.views.DeleteFeatureView', name='DeleteFeature'),#Arun
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
+    url(r'^FetchCurrentStatus/$', 'myapp.statusRelated.FetchCurrentStatusView', name='FetchCurrentStatus'),#Arun
+    url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
 )
