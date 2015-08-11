@@ -301,6 +301,9 @@ urlpatterns += patterns('',
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
+    url(r'^loadUserNotifications/$', 'myapp.notification.loadUserNotifications', name='loadUserNotifications'),#Lijin 
+    url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
+
 )
 
 
