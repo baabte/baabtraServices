@@ -78,3 +78,24 @@ def markNotificationAsRead(request):  #this service will update notification as 
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
+#creater :Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def newNotification(request):  #this service will load all notifications of a user
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+
+            result = dbconn.system_js.fnNewNotification(data)    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(result, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+

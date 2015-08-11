@@ -303,6 +303,7 @@ urlpatterns += patterns('',
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
     url(r'^loadUserNotifications/$', 'myapp.notification.loadUserNotifications', name='loadUserNotifications'),#Lijin 
     url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
+    url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
 
 )
 
