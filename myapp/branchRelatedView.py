@@ -31,7 +31,7 @@ def fnLoadBranches(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnLoadBranches(ObjectId(data['cmp_id']));
+        response=dbconn.system_js.fnLoadBranches(data['branchCondition']);
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
@@ -49,7 +49,7 @@ def fnInsertBranches(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnInsertBranches(ObjectId(data['cmp_id']),data['branches']);
+        response=dbconn.system_js.fnInsertBranches(data['cmp_id'], data['branches'], data['rm_id']);
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
