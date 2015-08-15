@@ -16,6 +16,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
+import os
 import xlrd
 import os.path
 
@@ -255,17 +256,21 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
 
                 rand =''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(8))
 
+                curpath = os.path.abspath(os.curdir)
+                # print "Current path is: %s" % (curpath)
+
+
 
                 filename='userReport'+rand+'.xlsx'
                 filepath='Reports/UserResults/'+filename
-                workbook = xlsxwriter.Workbook('uploaded/'+filepath,{'in_memory': True})
+                workbook = xlsxwriter.Workbook(curpath+'/'+settings.FILEUPLOAD_PATH+'/'+filepath,{'in_memory': True})
                 # workbook = xlsxwriter.Workbook(filename, {'tmpdir': '/home/user/tmp'})
 
                 worksheet = workbook.add_worksheet()
                 out = eval(json.dumps(UserResults['userList'], default=json_util.default))
                 out = tuple(out)
 
-                print out
+                # print out
 
                 # Add a bold format to use to highlight cells.
                 bold = workbook.add_format({'bold': True})
