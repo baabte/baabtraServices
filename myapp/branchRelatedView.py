@@ -53,3 +53,21 @@ def fnInsertBranches(request):
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
+
+#created by jihin
+#For load all Branches under company
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadAllBranchesUnderCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        response=dbconn.system_js.fnLoadAllBranchesUnderCompany(data);
+        return Response(json.dumps(response, default=json_util.default))
+    else:    
+        return Response("failure")
