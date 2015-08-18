@@ -308,6 +308,11 @@ urlpatterns += patterns('',
     url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
     url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
 
+    url(r'^sendMessage/$', 'myapp.communications.sendMessage', name='sendMessage'),#Lijin
+    url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany')#Jihin 
+
+
 )
 
 
