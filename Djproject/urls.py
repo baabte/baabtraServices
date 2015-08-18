@@ -299,13 +299,19 @@ urlpatterns += patterns('',
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
     url(r'^FetchCurrentStatus/$', 'myapp.statusRelated.FetchCurrentStatusView', name='FetchCurrentStatus'),#Arun
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
+    url(r'^MultiRegister/$', 'myapp.RegisterRelated.MultiRegisterView', name='MultiRegister'),#Arun
+    
+
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
     url(r'^loadUserNotifications/$', 'myapp.notification.loadUserNotifications', name='loadUserNotifications'),#Lijin 
     url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
     url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
+
     url(r'^sendMessage/$', 'myapp.communications.sendMessage', name='sendMessage'),#Lijin
     url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany')#Jihin 
+
 
 )
 
