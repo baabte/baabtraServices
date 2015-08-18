@@ -82,7 +82,7 @@ def saveCandidatesAttendance(request):  #this service will add reseller
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
         result=dbconn.system_js.saveCandidateAttendance(data['dataObj']);
-        return Response(result)
+        return Response(json.dumps(result, default=json_util.default))
         # return Response("success")            
     else:        
         return Response("failure")
@@ -117,7 +117,7 @@ def fnLoadMenteesMarkedAttendanceFromBatch(request):  #this service will add res
     if request.method == 'POST':   
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)   
-        result=dbconn.system_js.fnLoadMenteesMarkedAttendanceFromBatch(data['batchMappingId'],data['date']);
+        result=dbconn.system_js.fnLoadMenteesMarkedAttendanceFromBatch(data['batchMappingId']);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
