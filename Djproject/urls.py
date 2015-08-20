@@ -309,13 +309,15 @@ urlpatterns += patterns('',
     url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
 
     url(r'^sendMessage/$', 'myapp.communications.sendMessage', name='sendMessage'),#Lijin
+    url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany'),#Jihin 
+    url(r'^loadMenteesBatchDetails/$', 'myapp.attendenceRelatedViews.loadMenteesBatchDetailsView', name='loadMenteesBatchDetails'),#Jihin
+    url(r'^loadMenteeMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.loadMenteeMarkedAttendanceFromBatchView', name='loadMenteeMarkedAttendanceFromBatch'),#Jihin  
     url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin 
     url(r'^getUserName/$', 'myapp.communications.getUserName', name='getUserName'),#Lijin 
     url(r'^loadSingleMessage/$', 'myapp.communications.loadSingleMessage', name='loadSingleMessage'),#Lijin 
     url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent'),#Lijin 
     url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany')#Jihin 
-
-
 )
 
 
