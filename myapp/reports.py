@@ -284,16 +284,17 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
                 worksheet.write('F1', 'Stream', bold)
                 worksheet.write('G1', 'Branch', bold)
                 worksheet.write('H1', 'mobile', bold)
-                worksheet.write('I1', 'District', bold)
-                worksheet.write('J1', 'Location', bold)
-                worksheet.write('K1', 'PreferredWorkingLocations', bold)
+                worksheet.write('I1', 'Email', bold)
+                worksheet.write('J1', 'District', bold)
+                worksheet.write('K1', 'Location', bold)
+                worksheet.write('L1', 'PreferredWorkingLocations', bold)
 
 
                 row = 1
                 col = 0
 
                 # Iterate over the data and write it out row by row.
-                for name,college,mark,year,stream,branch,mobile,District,Location,PreferredWorkingLocations in (out):
+                for name,college,mark,year,stream,branch,mobile,email,District,Location,PreferredWorkingLocations in (out):
                     worksheet.write(row, col,row)                
                     worksheet.write(row, col+ 1,name)
                     worksheet.write(row, col+ 2,college)
@@ -302,9 +303,10 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
                     worksheet.write(row, col+ 5,stream)
                     worksheet.write(row, col+ 6,branch)
                     worksheet.write(row, col+ 7,mobile)
-                    worksheet.write(row, col+ 8,District)
-                    worksheet.write(row, col+ 9,Location)
-                    worksheet.write(row, col+ 10,PreferredWorkingLocations)
+                    worksheet.write(row, col+ 8,email)                    
+                    worksheet.write(row, col+ 9,District)
+                    worksheet.write(row, col+ 10,Location)
+                    worksheet.write(row, col+ 11,PreferredWorkingLocations)
 
                     row += 1
 

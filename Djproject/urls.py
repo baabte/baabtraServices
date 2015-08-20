@@ -307,7 +307,13 @@ urlpatterns += patterns('',
     url(r'^loadUserNotifications/$', 'myapp.notification.loadUserNotifications', name='loadUserNotifications'),#Lijin 
     url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
     url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
-    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany')#Jihin 
+
+    url(r'^sendMessage/$', 'myapp.communications.sendMessage', name='sendMessage'),#Lijin
+    url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany'),#Jihin 
+    url(r'^loadMenteesBatchDetails/$', 'myapp.attendenceRelatedViews.loadMenteesBatchDetailsView', name='loadMenteesBatchDetails'),#Jihin
+    url(r'^loadMenteeMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.loadMenteeMarkedAttendanceFromBatchView', name='loadMenteeMarkedAttendanceFromBatch')#Jihin  
+
 
 )
 

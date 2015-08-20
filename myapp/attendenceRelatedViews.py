@@ -108,7 +108,7 @@ def updateCandidatesAttendance(request):  #this service will add reseller
 #creater :Lijin
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadMenteesMarkedAttendanceFromBatch(request):  #this service will add reseller
+def fnLoadMenteesMarkedAttendanceFromBatch(request):  #this service will LoadMenteesMarkedAttendanceFromBatch
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -118,6 +118,42 @@ def fnLoadMenteesMarkedAttendanceFromBatch(request):  #this service will add res
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)   
         result=dbconn.system_js.fnLoadMenteesMarkedAttendanceFromBatch(data['batchMappingId']);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadMenteesBatchDetailsView(request):  #this service will loadMenteesBatchDetailsView
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnLoadMenteesBatchDetails(data['data']);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")
+
+#creater :jihin
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadMenteeMarkedAttendanceFromBatchView(request):  #this service will loadMenteesBatchDetailsView
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnLoadMenteeMarkedAttendanceFromBatch(data['data']);
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
