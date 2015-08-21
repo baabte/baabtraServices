@@ -14,10 +14,10 @@ from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
 
-#creater :jihin
+#creater :Lijin
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadUserNotificationView(request):  #this service will save add and update coures details
+def sendMessage(request):  #this service will save a new message
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -28,7 +28,28 @@ def loadUserNotificationView(request):  #this service will save add and update c
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
 
-            notificationDetails = dbconn.system_js.fnLoadUserNotification(data['fkLoginId'])    
+            notificationDetails = dbconn.system_js.fnNewMessage(data)    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps('success', default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+#creater :Lijin
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadInbox(request):  #this service will save a new message
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+
+            notificationDetails = dbconn.system_js.fnLoadInbox(data)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(notificationDetails, default=json_util.default))
@@ -38,7 +59,7 @@ def loadUserNotificationView(request):  #this service will save add and update c
 #creater :Lijin
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadUserNotifications(request):  #this service will load all notifications of a user
+def loadSingleMessage(request):  #this service will load single msg
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -49,17 +70,17 @@ def loadUserNotifications(request):  #this service will load all notifications o
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
 
-            notificationDetails = dbconn.system_js.fnLoadUserNotificationFull(data)    
+            msg = dbconn.clnCommunications.find_one({"_id":ObjectId(data['id'])})    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(notificationDetails, default=json_util.default))
+        return Response(json.dumps(msg, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
 
 #creater :Lijin
 @csrf_exempt
 @api_view(['GET','POST'])
-def markNotificationAsRead(request):  #this service will update notification as read
+def getUserName(request):  #this service will load user profile
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -69,19 +90,19 @@ def markNotificationAsRead(request):  #this service will update notification as 
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            id = ObjectId(data['id'])
-            fkLoginId = data['fkLoginId']
-            result = dbconn.clnNotification.update({'_id':id,'fkLoginId':fkLoginId},{'$set':{'read':1}})
+
+            userProfile = dbconn.clnUserDetails.find_one({"fkUserLoginId":ObjectId(data['loginId'])},{"profile":1,"_id":0})    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(userProfile, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+
 
 #creater :Lijin
 @csrf_exempt
 @api_view(['GET','POST'])
-def newNotification(request):  #this service will load all notifications of a user
+def fnLoadParent(request):  #this service will load parents of candidate
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -92,10 +113,9 @@ def newNotification(request):  #this service will load all notifications of a us
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
 
-            result = dbconn.system_js.fnNewNotification(data)    
+            parents = dbconn.system_js.fnLoadParent(data)
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
-        return Response(json.dumps(result, default=json_util.default))
+        return Response(json.dumps(parents, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
-

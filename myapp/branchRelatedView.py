@@ -31,7 +31,7 @@ def fnLoadBranches(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnLoadBranches(ObjectId(data['cmp_id']));
+        response=dbconn.system_js.fnLoadBranches(data['branchCondition']);
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")
@@ -49,7 +49,25 @@ def fnInsertBranches(request):
     if request.method == 'POST':
         stream = StringIO(request.body)
         data = JSONParser().parse(stream)
-        response=dbconn.system_js.fnInsertBranches(ObjectId(data['cmp_id']),data['branches']);
+        response=dbconn.system_js.fnInsertBranches(data['cmp_id'], data['branches'], data['rm_id']);
+        return Response(json.dumps(response, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#created by jihin
+#For load all Branches under company
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadAllBranchesUnderCompanyView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        response=dbconn.system_js.fnLoadAllBranchesUnderCompany(data);
         return Response(json.dumps(response, default=json_util.default))
     else:    
         return Response("failure")

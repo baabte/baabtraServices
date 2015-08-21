@@ -16,6 +16,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.conf import settings
 from django.core.mail import EmailMessage
+import os
 import xlrd
 import os.path
 
@@ -255,17 +256,21 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
 
                 rand =''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(8))
 
+                curpath = os.path.abspath(os.curdir)
+                # print "Current path is: %s" % (curpath)
+
+
 
                 filename='userReport'+rand+'.xlsx'
                 filepath='Reports/UserResults/'+filename
-                workbook = xlsxwriter.Workbook('uploaded/'+filepath,{'in_memory': True})
+                workbook = xlsxwriter.Workbook(curpath+'/'+settings.FILEUPLOAD_PATH+'/'+filepath,{'in_memory': True})
                 # workbook = xlsxwriter.Workbook(filename, {'tmpdir': '/home/user/tmp'})
 
                 worksheet = workbook.add_worksheet()
                 out = eval(json.dumps(UserResults['userList'], default=json_util.default))
                 out = tuple(out)
 
-                print out
+                # print out
 
                 # Add a bold format to use to highlight cells.
                 bold = workbook.add_format({'bold': True})
@@ -279,16 +284,17 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
                 worksheet.write('F1', 'Stream', bold)
                 worksheet.write('G1', 'Branch', bold)
                 worksheet.write('H1', 'mobile', bold)
-                worksheet.write('I1', 'District', bold)
-                worksheet.write('J1', 'Location', bold)
-                worksheet.write('K1', 'PreferredWorkingLocations', bold)
+                worksheet.write('I1', 'Email', bold)
+                worksheet.write('J1', 'District', bold)
+                worksheet.write('K1', 'Location', bold)
+                worksheet.write('L1', 'PreferredWorkingLocations', bold)
 
 
                 row = 1
                 col = 0
 
                 # Iterate over the data and write it out row by row.
-                for name,college,mark,year,stream,branch,mobile,District,Location,PreferredWorkingLocations in (out):
+                for name,college,mark,year,stream,branch,mobile,email,District,Location,PreferredWorkingLocations in (out):
                     worksheet.write(row, col,row)                
                     worksheet.write(row, col+ 1,name)
                     worksheet.write(row, col+ 2,college)
@@ -297,9 +303,10 @@ def fetchUserResultReportView(request):  #this service will load Drafted courses
                     worksheet.write(row, col+ 5,stream)
                     worksheet.write(row, col+ 6,branch)
                     worksheet.write(row, col+ 7,mobile)
-                    worksheet.write(row, col+ 8,District)
-                    worksheet.write(row, col+ 9,Location)
-                    worksheet.write(row, col+ 10,PreferredWorkingLocations)
+                    worksheet.write(row, col+ 8,email)                    
+                    worksheet.write(row, col+ 9,District)
+                    worksheet.write(row, col+ 10,Location)
+                    worksheet.write(row, col+ 11,PreferredWorkingLocations)
 
                     row += 1
 

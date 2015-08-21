@@ -261,6 +261,7 @@ urlpatterns = patterns('',
     url(r'^LoadCompanyCustomerDetails/$', 'myapp.commonViews.LoadCompanyCustomerDetailsView', name='LoadCompanyCustomerDetails'),#added by jihin for get global values
     url(r'^LoadInterviewQuestionBank/$', 'myapp.commonViews.LoadInterviewQuestionBankView', name='LoadInterviewQuestionBank'),#added by jihin for get global values
     url(r'^checkDomainExits/$', 'myapp.commonViews.checkDomainExitsView', name='checkDomainExits'),#added by jihin for check Domain Exits
+    
     url(r'^FnLoadVerifiedCandidates/$', 'myapp.user.FnLoadVerifiedCandidates', name='FnLoadVerifiedCandidates'),
     url(r'^fnenrollSingleUser/$', 'myapp.user.fnenrollSingleUser', name='fnenrollSingleUser'),
     url(r'^fnenrollBulkUsers/$', 'myapp.user.fnenrollBulkUsers', name='fnenrollBulkUsers'),
@@ -299,6 +300,10 @@ urlpatterns += patterns('',
     url(r'^EditBilling/$', 'myapp.views.EditBillingView', name='EditBilling'),#Arun
     url(r'^FetchCurrentStatus/$', 'myapp.statusRelated.FetchCurrentStatusView', name='FetchCurrentStatus'),#Arun
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
+    url(r'^MultiRegister/$', 'myapp.RegisterRelated.MultiRegisterView', name='MultiRegister'),#Arun
+    url(r'^checkRegDomainExits/$', 'myapp.commonViews.checkRegDomainExitsView', name='checkRegDomainExits'),#added by jihin for check Domain Exits
+    
+
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
     url(r'^loadUserNotifications/$', 'myapp.notification.loadUserNotifications', name='loadUserNotifications'),#Lijin 
@@ -307,7 +312,18 @@ urlpatterns += patterns('',
     url(r'^LoadUserCourseevaluation/$', 'myapp.Batches.LoadUserCourseevaluation', name='LoadUserCourseevaluation'),#Lijin 
     url(r'^getcourseMappingId/$', 'myapp.Batches.getcourseMappingId', name='getcourseMappingId'),#Lijin 
     url(r'^getDomain/$', 'myapp.domainRelatedViews.getDomainView', name='getDomain'),  #URL for the insert domain,added by jihin
+    url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
 
+    url(r'^sendMessage/$', 'myapp.communications.sendMessage', name='sendMessage'),#Lijin
+    url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany'),#Jihin 
+    url(r'^loadMenteesBatchDetails/$', 'myapp.attendenceRelatedViews.loadMenteesBatchDetailsView', name='loadMenteesBatchDetails'),#Jihin
+    url(r'^loadMenteeMarkedAttendanceFromBatch/$', 'myapp.attendenceRelatedViews.loadMenteeMarkedAttendanceFromBatchView', name='loadMenteeMarkedAttendanceFromBatch'),#Jihin  
+    url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin 
+    url(r'^getUserName/$', 'myapp.communications.getUserName', name='getUserName'),#Lijin 
+    url(r'^loadSingleMessage/$', 'myapp.communications.loadSingleMessage', name='loadSingleMessage'),#Lijin 
+    url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent'),#Lijin 
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany')#Jihin 
 )
 
 
