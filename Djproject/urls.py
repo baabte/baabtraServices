@@ -303,6 +303,10 @@ urlpatterns += patterns('',
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
     url(r'^loadUserNotifications/$', 'myapp.notification.loadUserNotifications', name='loadUserNotifications'),#Lijin 
     url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
+    url(r'^LoadUserDetails/$', 'myapp.Batches.LoadUserDetailsView', name='LoadUserDetailsView'),#Lijin 
+    url(r'^LoadUserCourseevaluation/$', 'myapp.Batches.LoadUserCourseevaluation', name='LoadUserCourseevaluation'),#Lijin 
+    url(r'^getcourseMappingId/$', 'myapp.Batches.getcourseMappingId', name='getcourseMappingId'),#Lijin 
+    url(r'^getDomain/$', 'myapp.domainRelatedViews.getDomainView', name='getDomain'),  #URL for the insert domain,added by jihin
 
 )
 

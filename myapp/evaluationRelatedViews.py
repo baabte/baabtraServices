@@ -31,7 +31,7 @@ def EvaluationFetchView(request):
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
-        return Response("failure")             
+        return Response("failure")                
 
 #creater :Arun \\\@///
 @csrf_exempt

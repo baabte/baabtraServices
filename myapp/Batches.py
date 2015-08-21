@@ -17,7 +17,7 @@ from django.core.mail import EmailMessage
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def saveNewBatches(request):  #this service will add & update course elements
+def saveNewBatches(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -39,7 +39,7 @@ def saveNewBatches(request):  #this service will add & update course elements
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadBatches(request):  #this service will add & update course elements
+def loadBatches(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -60,7 +60,7 @@ def loadBatches(request):  #this service will add & update course elements
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadExistingCoursesUnderBatch(request):  #this service will add & update course elements
+def loadExistingCoursesUnderBatch(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -80,7 +80,7 @@ def loadExistingCoursesUnderBatch(request):  #this service will add & update cou
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def addCoursesToBatch(request):  #this service will add & update course elements
+def addCoursesToBatch(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -105,7 +105,7 @@ def addCoursesToBatch(request):  #this service will add & update course elements
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadCourseRelatedBatches(request):  #this service will add & update course elements
+def loadCourseRelatedBatches(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -126,7 +126,7 @@ def loadCourseRelatedBatches(request):  #this service will add & update course e
 #function to load batches for view
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadBatchesForView(request):  #this service will add & update course elements
+def fnLoadBatchesForView(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -147,7 +147,7 @@ def fnLoadBatchesForView(request):  #this service will add & update course eleme
 #function to load batches for view
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnLoadMenteesForView(request):  #this service will add & update course elements
+def fnLoadMenteesForView(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -170,7 +170,7 @@ def fnLoadMenteesForView(request):  #this service will add & update course eleme
 #function to load batches for view
 @csrf_exempt
 @api_view(['GET','POST'])
-def fnloadCourses4AssigningCourseMaterial(request):  #this service will add & update course elements
+def fnloadCourses4AssigningCourseMaterial(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -191,7 +191,7 @@ def fnloadCourses4AssigningCourseMaterial(request):  #this service will add & up
 #function to load batches for view
 @csrf_exempt
 @api_view(['GET','POST'])
-def loadCourses4AssigningCourseMaterialStudentView(request):  #this service will add & update course elements
+def loadCourses4AssigningCourseMaterialStudentView(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -373,7 +373,7 @@ def fnloadMentees4batchAtt(request):  #this service will load Drafted courses
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def deleteBatch(request):  #this service will add & update course elements
+def deleteBatch(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -392,7 +392,7 @@ def deleteBatch(request):  #this service will add & update course elements
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def editBatch(request):  #this service will add & update course elements
+def editBatch(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -412,7 +412,7 @@ def editBatch(request):  #this service will add & update course elements
 #created by: vineeth C
 @csrf_exempt
 @api_view(['GET','POST'])
-def updateBatch(request):  #this service will add & update course elements
+def updateBatch(request):  #this service will add & update course order
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
     #get a connection to our database
@@ -477,6 +477,64 @@ def saveBatchTimelineChangesView(request):  #this service will load batch detail
 #created by: Jihin
 @csrf_exempt
 @api_view(['GET','POST'])
+def LoadUserDetailsView(request):  #this service will load batch details by batch id
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetails = dbconn.system_js.fnLoadUserDetails(data["courseMappingId"])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def LoadUserCourseevaluation(request):  #this service will load batch details by batch id
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetails = dbconn.system_js.fnLoadevaluationDetails(data['courseMappingId'],data['orders'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+@csrf_exempt
+@api_view(['GET','POST'])
+def getcourseMappingId(request):  #this service will load batch details by batch id
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        try:
+            stream = StringIO(request.body)
+            data = JSONParser().parse(stream)
+            courseDetails = dbconn.system_js.getcourseMappingId(data['usersId'],data['course'])    
+        except ValueError:
+            return Response(json.dumps(ValueError, default=json_util.default))
+        return Response(json.dumps(courseDetails, default=json_util.default))
+    else:        
+        return Response(json.dumps("failed", default=json_util.default))
+
+
+@csrf_exempt
+@api_view(['GET','POST'])
 def LoadUserCourseDetailsView(request):  #this service will load batch details by batch id
     #connect to our local mongodb
     db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
@@ -493,6 +551,8 @@ def LoadUserCourseDetailsView(request):  #this service will load batch details b
         return Response(json.dumps(courseDetails, default=json_util.default))
     else:        
         return Response(json.dumps("failed", default=json_util.default))
+
+
 
 
 
