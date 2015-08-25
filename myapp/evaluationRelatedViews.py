@@ -31,7 +31,7 @@ def EvaluationFetchView(request):
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
-        return Response("failure")             
+        return Response("failure")                
 
 #creater :Arun \\\@///
 @csrf_exempt
@@ -49,6 +49,7 @@ def EvaluateAnswerView(request):  #this service will evalute the question respon
         return Response(json.dumps(result, default=json_util.default))  
         # return Response("success")            
     else:        
+<<<<<<< HEAD
         return Response("failure")             
 
 
@@ -70,3 +71,6 @@ def EvaluationElementFetchView(request):
         # return Response("success")            
     else:        
         return Response("failure")             
+=======
+        return Response("failure")             
+>>>>>>> c6d778073504c13afc8e8738f7508577464f5288
