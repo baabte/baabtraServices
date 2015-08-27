@@ -302,7 +302,9 @@ urlpatterns += patterns('',
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
     url(r'^MultiRegister/$', 'myapp.RegisterRelated.MultiRegisterView', name='MultiRegister'),#Arun
     url(r'^checkRegDomainExits/$', 'myapp.commonViews.checkRegDomainExitsView', name='checkRegDomainExits'),#added by jihin for check Domain Exits
+    url(r'^evaluationElementFetch/$', 'myapp.evaluationRelatedViews.EvaluationElementFetchView', name='evaluationElementFetch'), #by Arun
     
+
 
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin

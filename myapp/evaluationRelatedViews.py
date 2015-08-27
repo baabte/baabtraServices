@@ -50,3 +50,23 @@ def EvaluateAnswerView(request):  #this service will evalute the question respon
         # return Response("success")            
     else:        
         return Response("failure")             
+
+
+#creater :Arun \\\@///
+@csrf_exempt
+@api_view(['GET','POST'])
+def EvaluationElementFetchView(request):  
+#this service will fetch all evaluation pending question to the evaluator
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':   
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)   
+        result=dbconn.system_js.fnEvaluationElementFetch(data);
+        return Response(json.dumps(result, default=json_util.default))  
+        # return Response("success")            
+    else:        
+        return Response("failure")             
