@@ -27,7 +27,7 @@ def loadUserProfileDetailsView(request):  #this service will save add and update
         try:
             stream = StringIO(request.body)
             data = JSONParser().parse(stream)
-            profileData=dbconn.system_js.fnLoadUserProfileDetails(data["userloginId"], data["type"])    
+            profileData=dbconn.system_js.fnLoadUserProfileDetails(data)    
         except ValueError:
             return Response(json.dumps(ValueError, default=json_util.default))
         return Response(json.dumps(profileData, default=json_util.default))
