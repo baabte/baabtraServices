@@ -37,8 +37,8 @@ def AddDepartmentView(request):
 
     if request.method == 'POST':
         stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        departmentResponse = dbconn.system_js.fnAddDepartment(data['departmentObject'], data['companyId'], data['rmId'])
+        departmentObject = JSONParser().parse(stream)
+        departmentResponse = dbconn.system_js.fnAddDepartment(departmentObject)
         return Response(json.dumps(departmentResponse, default=json_util.default))
     else:    
         return Response("failure")
@@ -55,8 +55,8 @@ def LoadDepartmentView(request):
 
     if request.method == 'POST':
         stream = StringIO(request.body)
-        data = JSONParser().parse(stream)
-        departmentResponse = dbconn.system_js.fnLoadDepartments(data['companyId'], data['branchId'])
+        departmentObj = JSONParser().parse(stream)
+        departmentResponse = dbconn.system_js.fnLoadDepartments(departmentObj)
         return Response(json.dumps(departmentResponse, default=json_util.default))
     else:    
         return Response("failure")
