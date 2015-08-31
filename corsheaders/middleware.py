@@ -6,7 +6,7 @@ except ImportError:
     from urllib.parse import urlparse
 
 from corsheaders import defaults as settings
-from django.db.models.loading import get_model
+# from django.db.models.loading import get_model
 
 
 ACCESS_CONTROL_ALLOW_ORIGIN = 'Access-Control-Allow-Origin'
@@ -22,7 +22,6 @@ class CorsMiddleware(object):
     def process_request(self, request):
         '''
             If CORS preflight header, then create an empty body response (200 OK) and return it
-
             Django won't bother calling any other request view/exception middleware along with
             the requested view; it will call any response middlewares
         '''

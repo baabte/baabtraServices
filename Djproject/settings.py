@@ -1,9 +1,7 @@
 """
 Django settings for Djproject project.
-
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
@@ -157,4 +155,3 @@ USE_X_FORWARDED_HOST = True
 
 #import logging.config
 #logging.config.dictConfig(LOGGING)
- 

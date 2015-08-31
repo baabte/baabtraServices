@@ -302,7 +302,9 @@ urlpatterns += patterns('',
     url(r'^SetStatus/$', 'myapp.statusRelated.SetStatusView', name='SetStatus'),#Arun
     url(r'^MultiRegister/$', 'myapp.RegisterRelated.MultiRegisterView', name='MultiRegister'),#Arun
     url(r'^checkRegDomainExits/$', 'myapp.commonViews.checkRegDomainExitsView', name='checkRegDomainExits'),#added by jihin for check Domain Exits
+    url(r'^evaluationElementFetch/$', 'myapp.evaluationRelatedViews.EvaluationElementFetchView', name='evaluationElementFetch'), #by Arun
     
+
 
     url(r'^loadHomeScreenMenu/$', 'myapp.homescreen.loadHomeScreenMenu', name='loadHomeScreenMenu'),#Lijin
     url(r'^saveHomeScreenMenu/$', 'myapp.homescreen.saveHomeScreenMenu', name='saveHomeScreenMenu'),#Lijin
@@ -323,8 +325,8 @@ urlpatterns += patterns('',
     url(r'^loadSingleMessage/$', 'myapp.communications.loadSingleMessage', name='loadSingleMessage'),#Lijin 
     url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent'),#Lijin 
     url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany'),#Jihin 
-    url(r'^fngetCollageList/$', 'myapp.college.fngetCollageListView', name='fngetCollageList')#Jihin 
-
+    url(r'^fngetCollageList/$', 'myapp.college.fngetCollageListView', name='fngetCollageList')#athul 
+    url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent')#Lijin
 )
 
 
