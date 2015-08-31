@@ -71,7 +71,6 @@ def getDomainView(request):
     
     if request.method == 'POST':
         domain= urlparse(request.META.get('HTTP_REFERER')).hostname
-        print domain
         #stream = StringIO(request.body)
         #data = JSONParser().parse(stream)
         response=dbconn.system_js.fnLoadCourseDomain();
