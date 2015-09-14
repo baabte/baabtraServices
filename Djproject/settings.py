@@ -1,9 +1,7 @@
 """
 Django settings for Djproject project.
-
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
@@ -80,13 +78,14 @@ WSGI_APPLICATION = 'Djproject.wsgi.application'
 # MONGO_SERVER_ADDR = '192.168.2.20' #Mongodb address
 MONGO_SERVER_ADDR = 'localhost' #Mongodb address
 #MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
+# MONGO_SERVER_ADDR = '117.240.93.254' #Mongodb address
 #MONGO_SERVER_ADDR = '192.168.2.254' #Mongodb addres
 # MONGO_SERVER_ADDR = '207.46.231.115' #Mongodb address cloud
 
 MONGO_PORT = 27017 #Mongodb port
 
-#MONGO_DB = 'baabtra_db' #Database name
-MONGO_DB = 'preproduction'  #Database name
+MONGO_DB = 'baabtra_db' #Database name
+# MONGO_DB = 'preproduction'  #Database name
 
 
 FILEUPLOAD_PATH="uploaded" #path for uploading the files
@@ -157,4 +156,3 @@ USE_X_FORWARDED_HOST = True
 
 #import logging.config
 #logging.config.dictConfig(LOGGING)
- 

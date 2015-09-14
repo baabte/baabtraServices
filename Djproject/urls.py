@@ -312,7 +312,6 @@ urlpatterns += patterns('',
     url(r'^markNotificationAsRead/$', 'myapp.notification.markNotificationAsRead', name='markNotificationAsRead'),#Lijin 
     url(r'^LoadUserDetails/$', 'myapp.Batches.LoadUserDetailsView', name='LoadUserDetailsView'),#Lijin 
     url(r'^LoadUserCourseevaluation/$', 'myapp.Batches.LoadUserCourseevaluation', name='LoadUserCourseevaluation'),#Lijin 
-    url(r'^getcourseMappingId/$', 'myapp.Batches.getcourseMappingId', name='getcourseMappingId'),#Lijin 
     url(r'^getDomain/$', 'myapp.domainRelatedViews.getDomainView', name='getDomain'),  #URL for the insert domain,added by jihin
     url(r'^newNotification/$', 'myapp.notification.newNotification', name='newNotification'),#Lijin 
 
@@ -334,7 +333,11 @@ urlpatterns += patterns('',
     url(r'^saveBatch/$', 'myapp.Batches.saveBatchView', name='saveBatch'),#Jihin
     url(r'^loadClassRoomBatch/$', 'myapp.Batches.loadClassRoomBatchView', name='loadClassRoomBatch'),#Jihin
     url(r'^saveSubject/$', 'myapp.course.saveSubjectView', name='saveSubject'),#Jihin
-    url(r'^loadSubject/$', 'myapp.course.loadSubjectView', name='loadSubject')#Jihin
+    url(r'^loadSubject/$', 'myapp.course.loadSubjectView', name='loadSubject'),#Jihin
+    url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent'),#Lijin 
+    url(r'^loadAllBranchesUnderCompany/$', 'myapp.branchRelatedView.loadAllBranchesUnderCompanyView', name='loadAllBranchesUnderCompany'),#Jihin 
+    url(r'^fngetCollageList/$', 'myapp.college.fngetCollageListView', name='fngetCollageList'),#athul 
+    url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent')#Lijin
 )
 
 
