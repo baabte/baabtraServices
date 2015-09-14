@@ -324,7 +324,17 @@ urlpatterns += patterns('',
     url(r'^loadInbox/$', 'myapp.communications.loadInbox', name='loadInbox'),#Lijin 
     url(r'^getUserName/$', 'myapp.communications.getUserName', name='getUserName'),#Lijin 
     url(r'^loadSingleMessage/$', 'myapp.communications.loadSingleMessage', name='loadSingleMessage'),#Lijin 
-    url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent')#Lijin
+    url(r'^fnLoadParent/$', 'myapp.communications.fnLoadParent', name='fnLoadParent'),#Lijin
+    url(r'^saveAcademicYear/$', 'myapp.commonViews.saveAcademicYearView', name='saveAcademicYear'),#Jihin
+    url(r'^loadAcademicYear/$', 'myapp.commonViews.loadAcademicYearView', name='loadAcademicYear'),#Jihin
+    url(r'^saveFinancialYear/$', 'myapp.commonViews.saveFinancialYearView', name='saveFinancialYear'),#Jihin
+    url(r'^loadFinancialYear/$', 'myapp.commonViews.loadFinancialYearView', name='loadFinancialYear'),#Jihin
+    url(r'^saveCourse/$', 'myapp.course.saveCourseView', name='saveCourse'),#Jihin
+    url(r'^loadClassRoomDetails/$', 'myapp.course.loadClassRoomDetailsView', name='loadClassRoomDetails'),#Jihin
+    url(r'^saveBatch/$', 'myapp.Batches.saveBatchView', name='saveBatch'),#Jihin
+    url(r'^loadClassRoomBatch/$', 'myapp.Batches.loadClassRoomBatchView', name='loadClassRoomBatch'),#Jihin
+    url(r'^saveSubject/$', 'myapp.course.saveSubjectView', name='saveSubject'),#Jihin
+    url(r'^loadSubject/$', 'myapp.course.loadSubjectView', name='loadSubject')#Jihin
 )
 
 

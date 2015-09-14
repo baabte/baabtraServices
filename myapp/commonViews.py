@@ -246,4 +246,75 @@ def checkRegDomainExitsView(request):
         return Response(json.dumps(DomainExits, default=json_util.default))
     else:    
         return Response("failure")
-        
+
+#Created by Jihin
+#For save academic year
+@csrf_exempt
+@api_view(['GET','POST'])
+def saveAcademicYearView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        DomainExits = dbconn.system_js.fnSaveAcademicYear(data);
+        return Response(json.dumps(DomainExits, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#Created by Jihin
+#For save academic year
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadAcademicYearView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        DomainExits = dbconn.system_js.fnLoadAcademicYear(data);
+        return Response(json.dumps(DomainExits, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#Created by Jihin
+#For save Financial year
+@csrf_exempt
+@api_view(['GET','POST'])
+def saveFinancialYearView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        financialYearResponse = dbconn.system_js.fnSaveFinancialYear(data);
+        return Response(json.dumps(financialYearResponse, default=json_util.default))
+    else:    
+        return Response("failure")
+
+#Created by Jihin
+#For save financial year
+@csrf_exempt
+@api_view(['GET','POST'])
+def loadFinancialYearView(request):
+    #connect to our local mongodb
+    db = Connection(settings.MONGO_SERVER_ADDR,settings.MONGO_PORT)
+    #get a connection to our database
+    dbconn = db[settings.MONGO_DB]
+
+    if request.method == 'POST':
+        stream = StringIO(request.body)
+        data = JSONParser().parse(stream)
+        DomainExits = dbconn.system_js.fnLoadFinancialYear(data);
+        return Response(json.dumps(DomainExits, default=json_util.default))
+    else:    
+        return Response("failure")
